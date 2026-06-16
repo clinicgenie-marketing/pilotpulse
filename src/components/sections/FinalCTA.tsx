@@ -12,11 +12,21 @@ import { finalCta } from "@/lib/content";
 export function FinalCTA() {
   return (
     <section
-      className="relative py-24 lg:pb-40 lg:pt-28"
+      className="group relative py-24 lg:pb-40 lg:pt-28"
       style={{
         background: "linear-gradient(180deg, #0A022C 0%, #05011C 100%)",
       }}
     >
+      {/* Radial glow that intensifies on section hover */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-1/2 h-[480px] -translate-y-1/2 opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(70,51,255,0.22) 0%, transparent 70%)",
+        }}
+      />
+
       <div className="container-edge relative">
         <Reveal className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
           <Image
@@ -24,7 +34,7 @@ export function FinalCTA() {
             alt=""
             width={136}
             height={136}
-            className="h-24 w-24 object-contain lg:h-[8.5rem] lg:w-[8.5rem]"
+            className="animate-glow-pulse h-24 w-24 object-contain lg:h-[8.5rem] lg:w-[8.5rem]"
           />
           <h2 className="heading-cta">
             {finalCta.headingPre}

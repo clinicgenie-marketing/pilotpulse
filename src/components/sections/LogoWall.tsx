@@ -19,14 +19,14 @@ export function LogoWall() {
         }}
       />
       <div className="relative mx-auto w-full max-w-[1660px] px-4">
-        <div className="flex flex-col gap-4 sm:gap-7">
+        <div className="group flex flex-col gap-4 sm:gap-7">
           {clients.rows.map((row, r) => (
             <Reveal key={r} delay={r * 90}>
               <ul className="flex flex-wrap items-center justify-center gap-4 sm:gap-7">
                 {row.map((logo) => (
                   <li
                     key={logo}
-                    className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border border-hairline bg-[rgba(225,220,255,0.07)] p-2.5 shadow-[0_2px_6px_0_rgba(70,50,255,0.55)] sm:h-[8.375rem] sm:w-[8.375rem] sm:rounded-[1.75rem] sm:p-4"
+                    className="tile-interactive flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border border-hairline bg-[rgba(225,220,255,0.07)] p-2.5 shadow-[0_2px_6px_0_rgba(70,50,255,0.55)] transition-opacity sm:h-[8.375rem] sm:w-[8.375rem] sm:rounded-[1.75rem] sm:p-4 lg:group-hover:opacity-60 lg:hover:!opacity-100"
                   >
                     <Image
                       src={`/images/${logo}.png`}

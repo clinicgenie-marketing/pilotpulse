@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { GradientText } from "@/components/ui/GradientText";
+import { HeroParallax } from "@/components/ui/HeroParallax";
 import { Reveal } from "@/components/ui/Reveal";
 import { hero } from "@/lib/content";
 
@@ -8,23 +9,22 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
       {/* Orb-in-hand artwork from the reference — bleeds off the right edge */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none relative mx-auto -mt-4 w-[125%] max-w-none sm:w-[105%] lg:absolute lg:right-[-259px] lg:top-[-40px] lg:mt-0 lg:w-[1456px]"
-      >
-        <Image
-          src="/images/hero-orb-hand.png"
-          alt=""
-          width={1376}
-          height={768}
-          priority
-          sizes="(min-width: 1024px) 1456px, 110vw"
-          className="h-auto w-full"
-        />
-      </div>
+      <HeroParallax depth={0.15} className="pointer-events-none relative mx-auto -mt-4 w-[125%] max-w-none sm:w-[105%] lg:absolute lg:right-[-259px] lg:top-[-40px] lg:mt-0 lg:w-[1456px]">
+        <div aria-hidden="true" className="animate-hero-float">
+          <Image
+            src="/images/hero-orb-hand.png"
+            alt=""
+            width={1376}
+            height={768}
+            priority
+            sizes="(min-width: 1024px) 1456px, 110vw"
+            className="h-auto w-full"
+          />
+        </div>
+      </HeroParallax>
 
       <div className="container-edge relative">
-        <div className="flex max-w-[46rem] flex-col items-start gap-7 pb-20 pt-2 sm:pb-24 lg:pb-24 lg:pt-[23.75rem]">
+        <HeroParallax depth={0.05} className="flex max-w-[46rem] flex-col items-start gap-7 pb-20 pt-2 sm:pb-24 lg:pb-24 lg:pt-[23.75rem]">
           <Reveal>
             <h1 className="heading-1">
               {hero.headlineWhite}{" "}
@@ -46,7 +46,7 @@ export function HeroSection() {
               {hero.secondaryCta.label}
             </CTAButton>
           </Reveal>
-        </div>
+        </HeroParallax>
       </div>
     </section>
   );

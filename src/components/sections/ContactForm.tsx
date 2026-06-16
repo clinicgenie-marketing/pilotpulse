@@ -22,7 +22,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="glass flex flex-col items-center gap-4 rounded-2xl p-8 text-center sm:p-10">
+      <div className="glass card-interactive flex flex-col items-center gap-4 rounded-2xl p-8 text-center sm:p-10">
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-panel-tile">
           <CheckCircle2 className="h-7 w-7 text-brand-blue" strokeWidth={1.5} />
         </span>
@@ -36,7 +36,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass flex flex-col gap-5 rounded-2xl p-6 sm:p-8" noValidate>
+    <form onSubmit={handleSubmit} className="glass card-interactive flex flex-col gap-5 rounded-2xl p-6 sm:p-8" noValidate>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={LABEL}>

@@ -36,15 +36,15 @@ export function OperationsPanel() {
               </p>
               <ul className="flex flex-col gap-6">
                 {operations.bullets.map((item) => (
-                  <li key={item} className="flex items-start gap-5 lg:gap-9">
+                  <li key={item} className="bullet-interactive flex items-start gap-5 text-ink-body lg:gap-9">
                     <Image
                       src="/images/icon-dot-bullet.png"
                       alt=""
                       width={33}
                       height={32}
-                      className="mt-0.5 h-7 w-7 shrink-0 lg:h-8 lg:w-8"
+                      className="bullet-dot mt-0.5 h-7 w-7 shrink-0 lg:h-8 lg:w-8"
                     />
-                    <span className="text-[1.0625rem] leading-[1.2] text-ink lg:text-[1.4375rem]">
+                    <span className="text-[1.0625rem] leading-[1.2] lg:text-[1.4375rem]">
                       {item}
                     </span>
                   </li>
@@ -54,7 +54,7 @@ export function OperationsPanel() {
 
             {/* Video card — player UI and carousel arrows are part of the artwork */}
             <Reveal delay={120}>
-              <div className="overflow-hidden rounded-[1.75rem]">
+              <div className="video-interactive overflow-hidden rounded-[1.75rem]">
                 <Image
                   src="/images/video-thumb.png"
                   alt={`${operations.video.title} — ${operations.video.subtitle}`}

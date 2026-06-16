@@ -18,16 +18,16 @@ export function WorkflowCards() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+        <div className="group/grid mt-12 grid gap-7 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
           {capabilities.cards.map((card, i) => (
             <Reveal key={card.title} delay={i * 100} className="h-full">
-              <article className="card-pdf flex h-full flex-col p-8">
+              <article className="card-pdf card-interactive flex h-full flex-col p-8 transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100">
                 <Image
                   src={card.icon}
                   alt=""
                   width={100}
                   height={100}
-                  className="h-[5.75rem] w-auto object-contain object-left"
+                  className="card-icon h-[5.75rem] w-auto object-contain object-left"
                 />
                 <h3 className="mt-7 flex flex-col justify-end text-[1.625rem] font-bold leading-[1.4] text-ink lg:min-h-[9rem] lg:text-[2.0625rem]">
                   {card.titleGradient && (

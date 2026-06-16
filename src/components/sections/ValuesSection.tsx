@@ -47,7 +47,7 @@ export function ValuesSection() {
             {values.items.map((item, i) => (
               <Reveal key={item.title} delay={i * 90}>
                 <div
-                  className={`grid grid-cols-[4.5rem_1fr] gap-y-3 border-white/70 lg:grid-cols-[7.125rem_1fr] ${
+                  className={`row-interactive grid grid-cols-[4.5rem_1fr] gap-y-3 border-white/70 lg:grid-cols-[7.125rem_1fr] ${
                     i === 0 ? "pb-8" : "py-8"
                   } ${i === last ? "border-b-0 pb-0" : "border-b"}`}
                 >
@@ -60,7 +60,7 @@ export function ValuesSection() {
                     alt=""
                     width={48}
                     height={48}
-                    className="mt-1 h-10 w-10 object-contain pl-0 lg:ml-[18px] lg:h-12 lg:w-12"
+                    className="row-icon mt-1 h-10 w-10 object-contain pl-0 lg:ml-[18px] lg:h-12 lg:w-12"
                   />
                   <p className="text-[1.0625rem] leading-[1.45] text-white/85 lg:text-[1.375rem]">
                     <span className="block font-bold text-white">{item.bold}</span>

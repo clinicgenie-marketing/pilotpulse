@@ -26,7 +26,7 @@ export function CredibilityBanner() {
                   "linear-gradient(180deg, rgba(33,23,128,0) 0%, rgba(33,23,128,0.45) 55%, rgba(33,23,128,0.85) 100%)",
               }}
             />
-            <div className="relative mx-auto w-[280px] sm:w-[360px] lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:w-[432px]">
+            <div className="relative mx-auto w-[280px] animate-hero-float sm:w-[360px] lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:w-[432px] [animation-delay:1.5s]">
               <Image
                 src="/images/imda-phone.png"
                 alt="PilotPulse — IMDA GenAI for Digital Leaders initiative on mobile"
@@ -60,14 +60,14 @@ export function CredibilityBanner() {
                 alt="Infocomm Media Development Authority"
                 width={213}
                 height={55}
-                className="h-12 w-auto sm:h-14"
+                className="h-12 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-14"
               />
               <Image
                 src="/images/logo-singtel.png"
                 alt="Singtel"
                 width={128}
                 height={80}
-                className="h-16 w-auto sm:h-20"
+                className="h-16 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-20"
               />
             </div>
 

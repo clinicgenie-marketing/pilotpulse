@@ -36,17 +36,17 @@ export function WhyPilotPulse() {
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-7 lg:mt-14 lg:grid-cols-2">
+          <div className="group/grid mt-10 grid gap-7 lg:mt-14 lg:grid-cols-2">
             {why.reasons.map((reason, i) => (
               <Reveal key={reason.title} delay={(i % 2) * 100} className="h-full">
-                <article className="card-why flex h-full flex-col p-8 lg:p-14">
+                <article className="card-why card-interactive flex h-full flex-col p-8 transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100 lg:p-14">
                   <div className="flex items-center gap-6">
                     <Image
                       src={reason.icon}
                       alt=""
                       width={56}
                       height={56}
-                      className="h-14 w-14 shrink-0 object-contain"
+                      className="card-icon h-14 w-14 shrink-0 object-contain"
                     />
                     <h3 className="text-xl font-bold leading-snug text-ink lg:text-[1.625rem]">
                       {reason.title}
