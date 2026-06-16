@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tokens measured from the design reference (landing dark.pdf).
+ * See docs/design-spec-pdf.md for the full sampled spec.
+ */
+:root {
+  --bg-base: #05002b;
+  --text-primary: #ffffff;
+  --text-body: #c6c8d3;
+  --border-hairline: rgba(130, 140, 255, 0.2);
+  --gradient-signature: linear-gradient(90deg, #0da4d5 0%, #1f89ff 50%, #4633ff 100%);
+}
+
+@layer base {
+  * {
+    border-color: var(--border-hairline);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(70, 51, 255, 0.45);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1f89ff;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* ---- layout: inner content = 1330px at the 1728 reference (x200→1530) ---- */
+  .container-edge {
+    @apply mx-auto w-full max-w-[1410px] px-5 sm:px-8 lg:px-10;
+  }
+
+  /* ---- type scale measured from the reference: H1 78, H2 52, CTA 58 ---- */
+  .heading-1 {
+    font-size: clamp(2.5rem, 4.5vw, 4.875rem);
+    line-height: 1.05;
+    @apply font-bold text-ink;
+  }
+
+  .heading-2 {
+    font-size: clamp(1.875rem, 3.05vw, 3.25rem);
+    line-height: 1.15;
+    @apply font-bold text-ink;
+  }
+
+  .heading-cta {
+    font-size: clamp(2.125rem, 3.4vw, 3.625rem);
+    line-height: 1.2;
+    @apply font-bold text-ink;
+  }
+
+  .lead {
+    font-size: clamp(1.0625rem, 1.4vw, 1.5rem);
+    line-height: 1.45;
+    @apply text-ink-body;
+  }
+
+  .body-copy {
+    @apply text-[1.0313rem] leading-normal text-ink-body;
+  }
+
+  .gradient-text {
+    @apply bg-signature bg-clip-text text-transparent;
+  }
+
+  /* ---- buttons (pill, h≈50 on reference) ---- */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-8 py-4 text-[1.0625rem] font-bold leading-none text-ink transition-all duration-300 ease-out;
+  }
+
+  /* primary ramp is ~18% darker than the headline gradient (sampled) */
+  .btn-primary {
+    @apply btn;
+    background-image: linear-gradient(90deg, #0b87af 0%, #1f5cc0 50%, #3828d4 100%);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.18);
+    box-shadow: 0 10px 36px -10px rgba(31, 137, 255, 0.65);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply btn border bg-transparent;
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 3px 14px -2px rgba(70, 51, 255, 0.45);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.04);
+    transform: translateY(-1px);
+  }
+
+  /* ---- cards ---- */
+  .card-pdf {
+    @apply rounded-3xl border bg-panel-card;
+    border-color: rgba(130, 140, 255, 0.16);
+  }
+
+  .card-why {
+    @apply rounded-[1.3125rem] border bg-panel-why;
+    border-color: rgba(99, 141, 255, 0.45);
+  }
+
+  .card-process {
+    @apply rounded-2xl bg-panel-process;
+  }
+
+  /* legacy alias used by the contact page form */
+  .glass {
+    @apply rounded-3xl border;
+    background-color: rgba(16, 12, 56, 0.75);
+    border-color: rgba(130, 140, 255, 0.2);
+    backdrop-filter: blur(14px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/*
+ * Scroll-reveal — plain CSS (outside @layer) so it is always emitted.
+ * Elements start hidden and rise when the IntersectionObserver adds
+ * `.is-visible`.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
