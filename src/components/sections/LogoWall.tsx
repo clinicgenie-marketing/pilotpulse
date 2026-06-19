@@ -1,38 +1,45 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { clients } from "@/lib/content";
 
-/**
- * Client logo wall — three centred rows of rounded tiles over a broad
- * horizontal glow band centred on the middle row, as the reference.
- */
+/** Client logo wall with eyebrow and tighter enterprise grid. */
 export function LogoWall() {
   return (
-    <section id="clients" aria-label="Clients and partners" className="relative scroll-mt-16 py-12 lg:py-16">
-      {/* glow band behind the rows */}
+    <section id="clients" aria-label="Clients and partners" className="relative scroll-mt-16 border-y border-hairline bg-panel/40 py-14 lg:py-20">
+      {/* Subtle glow band */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 h-[560px] -translate-y-1/2"
+        className="pointer-events-none absolute inset-x-0 top-1/2 h-[400px] -translate-y-1/2 opacity-60"
         style={{
           background:
-            "linear-gradient(180deg, rgba(90,80,190,0) 0%, rgba(90,80,190,0.28) 50%, rgba(90,80,190,0) 100%)",
+            "linear-gradient(180deg, rgba(90,80,190,0) 0%, rgba(90,80,190,0.18) 50%, rgba(90,80,190,0) 100%)",
         }}
       />
-      <div className="relative mx-auto w-full max-w-[1660px] px-4">
-        <div className="flex flex-col gap-4 sm:gap-7">
+
+      <div className="container-edge relative">
+        <Reveal className="mx-auto mb-10 max-w-2xl">
+          <SectionHeader
+            eyebrow={clients.eyebrow}
+            heading={clients.heading}
+            align="center"
+          />
+        </Reveal>
+
+        <div className="group flex flex-col gap-3 sm:gap-5">
           {clients.rows.map((row, r) => (
-            <Reveal key={r} delay={r * 90}>
-              <ul className="flex flex-wrap items-center justify-center gap-4 sm:gap-7">
+            <Reveal key={r} delay={r * 70}>
+              <ul className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
                 {row.map((logo) => (
                   <li
                     key={logo}
-                    className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-2xl border border-hairline bg-[rgba(225,220,255,0.07)] p-2.5 shadow-[0_2px_6px_0_rgba(70,50,255,0.55)] sm:h-[8.375rem] sm:w-[8.375rem] sm:rounded-[1.75rem] sm:p-4"
+                    className="tile-interactive flex h-16 w-16 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-2 shadow-sm transition-opacity sm:h-20 sm:w-20 lg:group-hover:opacity-60 lg:hover:!opacity-100"
                   >
                     <Image
                       src={`/images/${logo}.png`}
                       alt=""
-                      width={110}
-                      height={110}
+                      width={80}
+                      height={80}
                       className="h-full w-full object-contain"
                     />
                   </li>

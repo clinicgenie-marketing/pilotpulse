@@ -40,7 +40,8 @@ const config: Config = {
         hairline: "rgba(130,140,255,0.20)",
       },
       fontFamily: {
-        sans: ["var(--font-mulish)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter-tight)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "1330px",
@@ -57,9 +58,25 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(26px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        heroFloat: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        glowPulse: {
+          "0%, 100%": {
+            opacity: "0.85",
+            filter: "drop-shadow(0 0 8px rgba(70,51,255,0.3))",
+          },
+          "50%": {
+            opacity: "1",
+            filter: "drop-shadow(0 0 20px rgba(70,51,255,0.55))",
+          },
+        },
       },
       animation: {
         "fade-up": "fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) forwards",
+        "hero-float": "heroFloat 9s ease-in-out infinite",
+        "glow-pulse": "glowPulse 4s ease-in-out infinite",
       },
     },
   },

@@ -21,7 +21,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -49,8 +49,9 @@
   h2,
   h3,
   h4 {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
@@ -65,16 +66,18 @@
     @apply mx-auto w-full max-w-[1410px] px-5 sm:px-8 lg:px-10;
   }
 
-  /* ---- type scale measured from the reference: H1 78, H2 52, CTA 58 ---- */
+  /* ---- type scale ---- */
   .heading-1 {
     font-size: clamp(2.5rem, 4.5vw, 4.875rem);
-    line-height: 1.05;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     @apply font-bold text-ink;
   }
 
   .heading-2 {
     font-size: clamp(1.875rem, 3.05vw, 3.25rem);
-    line-height: 1.15;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     @apply font-bold text-ink;
   }
 
@@ -98,7 +101,27 @@
     @apply bg-signature bg-clip-text text-transparent;
   }
 
-  /* ---- buttons (pill, h≈50 on reference) ---- */
+  /* ---- Micron-style labels & links ---- */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.12em] text-brand-cyan;
+  }
+
+  .section-intro {
+    @apply flex flex-col gap-4;
+  }
+
+  .text-link {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-brand-blue transition-colors duration-300 hover:text-brand-cyan;
+  }
+
+  .tech-grid-overlay {
+    background-image:
+      linear-gradient(rgba(13, 164, 213, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 164, 213, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* ---- buttons ---- */
   .btn {
     @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-8 py-4 text-[1.0625rem] font-bold leading-none text-ink transition-all duration-300 ease-out;
   }
@@ -127,6 +150,14 @@
     transform: translateY(-1px);
   }
 
+  .btn-compact {
+    @apply px-5 py-2.5 text-xs font-bold uppercase tracking-wide;
+  }
+
+  .btn-display {
+    @apply uppercase tracking-wide text-sm;
+  }
+
   /* ---- cards ---- */
   .card-pdf {
     @apply rounded-3xl border bg-panel-card;
@@ -142,12 +173,123 @@
     @apply rounded-2xl bg-panel-process;
   }
 
+  /* ---- interactive surfaces ---- */
+  .card-interactive {
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 141, 255, 0.65);
+    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.45);
+  }
+
+  .card-interactive .card-icon {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-interactive:hover .card-icon {
+    transform: scale(1.05);
+  }
+
+  .card-process-interactive {
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .card-process-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.35);
+  }
+
+  .card-process-interactive:hover .process-step-badge {
+    filter: brightness(1.2);
+  }
+
+  .card-process-interactive:hover .process-icon-band {
+    background-color: #3d3878;
+  }
+
+  .tile-interactive {
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .tile-interactive:hover {
+    transform: scale(1.04);
+    border-color: rgba(99, 141, 255, 0.55);
+    box-shadow: 0 8px 32px -8px rgba(70, 51, 255, 0.65);
+  }
+
+  .row-interactive {
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+    border-left: 3px solid transparent;
+    margin-left: -3px;
+    padding-left: 3px;
+  }
+
+  .row-interactive:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-left-color: rgba(99, 141, 255, 0.65);
+  }
+
+  .row-interactive .row-icon {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .row-interactive:hover .row-icon {
+    transform: scale(1.08);
+  }
+
+  .bullet-interactive {
+    transition: color 0.25s ease;
+  }
+
+  .bullet-interactive:hover {
+    color: #ffffff;
+  }
+
+  .bullet-interactive:hover .bullet-dot {
+    transform: scale(1.12);
+  }
+
+  .bullet-dot {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .video-interactive {
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease;
+  }
+
+  .video-interactive:hover {
+    transform: scale(1.01);
+    box-shadow: 0 16px 48px -12px rgba(70, 51, 255, 0.45);
+  }
+
   /* legacy alias used by the contact page form */
   .glass {
     @apply rounded-3xl border;
     background-color: rgba(16, 12, 56, 0.75);
     border-color: rgba(130, 140, 255, 0.2);
     backdrop-filter: blur(14px);
+  }
+
+  .glass.card-interactive:hover {
+    border-color: rgba(99, 141, 255, 0.55);
+    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.4);
   }
 }
 
@@ -176,6 +318,36 @@
   transform: translateY(0);
 }
 
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 8px rgba(70, 51, 255, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(70, 51, 255, 0.55));
+  }
+}
+
+.animate-hero-float {
+  animation: heroFloat 9s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -192,6 +364,27 @@
 
   .reveal {
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card-interactive:hover,
+  .card-process-interactive:hover,
+  .tile-interactive:hover {
+    transform: none !important;
+  }
+
+  .animate-hero-float,
+  .animate-glow-pulse {
+    animation: none !important;
+  }
+
+  .card-interactive .card-icon,
+  .row-interactive .row-icon,
+  .bullet-dot {
+    transform: none !important;
+  }
+
+  .video-interactive:hover {
     transform: none !important;
   }
 }

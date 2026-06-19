@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { GradientText } from "@/components/ui/GradientText";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { footer } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -18,24 +19,25 @@ export default function ContactPage() {
     <>
       <Header />
       <main id="main">
-        <section className="py-16 lg:py-24">
+        <section className="py-14 lg:py-20">
           <div className="container-edge">
-            <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center gap-4 text-center lg:mb-16">
-              <h1 className="heading-2">
-                Identify your <GradientText>first AI workflow</GradientText>
-              </h1>
-              <p className="lead">
-                We will identify one area where AI can realistically reduce workload and
-                improve consistency. No generic demos. No assumptions. Just what works
-                for your business.
-              </p>
+            <div className="mx-auto mb-10 max-w-2xl lg:mb-14">
+              <SectionHeader
+                eyebrow="Contact"
+                heading={
+                  <>
+                    Identify your <GradientText>first AI workflow</GradientText>
+                  </>
+                }
+                sub="We will identify one area where AI can realistically reduce workload and improve consistency. No generic demos. No assumptions. Just what works for your business."
+                align="center"
+              />
             </div>
 
             <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
               <ContactForm />
 
-              {/* Details */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-5">
                 <DetailCard icon={<MapPin className="h-5 w-5" strokeWidth={1.5} />} title={footer.location.heading}>
                   <address className="not-italic">
                     {footer.location.lines.map((line) => (
@@ -89,9 +91,9 @@ function DetailCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass rounded-3xl p-6">
-      <h2 className="mb-3 flex items-center gap-2.5 text-sm font-bold text-ink">
-        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-panel-tile text-brand-blue">
+    <div className="glass card-interactive rounded-xl p-5">
+      <h2 className="mb-3 flex items-center gap-2.5 text-sm font-bold uppercase tracking-wide text-ink">
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-panel-tile text-brand-blue">
           {icon}
         </span>
         {title}

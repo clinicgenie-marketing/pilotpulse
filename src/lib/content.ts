@@ -19,16 +19,18 @@ export const site = {
   positioning: "PilotPulse builds AI where the work actually happens.",
 };
 
-/** Header pill: logo + three links, exactly as the reference. */
+/** Sticky header: logo + links + persistent CTA. */
 export const nav = {
   links: [
     { label: "Home", href: "/" },
     { label: "Contact Us", href: CONTACT_HREF },
     { label: "About Us", href: "#why" },
   ],
+  cta: { label: "Identify your first AI workflow", href: CONTACT_HREF },
 };
 
 export const hero = {
+  eyebrow: "AI Implementation Partner",
   headlineWhite: "Your business is already running on AI.",
   headlineGradient: "Just not yours.",
   subheadline:
@@ -38,6 +40,7 @@ export const hero = {
 };
 
 export const credibility = {
+  eyebrow: "Partner Programme",
   headingBlue: "IMDA-Approved",
   headingWhite: "Technology Partner",
   body: [
@@ -49,6 +52,7 @@ export const credibility = {
 
 /** Full-width rounded panel — "AI agents can now" + video card. */
 export const operations = {
+  eyebrow: "Operational AI",
   headingWhite: "AI is changing how",
   headingGradient: "businesses operate",
   sub: "Most companies start with tools. Most AI vendors stop at demos. That is why most AI never makes it into day-to-day work.",
@@ -63,6 +67,7 @@ export const operations = {
     title: "Customer Follow-Up AI Agent",
     subtitle: "For Healthcare, Aesthetics & Wellness Providers",
   },
+  videoLink: { label: "View implementation", href: CONTACT_HREF },
   /** Closing statements — regular white text with bold emphasis phrases, as the reference. */
   bold: [
     {
@@ -79,32 +84,40 @@ export const operations = {
 };
 
 export const capabilities = {
+  eyebrow: "Capabilities",
   headingWhite: "AI agents supporting",
   headingGradient: "real business workflows",
   sub: "Capable of executing tasks across multiple business functions — not just answering questions.",
   cards: [
     {
+      eyebrow: "Conversation AI",
       titleGradient: "Conversation AI:",
       title: "Customer Engagement",
       body: "Handles enquiries, recommendations, bookings, confirmations and follow-ups across WhatsApp, email and chat.",
       icon: "/images/icon-conversation.png",
+      link: { label: "Learn more", href: CONTACT_HREF },
     },
     {
+      eyebrow: "Operations",
       titleGradient: "",
       title: "Operations Automation",
       body: "Processes documents, extracts data, prepares quotations, updates systems and coordinates internal workflows.",
       icon: "/images/icon-operations.png",
+      link: { label: "Learn more", href: CONTACT_HREF },
     },
     {
+      eyebrow: "Decision Support",
       titleGradient: "",
       title: "Decision Support",
       body: "Screens candidates, analyses conversations, surfaces key insights and gives teams structured information for faster, more consistent decisions.",
       icon: "/images/icon-decision.png",
+      link: { label: "Learn more", href: CONTACT_HREF },
     },
   ],
 };
 
 export const why = {
+  eyebrow: "Why PilotPulse",
   headingPre: "Built for ",
   headingGradient: "real operational workflows",
   headingPost: "— not just AI demos",
@@ -114,21 +127,25 @@ export const why = {
   label: "Our approach combines:",
   reasons: [
     {
+      eyebrow: "Approach",
       title: "Workflow-First Design",
       body: "AI agents are designed around real business processes — not generic prompts.",
       icon: "/images/icon-why-workflow.png",
     },
     {
+      eyebrow: "Integration",
       title: "Integration with Business Systems",
       body: "AI connects with the tools, databases and communication channels your team already uses, including ERP and CRM.",
       icon: "/images/icon-why-integration.png",
     },
     {
+      eyebrow: "Experience",
       title: "Multi-Industry Implementation Experience",
       body: "Delivered across logistics, recruitment, healthcare, catering, professional services and operational teams.",
       icon: "/images/icon-why-industry.png",
     },
     {
+      eyebrow: "Reliability",
       title: "Production-Ready Reliability",
       body: "Systems are tested, refined and monitored for real operating conditions.",
       icon: "/images/icon-why-reliability.png",
@@ -137,6 +154,7 @@ export const why = {
 };
 
 export const values = {
+  eyebrow: "Our Values",
   heading: "Our values",
   sub: "AI adoption should be practical, responsible and outcome-focused.",
   items: [
@@ -168,6 +186,7 @@ export const values = {
 };
 
 export const process = {
+  eyebrow: "Our Process",
   heading: "From opportunity to implementation",
   sub: "We work closely with you to identify and deploy high-impact AI workflows — practically and consultatively.",
   steps: [
@@ -206,6 +225,8 @@ export const process = {
 
 /** Client logo wall — rows of 9 / 10 / 9, as laid out in the reference. */
 export const clients = {
+  eyebrow: "Trusted By",
+  heading: "Operations teams across industries",
   rows: [
     ["client-01", "client-02", "client-03", "client-04", "client-05", "client-06", "client-07", "client-08", "client-09"],
     ["client-10", "client-11", "client-12", "client-13", "client-14", "client-15", "client-16", "client-17", "client-18", "client-19"],
@@ -214,6 +235,7 @@ export const clients = {
 };
 
 export const testimonials = {
+  eyebrow: "Client Voices",
   heading: "What our clients say",
   quotes: [
     {
@@ -244,6 +266,7 @@ export const testimonials = {
 };
 
 export const finalCta = {
+  eyebrow: "Get Started",
   headingPre: "Start with ",
   headingGradient: "one workflow",
   blueLine: "You do not need to overhaul your entire business.",
@@ -267,7 +290,12 @@ export const footer = {
       { label: "Privacy", href: "#" },
     ],
   },
+  cta: { label: "Contact Us", href: CONTACT_HREF },
   copyright: "©2026 PilotPulse. All rights reserved.",
+  legal: [
+    { label: "Terms & Conditions", href: "#" },
+    { label: "Privacy", href: "#" },
+  ],
 };
 
 export const seo = {
