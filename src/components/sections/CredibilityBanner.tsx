@@ -1,79 +1,67 @@
 import Image from "next/image";
-import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { TextLink } from "@/components/ui/TextLink";
 import { credibility } from "@/lib/content";
 
-/**
- * IMDA band, exactly as the reference: phone mockup over a gradient backdrop
- * with a hard bottom edge (the phone is clipped, bottom-aligned with the CTA),
- * heading + copy + partner lockups on the right.
- */
+/** Micron-style split feature band — IMDA credibility. */
 export function CredibilityBanner() {
   return (
-    <section id="imda" className="relative pt-10 lg:pt-0">
-      <div className="container-edge">
-        <div className="grid items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          {/* Phone mockup on its gradient backdrop — clipped at the band bottom.
-              On lg the phone is absolutely positioned so the column height is
-              set by the copy column and the overflow crops the phone, exactly
-              as the reference. */}
-          <Reveal className="relative order-last overflow-hidden lg:order-first lg:h-full lg:min-h-[40rem]">
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 bottom-0 top-[38%]"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(33,23,128,0) 0%, rgba(33,23,128,0.45) 55%, rgba(33,23,128,0.85) 100%)",
-              }}
-            />
-            <div className="relative mx-auto w-[280px] animate-hero-float sm:w-[360px] lg:absolute lg:inset-x-0 lg:top-0 lg:mx-auto lg:w-[432px] [animation-delay:1.5s]">
+    <section id="imda" className="border-y border-hairline bg-panel">
+      <div className="container-edge py-16 lg:py-24">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* Phone mockup in contained frame */}
+          <Reveal>
+            <div className="overflow-hidden rounded-xl border border-hairline bg-panel-card p-4 lg:p-6">
               <Image
                 src="/images/imda-phone.png"
                 alt="PilotPulse — IMDA GenAI for Digital Leaders initiative on mobile"
                 width={459}
                 height={943}
                 sizes="(min-width: 1024px) 432px, 360px"
-                className="h-auto w-full"
+                className="mx-auto h-auto w-full max-w-[360px]"
               />
             </div>
           </Reveal>
 
           {/* Copy */}
-          <Reveal delay={100} className="flex flex-col items-start lg:py-1">
-            <h2 className="heading-2">
-              <span className="block text-brand-accent">{credibility.headingBlue}</span>
-              <span className="block font-light">{credibility.headingWhite}</span>
-            </h2>
+          <Reveal delay={100} className="flex flex-col gap-8">
+            <SectionHeader
+              eyebrow={credibility.eyebrow}
+              heading={
+                <>
+                  <span className="block text-brand-accent">{credibility.headingBlue}</span>
+                  <span className="block font-light">{credibility.headingWhite}</span>
+                </>
+              }
+            />
 
-            <div className="mt-9 flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
               {credibility.body.map((para) => (
-                <p key={para} className="max-w-[34.5rem] text-justify text-[1.375rem] leading-8 text-ink-body">
+                <p key={para} className="text-base leading-relaxed text-ink-body lg:text-lg">
                   {para}
                 </p>
               ))}
             </div>
 
-            {/* Partner lockups (white) */}
-            <div className="flex flex-wrap items-center gap-14 pt-12">
+            <div className="flex flex-wrap items-center gap-10">
               <Image
                 src="/images/logo-imda.png"
                 alt="Infocomm Media Development Authority"
                 width={213}
                 height={55}
-                className="h-12 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-14"
+                className="h-10 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-12"
               />
               <Image
                 src="/images/logo-singtel.png"
                 alt="Singtel"
                 width={128}
                 height={80}
-                className="h-16 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-20"
+                className="h-14 w-auto opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100 sm:h-16"
               />
             </div>
 
-            <CTAButton href={credibility.cta.href} className="mt-10 !px-7 !py-[1.0625rem] !text-base">
-              {credibility.cta.label}
-            </CTAButton>
+            <TextLink href={credibility.cta.href}>{credibility.cta.label}</TextLink>
           </Reveal>
         </div>
       </div>

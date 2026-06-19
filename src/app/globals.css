@@ -21,7 +21,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -49,8 +49,9 @@
   h2,
   h3,
   h4 {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
@@ -65,16 +66,18 @@
     @apply mx-auto w-full max-w-[1410px] px-5 sm:px-8 lg:px-10;
   }
 
-  /* ---- type scale measured from the reference: H1 78, H2 52, CTA 58 ---- */
+  /* ---- type scale ---- */
   .heading-1 {
     font-size: clamp(2.5rem, 4.5vw, 4.875rem);
-    line-height: 1.05;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
     @apply font-bold text-ink;
   }
 
   .heading-2 {
     font-size: clamp(1.875rem, 3.05vw, 3.25rem);
-    line-height: 1.15;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     @apply font-bold text-ink;
   }
 
@@ -98,7 +101,27 @@
     @apply bg-signature bg-clip-text text-transparent;
   }
 
-  /* ---- buttons (pill, h≈50 on reference) ---- */
+  /* ---- Micron-style labels & links ---- */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.12em] text-brand-cyan;
+  }
+
+  .section-intro {
+    @apply flex flex-col gap-4;
+  }
+
+  .text-link {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-brand-blue transition-colors duration-300 hover:text-brand-cyan;
+  }
+
+  .tech-grid-overlay {
+    background-image:
+      linear-gradient(rgba(13, 164, 213, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 164, 213, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* ---- buttons ---- */
   .btn {
     @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-8 py-4 text-[1.0625rem] font-bold leading-none text-ink transition-all duration-300 ease-out;
   }
@@ -125,6 +148,14 @@
     border-color: rgba(255, 255, 255, 0.5);
     background-color: rgba(255, 255, 255, 0.04);
     transform: translateY(-1px);
+  }
+
+  .btn-compact {
+    @apply px-5 py-2.5 text-xs font-bold uppercase tracking-wide;
+  }
+
+  .btn-display {
+    @apply uppercase tracking-wide text-sm;
   }
 
   /* ---- cards ---- */

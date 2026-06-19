@@ -10,6 +10,8 @@ type CTAButtonProps = {
   withArrow?: boolean;
   external?: boolean;
   ariaLabel?: string;
+  size?: "default" | "compact";
+  display?: boolean;
 };
 
 /**
@@ -24,8 +26,13 @@ export function CTAButton({
   withArrow = false,
   external = false,
   ariaLabel,
+  size = "default",
+  display = false,
 }: CTAButtonProps) {
-  const classes = `${variant === "primary" ? "btn-primary" : "btn-secondary"} group ${className}`.trim();
+  const sizeClass = size === "compact" ? "btn-compact" : "";
+  const displayClass = display ? "btn-display" : "";
+  const classes =
+    `${variant === "primary" ? "btn-primary" : "btn-secondary"} group ${sizeClass} ${displayClass} ${className}`.trim();
 
   const content = (
     <>

@@ -40,7 +40,8 @@ const config: Config = {
         hairline: "rgba(130,140,255,0.20)",
       },
       fontFamily: {
-        sans: ["var(--font-mulish)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-inter-tight)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "1330px",

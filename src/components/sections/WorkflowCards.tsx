@@ -1,41 +1,70 @@
 import Image from "next/image";
 import { GradientText } from "@/components/ui/GradientText";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { TextLink } from "@/components/ui/TextLink";
 import { capabilities } from "@/lib/content";
 
-/** Three capability cards — icon, bottom-aligned title (card 1 has a gradient lead line), body. */
+/** Micron-style icon solutions row + compact featured tiles. */
 export function WorkflowCards() {
   return (
-    <section className="py-20 md:py-24 lg:py-28">
+    <section className="py-16 md:py-20 lg:py-24">
       <div className="container-edge">
-        <Reveal className="mx-auto flex flex-col items-center gap-5 text-center">
-          <h2 className="heading-2">
-            {capabilities.headingWhite}{" "}
-            <GradientText>{capabilities.headingGradient}</GradientText>
-          </h2>
-          <p className="text-[1.125rem] text-ink-body lg:text-2xl lg:leading-9">
-            {capabilities.sub}
-          </p>
+        <Reveal>
+          <SectionHeader
+            eyebrow={capabilities.eyebrow}
+            headingWhite={capabilities.headingWhite}
+            headingGradient={capabilities.headingGradient}
+            sub={capabilities.sub}
+          />
         </Reveal>
 
-        <div className="group/grid mt-12 grid gap-7 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
-          {capabilities.cards.map((card, i) => (
-            <Reveal key={card.title} delay={i * 100} className="h-full">
-              <article className="card-pdf card-interactive flex h-full flex-col p-8 transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100">
-                <Image
-                  src={card.icon}
-                  alt=""
-                  width={100}
-                  height={100}
-                  className="card-icon h-[5.75rem] w-auto object-contain object-left"
-                />
-                <h3 className="mt-7 flex flex-col justify-end text-[1.625rem] font-bold leading-[1.4] text-ink lg:min-h-[9rem] lg:text-[2.0625rem]">
+        {/* Desktop: icon solutions row with hairline dividers */}
+        <Reveal delay={80} className="mt-12 hidden lg:grid lg:grid-cols-3 lg:divide-x lg:divide-hairline">
+          {capabilities.cards.map((card) => (
+            <div key={card.title} className="flex flex-col gap-5 px-8 first:pl-0 last:pr-0">
+              <Image
+                src={card.icon}
+                alt=""
+                width={64}
+                height={64}
+                className="h-14 w-14 object-contain"
+              />
+              <div>
+                <p className="eyebrow mb-2">{card.eyebrow}</p>
+                <h3 className="text-xl font-bold text-ink">
                   {card.titleGradient && (
                     <GradientText className="block">{card.titleGradient}</GradientText>
                   )}
                   <span>{card.title}</span>
                 </h3>
-                <p className="body-copy mt-4 leading-8">{card.body}</p>
+              </div>
+              <p className="body-copy flex-1">{card.body}</p>
+              <TextLink href={card.link.href}>{card.link.label}</TextLink>
+            </div>
+          ))}
+        </Reveal>
+
+        {/* Mobile / tablet: compact featured tiles */}
+        <div className="group/grid mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:hidden">
+          {capabilities.cards.map((card, i) => (
+            <Reveal key={card.title} delay={i * 80} className="h-full">
+              <article className="card-pdf card-interactive flex h-full flex-col overflow-hidden transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100">
+                <div className="flex items-center justify-center border-b border-hairline bg-panel-tile/40 px-6 py-8">
+                  <Image
+                    src={card.icon}
+                    alt=""
+                    width={80}
+                    height={80}
+                    className="card-icon h-16 w-16 object-contain"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <p className="eyebrow">{card.eyebrow}</p>
+                  <h3 className="text-lg font-bold text-ink">{card.title}</h3>
+                  <p className="body-copy flex-1 text-sm">{card.body}</p>
+                  <TextLink href={card.link.href}>{card.link.label}</TextLink>
+                </div>
               </article>
             </Reveal>
           ))}

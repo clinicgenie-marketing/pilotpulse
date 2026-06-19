@@ -1,12 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Mulish } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { seo, site } from "@/lib/content";
 
-const mulish = Mulish({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-mulish",
-  weight: ["400", "600", "700", "800"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -89,8 +94,30 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-SG" className={mulish.variable}>
-      <body className="bg-base font-sans antialiased">
+    <html lang="en-SG" className={`${inter.variable} ${interTight.variable}`}>
+      <body className="relative bg-base font-sans antialiased">
+        {/* Ambient radial glow blobs */}
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+          <div
+            className="absolute -left-[20%] top-[10%] h-[600px] w-[600px] rounded-full opacity-30"
+            style={{
+              background: "radial-gradient(circle, rgba(13,164,213,0.15) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute -right-[10%] top-[40%] h-[700px] w-[700px] rounded-full opacity-25"
+            style={{
+              background: "radial-gradient(circle, rgba(70,51,255,0.18) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-[5%] left-[30%] h-[500px] w-[500px] rounded-full opacity-20"
+            style={{
+              background: "radial-gradient(circle, rgba(31,137,255,0.12) 0%, transparent 70%)",
+            }}
+          />
+        </div>
+
         {/* No-JS fallback: never hide scroll-reveal content if JS fails to load */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
