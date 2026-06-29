@@ -64,6 +64,7 @@ export const operations = {
     "Move information across systems without friction",
   ],
   video: {
+    src: "/video/pilotpulse_clinic_3.mp4",
     title: "Customer Follow-Up AI Agent",
     subtitle: "For Healthcare, Aesthetics & Wellness Providers",
   },
@@ -85,7 +86,7 @@ export const operations = {
 
 export const capabilities = {
   eyebrow: "Capabilities",
-  headingWhite: "AI agents supporting",
+  headingWhite: "AI agents supporting ",
   headingGradient: "real business workflows",
   sub: "Capable of executing tasks across multiple business functions — not just answering questions.",
   cards: [
@@ -94,7 +95,7 @@ export const capabilities = {
       titleGradient: "Conversation AI:",
       title: "Customer Engagement",
       body: "Handles enquiries, recommendations, bookings, confirmations and follow-ups across WhatsApp, email and chat.",
-      icon: "/images/icon-conversation.png",
+      icon: "/ai-agents/convo-AI-w.png",
       link: { label: "Learn more", href: CONTACT_HREF },
     },
     {
@@ -102,7 +103,7 @@ export const capabilities = {
       titleGradient: "",
       title: "Operations Automation",
       body: "Processes documents, extracts data, prepares quotations, updates systems and coordinates internal workflows.",
-      icon: "/images/icon-operations.png",
+      icon: "/ai-agents/operations-auto-w.png",
       link: { label: "Learn more", href: CONTACT_HREF },
     },
     {
@@ -110,7 +111,7 @@ export const capabilities = {
       titleGradient: "",
       title: "Decision Support",
       body: "Screens candidates, analyses conversations, surfaces key insights and gives teams structured information for faster, more consistent decisions.",
-      icon: "/images/icon-decision.png",
+      icon: "/ai-agents/decision-support-w.png",
       link: { label: "Learn more", href: CONTACT_HREF },
     },
   ],
@@ -130,25 +131,25 @@ export const why = {
       eyebrow: "Approach",
       title: "Workflow-First Design",
       body: "AI agents are designed around real business processes — not generic prompts.",
-      icon: "/images/icon-why-workflow.png",
+      icon: "/operational/op-workflow-first-design-w.png",
     },
     {
       eyebrow: "Integration",
       title: "Integration with Business Systems",
       body: "AI connects with the tools, databases and communication channels your team already uses, including ERP and CRM.",
-      icon: "/images/icon-why-integration.png",
+      icon: "/operational/op-integration-with-business-systems-w.png",
     },
     {
       eyebrow: "Experience",
       title: "Multi-Industry Implementation Experience",
       body: "Delivered across logistics, recruitment, healthcare, catering, professional services and operational teams.",
-      icon: "/images/icon-why-industry.png",
+      icon: "/operational/op-multi-industry-implementation-experience-w.png",
     },
     {
       eyebrow: "Reliability",
       title: "Production-Ready Reliability",
       body: "Systems are tested, refined and monitored for real operating conditions.",
-      icon: "/images/icon-why-reliability.png",
+      icon: "/operational/op-production-ready-reliability-w.png",
     },
   ],
 };
@@ -162,25 +163,25 @@ export const values = {
       title: "Human First",
       bold: "AI should support your people, not replace them.",
       body: "We handle repetitive operational work so teams can focus on judgement, relationships and high-value decisions.",
-      icon: "/images/icon-conversation.png",
+      icon: "/values/values-01-human-first.png",
     },
     {
       title: "Outcome Focused",
       bold: "AI should deliver measurable operational value.",
       body: "We focus on workflows that reduce manual workload, improve consistency and support faster execution.",
-      icon: "/images/icon-process-1.png",
+      icon: "/values/values-02-outcome-focused.png",
     },
     {
       title: "Built on Trust",
       bold: "Businesses must stay in control.",
       body: "We design AI systems with transparency, human oversight and reliability built in.",
-      icon: "/images/icon-trust-shield.png",
+      icon: "/values/values-03-built-on-trust.png",
     },
     {
       title: "Practical Innovation",
       bold: "AI adoption should be ambitious but usable.",
       body: "We prioritise solutions that work inside real business constraints.",
-      icon: "/images/icon-why-reliability.png",
+      icon: "/values/values-04-practical-innovation.png",
     },
   ],
 };
@@ -194,31 +195,31 @@ export const process = {
       n: "1",
       title: "Executive AI Briefing",
       body: "Understand how AI agents can transform your operational workflows.",
-      icon: "/images/icon-process-1.png",
+      icon: "/process/process-01-ai-briefing.png",
     },
     {
       n: "2",
       title: "Opportunity Scan",
       body: "Identify high-impact use cases within your current processes.",
-      icon: "/images/icon-decision.png",
+      icon: "/process/process-02-opportunity-scan.png",
     },
     {
       n: "3",
       title: "Solution Design & ROI Model",
       body: "Define the AI workflow, integration requirements and expected business outcomes.",
-      icon: "/images/icon-process-3.png",
+      icon: "/process/process-03-solution-design-ROI.png",
     },
     {
       n: "4",
       title: "Implementation & Integration",
       body: "Deploy AI agents into your existing operational environment.",
-      icon: "/images/icon-process-4.png",
+      icon: "/process/process-04-implementation-integration.png",
     },
     {
       n: "5",
       title: "Scale Across Workflows",
       body: "Expand proven AI capabilities across the organisation.",
-      icon: "/images/icon-process-5.png",
+      icon: "/process/process-05-scale-across-workflows.png",
     },
   ],
 };
@@ -278,7 +279,7 @@ export const finalCta = {
 export const footer = {
   location: { heading: "Location", lines: ["60 Paya Lebar Road #07-54", "Singapore 409051"] },
   contact: { heading: "Contact", phone: site.phone, email: site.email },
-  hours: { heading: "Opening Hours", lines: ["Mon to Sat: 0900 to 1800", "Sun & PH: Closed"] },
+  hours: { heading: "Opening Hours", lines: ["Mon-Sat: 0900-1800", "Sun & PH: Closed"] },
   sitelinks: {
     heading: "Sitelinks",
     links: [

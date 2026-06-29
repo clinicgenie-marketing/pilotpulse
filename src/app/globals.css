@@ -216,6 +216,47 @@
     background-color: #3d3878;
   }
 
+  .logo-marquee-row {
+    position: relative;
+    width: 100%;
+  }
+
+  .logo-marquee-viewport {
+    overflow: hidden;
+    padding: 0.875rem 0;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+  }
+
+  .logo-marquee-viewport .tile-interactive:hover {
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-marquee-track {
+    will-change: transform;
+  }
+
+  .logo-marquee-left {
+    animation: logoMarqueeLeft 42s linear infinite;
+  }
+
+  .logo-marquee-right {
+    animation: logoMarqueeRight 42s linear infinite;
+  }
+
   .tile-interactive {
     transition:
       transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -318,6 +359,28 @@
   transform: translateY(0);
 }
 
+.card-why .card-desc {
+  color: #ffffff;
+}
+
+@keyframes logoMarqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes logoMarqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @keyframes heroFloat {
   0%,
   100% {
@@ -376,6 +439,33 @@
   .animate-hero-float,
   .animate-glow-pulse {
     animation: none !important;
+  }
+
+  .logo-marquee-row {
+    overflow: visible !important;
+  }
+
+  .logo-marquee-viewport {
+    overflow: visible !important;
+    padding: 0 !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+  .logo-marquee-track {
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    transform: none !important;
+  }
+
+  .logo-marquee-left,
+  .logo-marquee-right {
+    animation: none !important;
+  }
+
+  .logo-marquee-clone {
+    display: none !important;
   }
 
   .card-interactive .card-icon,

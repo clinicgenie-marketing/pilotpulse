@@ -29,22 +29,33 @@ export function LogoWall() {
         <div className="group flex flex-col gap-3 sm:gap-5">
           {clients.rows.map((row, r) => (
             <Reveal key={r} delay={r * 70}>
-              <ul className="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
-                {row.map((logo) => (
-                  <li
-                    key={logo}
-                    className="tile-interactive flex h-16 w-16 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-2 shadow-sm transition-opacity sm:h-20 sm:w-20 lg:group-hover:opacity-60 lg:hover:!opacity-100"
+              <div className="logo-marquee-row">
+                <div className="logo-marquee-viewport">
+                  <ul
+                    className={`logo-marquee-track flex w-max flex-nowrap items-center gap-3 sm:gap-5 ${
+                      r % 2 === 0 ? "logo-marquee-left" : "logo-marquee-right"
+                    }`}
                   >
-                    <Image
-                      src={`/images/${logo}.png`}
-                      alt=""
-                      width={80}
-                      height={80}
-                      className="h-full w-full object-contain"
-                    />
-                  </li>
-                ))}
-              </ul>
+                    {[...row, ...row].map((logo, idx) => (
+                      <li
+                        key={`${logo}-${idx}`}
+                        className={`tile-interactive flex h-24 w-24 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-3 shadow-sm transition-opacity sm:h-28 sm:w-28 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
+                          idx >= row.length ? "logo-marquee-clone" : ""
+                        }`}
+                        aria-hidden={idx >= row.length}
+                      >
+                        <Image
+                          src={`/images/${logo}.png`}
+                          alt=""
+                          width={112}
+                          height={112}
+                          className="h-full w-full object-contain"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>

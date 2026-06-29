@@ -34,19 +34,19 @@ export function WhyPilotPulse() {
             <Reveal key={reason.title} delay={(i % 2) * 80} className="h-full">
               <article className="card-why card-interactive flex h-full flex-col rounded-xl p-6 transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100 lg:p-8">
                 <p className="eyebrow mb-3">{reason.eyebrow}</p>
-                <div className="flex items-start gap-4">
+                <div className="flex items-center gap-4">
                   <Image
                     src={reason.icon}
                     alt=""
-                    width={48}
-                    height={48}
-                    className="card-icon h-10 w-10 shrink-0 object-contain"
+                    width={100}
+                    height={100}
+                    className="card-icon h-24 w-24 shrink-0 object-contain"
                   />
                   <h3 className="text-lg font-bold leading-snug text-ink lg:text-xl">
                     {reason.title}
                   </h3>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-ink-body lg:text-base">
+                <p className="card-desc mt-4 text-sm leading-relaxed !text-white lg:text-base">
                   {reason.body}
                 </p>
               </article>

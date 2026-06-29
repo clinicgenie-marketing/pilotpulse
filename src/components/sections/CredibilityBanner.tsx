@@ -10,16 +10,16 @@ export function CredibilityBanner() {
     <section id="imda" className="border-y border-hairline bg-panel">
       <div className="container-edge py-16 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Phone mockup in contained frame */}
+          {/* IMDA lady image */}
           <Reveal>
             <div className="overflow-hidden rounded-xl border border-hairline bg-panel-card p-4 lg:p-6">
               <Image
-                src="/images/imda-phone.png"
+                src="/hero/IMDA.png"
                 alt="PilotPulse — IMDA GenAI for Digital Leaders initiative on mobile"
                 width={459}
                 height={943}
-                sizes="(min-width: 1024px) 432px, 360px"
-                className="mx-auto h-auto w-full max-w-[360px]"
+                sizes="(min-width: 1024px) 600px"
+                className="mx-auto h-auto w-full max-w-[600px]"
               />
             </div>
           </Reveal>

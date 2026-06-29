@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TechOverlay } from "@/components/ui/TechOverlay";
@@ -17,7 +16,7 @@ export function OperationsPanel() {
         }}
       >
         <div className="container-edge relative">
-          <div className="grid items-start gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16">
+          <div className="grid items-start gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16 justify-items-center items-center">
             {/* Left: header + structured bullet rows */}
             <Reveal className="flex flex-col gap-8">
               <SectionHeader
@@ -35,12 +34,12 @@ export function OperationsPanel() {
                   {operations.bullets.map((item, i) => (
                     <li
                       key={item}
-                      className="bullet-interactive flex items-start gap-4 rounded-lg border border-hairline/50 bg-white/[0.02] px-4 py-3 text-ink-body transition-colors hover:text-ink"
+                      className="bullet-interactive flex items-start gap-4 rounded-lg border border-hairline/50 bg-white/[0.02] px-4 py-3 text-ink"
                     >
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-indigo/20 text-xs font-bold text-brand-cyan">
                         {i + 1}
                       </span>
-                      <span className="text-base leading-snug lg:text-lg">{item}</span>
+                      <span className="text-[1.0313rem] leading-snug text-white lg:text-lg">{item}</span>
                     </li>
                   ))}
                 </ol>
@@ -52,13 +51,15 @@ export function OperationsPanel() {
               <div className="relative overflow-hidden rounded-xl border border-hairline bg-panel-card">
                 <TechOverlay withGlow={false} className="opacity-40" />
                 <div className="video-interactive relative overflow-hidden rounded-xl">
-                  <Image
-                    src="/images/video-thumb.png"
-                    alt={`${operations.video.title} — ${operations.video.subtitle}`}
-                    width={1183}
-                    height={665}
-                    sizes="(min-width: 1024px) 62vw, 92vw"
-                    className="h-auto w-full"
+                  <video
+                    src={operations.video.src}
+                    aria-label={`${operations.video.title} — ${operations.video.subtitle}`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="h-auto w-full object-cover"
                   />
                 </div>
                 <div className="relative border-t border-hairline px-5 py-4">
@@ -70,7 +71,7 @@ export function OperationsPanel() {
 
           {/* Pull-quote bar */}
           <Reveal className="mt-14 lg:mt-20">
-            <div className="rounded-xl border border-hairline bg-white/[0.03] px-6 py-8 lg:px-10">
+            <div className="rounded-xl border border-hairline bg-white/[0.03] px-6 py-8 lg:px-10 text-center">
               {operations.bold.map((line) => (
                 <p
                   key={line.strong}

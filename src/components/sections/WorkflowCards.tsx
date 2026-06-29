@@ -26,9 +26,9 @@ export function WorkflowCards() {
               <Image
                 src={card.icon}
                 alt=""
-                width={64}
-                height={64}
-                className="h-14 w-14 object-contain"
+                width={150}
+                height={150}
+                className="h-54 w-54 object-contain"
               />
               <div>
                 <p className="eyebrow mb-2">{card.eyebrow}</p>
@@ -54,8 +54,8 @@ export function WorkflowCards() {
                   <Image
                     src={card.icon}
                     alt=""
-                    width={80}
-                    height={80}
+                    width={100}
+                    height={100}
                     className="card-icon h-16 w-16 object-contain"
                   />
                 </div>

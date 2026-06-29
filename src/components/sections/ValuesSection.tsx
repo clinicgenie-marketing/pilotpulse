@@ -8,15 +8,15 @@ import { values } from "@/lib/content";
 export function ValuesSection() {
   return (
     <section className="relative overflow-hidden">
-      <div className="grid lg:grid-cols-[55%_45%]">
+      <div className="grid lg:grid-cols-[45%_55%]">
         {/* Photo left */}
         <div className="relative min-h-[320px] lg:min-h-[600px]">
           <Image
-            src="/images/values-bg.png"
+            src="/hero/our-values-1.png"
             alt=""
             fill
-            sizes="55vw"
-            className="object-cover object-[35%_center]"
+            sizes="50vw"
+            className="object-cover object-[0%_center] opacity-40"
           />
           <div
             aria-hidden="true"
@@ -28,7 +28,7 @@ export function ValuesSection() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-y-0 right-0 hidden w-32 lg:block"
+            className="absolute inset-y-0 right-0 hidden w-40 lg:block"
             style={{
               background: "linear-gradient(90deg, transparent 0%, #110D3E 100%)",
             }}
@@ -36,7 +36,7 @@ export function ValuesSection() {
         </div>
 
         {/* Content panel right */}
-        <div className="relative bg-panel/80 px-6 py-14 backdrop-blur-sm lg:px-10 lg:py-20">
+        <div className="relative ml-6 bg-panel/90 px-16 py-16 backdrop-blur-sm lg:px-10 lg:py-25">
           <Reveal className="mb-10">
             <SectionHeader
               eyebrow={values.eyebrow}
@@ -49,22 +49,24 @@ export function ValuesSection() {
             {values.items.map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
                 <div
-                  className={`row-interactive grid grid-cols-[3rem_1fr] gap-x-4 gap-y-2 border-white/20 py-6 ${
+                  className={`row-interactive flex items-center border-white/20 py-6 ${
                     i < values.items.length - 1 ? "border-b" : ""
                   }`}
                 >
-                  <Image
-                    src={item.icon}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="row-icon mt-1 h-8 w-8 object-contain"
-                  />
-                  <div>
+                  <div className="flex w-24 shrink-0 items-center justify-center">
+                    <Image
+                      src="/tick.png"
+                      alt=""
+                      width={110}
+                      height={110}
+                      className="row-icon h-[3.2rem] w-[3.2rem] object-contain"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-lg font-bold text-white lg:text-xl">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/85 lg:text-base">
                       <span className="block font-semibold text-white">{item.bold}</span>
-                      <span className="mt-1 block">{item.body}</span>
+                      <span className="mt-1 block text-white/50">{item.body}</span>
                     </p>
                   </div>
                 </div>
