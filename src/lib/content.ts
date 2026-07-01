@@ -88,7 +88,7 @@ export const capabilities = {
   eyebrow: "Capabilities",
   headingWhite: "AI agents supporting ",
   headingGradient: "real business workflows",
-  sub: "Capable of executing tasks across multiple business functions, not just answering questions.",
+  sub: "Capable of executing tasks across multiple business functions,\nnot just answering questions.",
   cards: [
     {
       eyebrow: "Conversation AI",
@@ -156,7 +156,9 @@ export const why = {
 
 export const values = {
   eyebrow: "Our Values",
-  heading: "Our values",
+  headingWhite: "What we're ",
+  headingGradient: "built",
+  headingPost: " on",
   sub: "AI adoption should be practical, responsible and outcome-focused.",
   items: [
     {

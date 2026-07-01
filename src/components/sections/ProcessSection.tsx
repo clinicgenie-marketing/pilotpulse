@@ -8,7 +8,7 @@ type Step = (typeof process.steps)[number];
 function StepCard({ step }: { step: Step }) {
   return (
     <div className="card-process-interactive flex h-full flex-col rounded-xl border border-hairline bg-panel-process p-8 items-center bg-opacity-80">
-      <span className="process-step-badge mb-8 text-sm font-bold text-ink">
+      <span className="process-step-badge mb-8 text-sm font-bold text-brand-cyan">
         {step.n}
       </span>
       <div className="process-icon-wrap mb-8 flex h-24 items-center justify-center">
@@ -40,12 +40,8 @@ export function ProcessSection() {
           />
         </Reveal>
 
-        {/* Desktop: 5-column stepper with connecting line */}
-        <div className="relative mt-14 hidden lg:block">
-          <div
-            aria-hidden="true"
-            className="absolute left-[10%] right-[10%] top-12 h-px bg-gradient-to-r from-brand-cyan/20 via-brand-blue/60 to-brand-indigo/20"
-          />
+        {/* Desktop: 5-column stepper */}
+        <div className="mt-14 hidden lg:block">
           <div className="grid grid-cols-5 gap-4">
             {process.steps.map((step, i) => (
               <Reveal key={step.n} delay={i * 60}>

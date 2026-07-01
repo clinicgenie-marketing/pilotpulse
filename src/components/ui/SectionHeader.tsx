@@ -40,7 +40,7 @@ export function SectionHeader({
           </>
         )}
       </h2>
-      {sub && <p className="lead max-w-3xl">{sub}</p>}
+      {sub && <p className="lead max-w-3xl whitespace-pre-line">{sub}</p>}
     </div>
   );
 }

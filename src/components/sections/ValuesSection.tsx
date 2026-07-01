@@ -41,7 +41,13 @@ export function ValuesSection() {
           <Reveal className="mb-10 lg:mb-6">
             <SectionHeader
               eyebrow={values.eyebrow}
-              heading={<GradientText>{values.heading}</GradientText>}
+              heading={
+                <>
+                  {values.headingWhite}
+                  <GradientText>{values.headingGradient}</GradientText>
+                  {values.headingPost}
+                </>
+              }
               sub={values.sub}
               className="lg:gap-3"
             />
@@ -50,11 +56,11 @@ export function ValuesSection() {
           <div className="flex flex-col">
             {values.items.map((item, i) => (
               <Reveal key={item.title} delay={i * 70}>
-                <div className="row-interactive flex items-center py-6 lg:py-3">
-                  <div className="flex w-24 shrink-0 items-center justify-center lg:w-20">
+                <div className="row-interactive flex items-start py-6 lg:py-3">
+                  <div className="flex w-24 shrink-0 items-start justify-center lg:w-20">
                     <span
                       aria-hidden="true"
-                      className="row-icon inline-flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full lg:h-11 lg:w-11"
+                      className="row-icon mt-[2px] inline-flex h-[3.2rem] w-[3.2rem] items-center justify-center rounded-full lg:h-11 lg:w-11"
                       style={{
                         backgroundImage: "linear-gradient(90deg, #1DBBEB 0%, #4DA3FF 45%, #8B7BFF 100%)",
                         boxShadow: "0 10px 24px -14px rgba(77, 163, 255, 0.85)",
@@ -68,7 +74,7 @@ export function ValuesSection() {
                       {item.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/85 lg:text-base">
-                      <span className="block font-semibold text-white">{item.bold}</span>
+                      <span className="block font-normal text-white">{item.bold}</span>
                       <span className="mt-1 block text-white/50">{item.body}</span>
                     </p>
                   </div>

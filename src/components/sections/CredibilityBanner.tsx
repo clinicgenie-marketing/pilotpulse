@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GradientText } from "@/components/ui/GradientText";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TextLink } from "@/components/ui/TextLink";
@@ -9,17 +10,16 @@ export function CredibilityBanner() {
   return (
     <section id="imda" className="border-y border-hairline bg-panel">
       <div className="container-edge py-16 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* IMDA lady image */}
-          <Reveal>
-            <div className="overflow-hidden rounded-xl border border-hairline bg-panel-card p-4 lg:p-6">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch lg:gap-16">
+          {/* IMDA lady image — height matches copy column; image anchored to bottom */}
+          <Reveal className="h-full">
+            <div className="relative h-full min-h-[250px] overflow-hidden rounded-xl border border-hairline bg-panel-card lg:min-h-10">
               <Image
                 src="/hero/IMDA-empty.png"
                 alt="PilotPulse IMDA GenAI for Digital Leaders initiative on mobile"
-                width={459}
-                height={943}
-                sizes="(min-width: 1024px) 600px"
-                className="mx-auto h-auto w-full max-w-[600px]"
+                fill
+                sizes="(min-width: 1024px) 100vw"
+                className="origin-bottom scale-110 object-contain object-bottom"
               />
             </div>
           </Reveal>
@@ -30,7 +30,9 @@ export function CredibilityBanner() {
               eyebrow={credibility.eyebrow}
               heading={
                 <>
-                  <span className="block text-brand-accent">{credibility.headingBlue}</span>
+                  <span className="block">
+                    <GradientText ramp="full">{credibility.headingBlue}</GradientText>
+                  </span>
                   <span className="block font-light">{credibility.headingWhite}</span>
                 </>
               }
