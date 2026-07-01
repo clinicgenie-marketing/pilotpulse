@@ -47,7 +47,7 @@ const config: Config = {
         content: "1330px",
       },
       backgroundImage: {
-        signature: "linear-gradient(90deg, #0DA4D5 0%, #1F89FF 50%, #4633FF 100%)",
+        signature: "linear-gradient(90deg, #1DBBEB 0%, #4DA3FF 45%, #8B7BFF 100%)",
       },
       boxShadow: {
         glow: "0 0 60px -12px rgba(70,51,255,0.55)",

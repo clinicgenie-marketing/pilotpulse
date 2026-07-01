@@ -1,27 +1,129 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { CTAButton } from "@/components/ui/CTAButton";
+import PillNav from "@/components/ui/PillNav";
 import { nav } from "@/lib/content";
 
-/** Micron-style sticky full-width header with persistent CTA. */
+/** Sticky pill navigation with GSAP hover animations. */
 export function Header() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  const activeHref =
+    nav.links.find((link) => {
+      if (link.href.startsWith("#")) return false;
+      if (link.href === "/") return pathname === "/";
+      return pathname.startsWith(link.href);
+    })?.href ?? (pathname === "/" ? "/" : undefined);
+
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const handler = (e: MediaQueryListEvent) => e.matches && setOpen(false);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
+    const pillLogoCount = document.querySelectorAll(".pill-nav .pill-logo").length;
+    const headerLogoCount = document.querySelectorAll(".header-outside-logo").length;
+    const navItemsCount = document.querySelectorAll(".pill-nav .pill").length;
+    const headerContainer = document.querySelector<HTMLElement>(".container-edge");
+    const navRoot = document.querySelector<HTMLElement>(".pill-nav-container");
+    const outsideLogo = document.querySelector<HTMLElement>(".header-outside-logo");
+    const outsideLogoImage = outsideLogo?.querySelector<HTMLImageElement>("img");
+    const outsideLogoStyles = outsideLogo ? window.getComputedStyle(outsideLogo) : null;
+    const outsideLogoImageStyles = outsideLogoImage ? window.getComputedStyle(outsideLogoImage) : null;
+    const headerContainerStyles = headerContainer ? window.getComputedStyle(headerContainer) : null;
+    const navRootStyles = navRoot ? window.getComputedStyle(navRoot) : null;
+
+    // #region agent log
+    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
+      body: JSON.stringify({
+        sessionId: "f7629c",
+        runId: "nav-debug-pre-fix",
+        hypothesisId: "H1",
+        location: "src/components/layout/Header.tsx:20",
+        message: "Header render logo placement snapshot",
+        data: { pathname, activeHref, pillLogoCount, headerLogoCount, navItemsCount },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+
+    // #region agent log
+    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
+      body: JSON.stringify({
+        sessionId: "f7629c",
+        runId: "nav-debug-post-fix",
+        hypothesisId: "H6",
+        location: "src/components/layout/Header.tsx:35",
+        message: "Outside logo visual style snapshot",
+        data: {
+          hasOutsideLogoElement: Boolean(outsideLogo),
+          outsideLogoBackground: outsideLogoStyles?.backgroundColor ?? null,
+          outsideLogoBorderRadius: outsideLogoStyles?.borderRadius ?? null,
+          outsideLogoBoxSize: outsideLogo
+            ? { width: Math.round(outsideLogo.getBoundingClientRect().width), height: Math.round(outsideLogo.getBoundingClientRect().height) }
+            : null,
+          logoImageBoxSize: outsideLogoImage
+            ? {
+                width: Math.round(outsideLogoImage.getBoundingClientRect().width),
+                height: Math.round(outsideLogoImage.getBoundingClientRect().height),
+              }
+            : null,
+          logoImageHeightStyle: outsideLogoImageStyles?.height ?? null,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+
+    // #region agent log
+    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
+      body: JSON.stringify({
+        sessionId: "f7629c",
+        runId: "nav-position-debug",
+        hypothesisId: "H7",
+        location: "src/components/layout/Header.tsx:49",
+        message: "Header layout positions and flex alignment",
+        data: {
+          viewportWidth: window.innerWidth,
+          headerContainerRect: headerContainer
+            ? {
+                x: Math.round(headerContainer.getBoundingClientRect().x),
+                y: Math.round(headerContainer.getBoundingClientRect().y),
+                w: Math.round(headerContainer.getBoundingClientRect().width),
+                h: Math.round(headerContainer.getBoundingClientRect().height),
+              }
+            : null,
+          navRootRect: navRoot
+            ? {
+                x: Math.round(navRoot.getBoundingClientRect().x),
+                y: Math.round(navRoot.getBoundingClientRect().y),
+                w: Math.round(navRoot.getBoundingClientRect().width),
+                h: Math.round(navRoot.getBoundingClientRect().height),
+              }
+            : null,
+          outsideLogoRect: outsideLogo
+            ? {
+                x: Math.round(outsideLogo.getBoundingClientRect().x),
+                y: Math.round(outsideLogo.getBoundingClientRect().y),
+                w: Math.round(outsideLogo.getBoundingClientRect().width),
+                h: Math.round(outsideLogo.getBoundingClientRect().height),
+              }
+            : null,
+          headerJustifyContent: headerContainerStyles?.justifyContent ?? null,
+          headerGap: headerContainerStyles?.columnGap ?? null,
+          navRootWidthStyle: navRootStyles?.width ?? null,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
+  }, [activeHref, pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-base/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-transparent bg-transparent">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
@@ -29,84 +131,25 @@ export function Header() {
         Skip to content
       </a>
 
-      <div className="container-edge flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label="PilotPulse — home" className="shrink-0">
-          <Image
-            src="/images/logo-header.png"
-            alt="PilotPulse.ai"
-            width={206}
-            height={37}
-            priority
-            className="h-7 w-auto sm:h-8"
-          />
-        </Link>
-
-        {/* Desktop nav */}
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-8">
-            {nav.links.map((link) => {
-              const active =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href) && link.href !== "/";
-              return (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className={`text-sm font-semibold transition-colors ${
-                      active ? "text-brand-cyan" : "text-ink-body hover:text-ink"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <CTAButton href={nav.cta.href} size="compact" display className="hidden lg:inline-flex">
-            {nav.cta.label}
-          </CTAButton>
-        </nav>
-
-        {/* Mobile: CTA + hamburger */}
-        <div className="flex items-center gap-3 md:hidden">
-          <CTAButton href={nav.cta.href} size="compact" display className="!px-4 !py-2">
-            Get started
-          </CTAButton>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-ink"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <div
-          id="mobile-menu"
-          className="border-t border-hairline bg-base/95 px-5 py-4 backdrop-blur-md md:hidden"
+      <div className="container-edge flex items-center justify-between py-3 md:py-4">
+        <Link
+          href="/"
+          aria-label="PilotPulse home"
+          className="header-outside-logo inline-flex shrink-0 items-center justify-center"
         >
-          <ul className="flex flex-col gap-1">
-            {nav.links.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-base font-semibold text-ink-body transition-colors hover:bg-white/5 hover:text-ink"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+          <img src="/brand/PilotPulse-Logo.svg" alt="PilotPulse.ai" className="h-7 w-auto object-contain" />
+        </Link>
+        <PillNav
+          items={nav.links}
+          activeHref={activeHref}
+          ease="power2.easeOut"
+          baseColor="#28224B"
+          pillColor="#110D3E"
+          pillTextColor="#FFFFFF"
+          hoveredPillTextColor="#0DA4D5"
+          initialLoadAnimation
+        />
+      </div>
     </header>
   );
 }

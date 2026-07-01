@@ -11,7 +11,7 @@
   --text-primary: #ffffff;
   --text-body: #c6c8d3;
   --border-hairline: rgba(130, 140, 255, 0.2);
-  --gradient-signature: linear-gradient(90deg, #0da4d5 0%, #1f89ff 50%, #4633ff 100%);
+  --gradient-signature: linear-gradient(90deg, #1dbbeb 0%, #4da3ff 45%, #8b7bff 100%);
 }
 
 @layer base {
@@ -114,6 +114,19 @@
     @apply inline-flex items-center gap-2 text-sm font-semibold text-brand-blue transition-colors duration-300 hover:text-brand-cyan;
   }
 
+  .header-outside-logo img {
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+
+  .header-outside-logo:hover img,
+  .header-outside-logo:focus-visible img {
+    filter:
+      brightness(0) invert(1)
+      drop-shadow(0 0 10px rgba(45, 196, 255, 0.9))
+      drop-shadow(0 0 22px rgba(77, 163, 255, 0.45));
+  }
+
   .tech-grid-overlay {
     background-image:
       linear-gradient(rgba(13, 164, 213, 0.04) 1px, transparent 1px),
@@ -212,18 +225,26 @@
     filter: brightness(1.2);
   }
 
-  .card-process-interactive:hover .process-icon-band {
-    background-color: #3d3878;
+  .process-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .process-icon {
+    opacity: 1;
   }
 
   .logo-marquee-row {
     position: relative;
     width: 100%;
+    overflow: visible;
   }
 
   .logo-marquee-viewport {
-    overflow: hidden;
-    padding: 0.875rem 0;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 0;
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
@@ -242,7 +263,7 @@
 
   .logo-marquee-viewport .tile-interactive:hover {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
   .logo-marquee-track {
@@ -272,17 +293,11 @@
   }
 
   .row-interactive {
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease;
-    border-left: 3px solid transparent;
-    margin-left: -3px;
-    padding-left: 3px;
+    transition: background-color 0.3s ease;
   }
 
   .row-interactive:hover {
     background-color: rgba(255, 255, 255, 0.03);
-    border-left-color: rgba(99, 141, 255, 0.65);
   }
 
   .row-interactive .row-icon {
@@ -294,11 +309,23 @@
   }
 
   .bullet-interactive {
-    transition: color 0.25s ease;
+    background: radial-gradient(ellipse 130% 120% at 50% 15%, #f9fafd 0%, #eef2f9 50%, #e3e9f4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 6px 18px -8px rgba(5, 0, 43, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(196, 206, 226, 0.35);
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease;
   }
 
   .bullet-interactive:hover {
-    color: #ffffff;
+    background: radial-gradient(ellipse 130% 120% at 50% 15%, #fcfdff 0%, #f3f6fc 50%, #e8edf6 100%);
+    box-shadow:
+      0 8px 22px -8px rgba(5, 0, 43, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(196, 206, 226, 0.4);
   }
 
   .bullet-interactive:hover .bullet-dot {
@@ -411,6 +438,52 @@
   animation: glowPulse 4s ease-in-out infinite;
 }
 
+/* ---- testimonial stack carousel ---- */
+.testimonial-stack-card {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease,
+    box-shadow 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.testimonial-stack-card--0 {
+  z-index: 30;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+.testimonial-stack-card--1 {
+  z-index: 20;
+  opacity: 0.65;
+  transform: translate3d(-1.25rem, 1rem, 0) rotate(-4deg);
+}
+
+.testimonial-stack-card--2 {
+  z-index: 10;
+  opacity: 0.45;
+  transform: translate3d(1.25rem, 2rem, 0) rotate(4deg);
+}
+
+.testimonial-stack-card[role="button"]:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(31, 137, 255, 0.5),
+    0 24px 80px -28px rgba(31, 137, 255, 0.35);
+}
+
+.testimonial-logo-mark {
+  display: block;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -476,5 +549,19 @@
 
   .video-interactive:hover {
     transform: none !important;
+  }
+
+  .testimonial-stack-card {
+    transition: none !important;
+  }
+
+  .testimonial-stack-card--0 {
+    transform: none !important;
+  }
+
+  .testimonial-stack-card--1,
+  .testimonial-stack-card--2 {
+    transform: none !important;
+    opacity: 0.5 !important;
   }
 }

@@ -8,11 +8,17 @@ type Step = (typeof process.steps)[number];
 function StepCard({ step }: { step: Step }) {
   return (
     <div className="card-process-interactive flex h-full flex-col rounded-xl border border-hairline bg-panel-process p-8 items-center bg-opacity-80">
-      <div className="process-step-badge mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-signature text-sm font-bold text-white">
+      <span className="process-step-badge mb-8 text-sm font-bold text-ink">
         {step.n}
-      </div>
-      <div className="mb-4 flex h-24 items-center">
-        <Image src={step.icon} alt="" width={80} height={80} className="h-32 w-auto object-contain" />
+      </span>
+      <div className="process-icon-wrap mb-8 flex h-24 items-center justify-center">
+        <Image
+          src={step.icon}
+          alt=""
+          width={80}
+          height={80}
+          className="process-icon h-32 w-auto object-contain"
+        />
       </div>
       <h3 className="mb-2 text-base text-center font-bold leading-snug text-ink">{step.title}</h3>
       <p className="body-copy text-sm text-center">{step.body}</p>

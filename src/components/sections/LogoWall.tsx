@@ -39,7 +39,7 @@ export function LogoWall() {
                     {[...row, ...row].map((logo, idx) => (
                       <li
                         key={`${logo}-${idx}`}
-                        className={`tile-interactive flex h-24 w-24 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-3 shadow-sm transition-opacity sm:h-28 sm:w-28 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
+                        className={`tile-interactive flex h-48 w-48 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-4 shadow-sm transition-opacity sm:h-56 sm:w-56 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
                           idx >= row.length ? "logo-marquee-clone" : ""
                         }`}
                         aria-hidden={idx >= row.length}
@@ -47,8 +47,8 @@ export function LogoWall() {
                         <Image
                           src={`/images/${logo}.png`}
                           alt=""
-                          width={112}
-                          height={112}
+                          width={224}
+                          height={224}
                           className="h-full w-full object-contain"
                         />
                       </li>

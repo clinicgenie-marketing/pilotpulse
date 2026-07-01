@@ -1,4 +1,5 @@
 import { CTAButton } from "@/components/ui/CTAButton";
+import { FinalCTABackground } from "@/components/ui/FinalCTABackground";
 import { GradientText } from "@/components/ui/GradientText";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -8,22 +9,14 @@ import { finalCta } from "@/lib/content";
 export function FinalCTA() {
   return (
     <section
-      className="group relative border-t border-hairline py-20 lg:py-28"
+      className="relative border-t border-hairline py-20 lg:py-28"
       style={{
         background: "linear-gradient(180deg, #0A022C 0%, #05011C 100%)",
       }}
     >
-      {/* Radial glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 h-[480px] -translate-y-1/2 opacity-70 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(70,51,255,0.25) 0%, transparent 70%)",
-        }}
-      />
+      <FinalCTABackground />
 
-      <div className="container-edge relative">
+      <div className="container-edge relative z-10">
         <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
           <SectionHeader
             eyebrow={finalCta.eyebrow}

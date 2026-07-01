@@ -1,119 +1,123 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { testimonials } from "@/lib/content";
 
-/** Micron-style featured content grid — 1 large + 2 stacked cards. */
+function stackPosition(quoteIndex: number, activeIndex: number, total: number) {
+  return (quoteIndex - activeIndex + total) % total;
+}
+
+/** Stacked card carousel — reference-style layout on dark theme. */
 export function TestimonialsSection() {
   const [index, setIndex] = useState(0);
   const quotes = testimonials.quotes;
-  const active = quotes[index];
-  const others = quotes.filter((_, i) => i !== index);
+  const count = quotes.length;
+
+  const next = useCallback(() => {
+    setIndex((i) => (i + 1) % count);
+  }, [count]);
+
+  const prev = useCallback(() => {
+    setIndex((i) => (i - 1 + count) % count);
+  }, [count]);
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-24" role="region" aria-label="Client testimonials">
       <div className="container-edge">
-        <Reveal className="mx-auto mb-10 max-w-2xl">
+        <Reveal className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeader
             eyebrow={testimonials.eyebrow}
             heading={testimonials.heading}
-            align="center"
+            align="left"
           />
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous testimonial"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline text-ink transition-colors hover:border-brand-blue/40 hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40"
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next testimonial"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline text-ink transition-colors hover:border-brand-blue/40 hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40"
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
         </Reveal>
 
-        {/* Desktop: featured grid */}
-        <div className="hidden gap-5 lg:grid lg:grid-cols-[2fr_1fr]">
-          <Reveal>
-            <figure className="card-interactive flex h-full min-h-[22rem] flex-col justify-between rounded-xl border border-hairline bg-panel-card p-8">
-              <blockquote className="text-xl font-semibold leading-relaxed text-ink lg:text-2xl">
-                &ldquo;{active.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-8 flex items-center gap-4 border-t border-hairline pt-6">
-                <Image
-                  src={active.logo}
-                  alt={active.company}
-                  width={100}
-                  height={28}
-                  className="h-7 w-auto object-contain"
-                />
-                <div>
-                  <span className="block font-bold text-ink">{active.name}</span>
-                  <span className="text-sm text-ink-body">
-                    {active.role}, {active.company}
-                  </span>
-                </div>
-              </figcaption>
-            </figure>
-          </Reveal>
+        <Reveal delay={80}>
+          <div className="relative mx-auto h-[22rem] max-w-2xl sm:h-[24rem] lg:h-[26rem]">
+            {quotes.map((quote, quoteIndex) => {
+              const position = stackPosition(quoteIndex, index, count);
+              const isFront = position === 0;
 
-          <div className="flex flex-col gap-5">
-            {others.map((q) => {
-              const originalIndex = quotes.indexOf(q);
               return (
-                <Reveal key={q.name} delay={80}>
-                  <button
-                    type="button"
-                    onClick={() => setIndex(originalIndex)}
-                    className="card-interactive flex flex-1 flex-col rounded-xl border border-hairline bg-panel-card p-6 text-left transition-colors hover:border-brand-blue/40"
+                <figure
+                  key={quote.name}
+                  className={`testimonial-stack-card testimonial-stack-card--${position} absolute inset-x-0 top-0 flex min-h-[18rem] flex-col justify-between rounded-3xl border border-hairline bg-panel-card p-6 shadow-glow-soft sm:min-h-[20rem] sm:p-8 lg:p-10 ${
+                    isFront ? "cursor-pointer" : "pointer-events-none"
+                  }`}
+                  onClick={isFront ? next : undefined}
+                  onKeyDown={
+                    isFront
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            next();
+                          }
+                        }
+                      : undefined
+                  }
+                  role={isFront ? "button" : undefined}
+                  tabIndex={isFront ? 0 : -1}
+                  aria-label={isFront ? `Next testimonial. Current: ${quote.name}` : undefined}
+                >
+                  <blockquote
+                    className="text-base leading-relaxed text-ink-body sm:text-lg"
+                    aria-live={isFront ? "polite" : undefined}
+                    aria-atomic="true"
                   >
-                    <blockquote className="line-clamp-4 text-sm leading-relaxed text-ink-body">
-                      &ldquo;{q.quote}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-4 flex items-center gap-3">
+                    &ldquo;{quote.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 flex flex-col gap-4 sm:mt-8">
+                    {"logoStyle" in quote && quote.logoStyle === "original" ? (
                       <Image
-                        src={q.logo}
-                        alt={q.company}
-                        width={80}
-                        height={24}
-                        className="h-5 w-auto object-contain opacity-80"
+                        src={quote.logo}
+                        alt={quote.company}
+                        width={320}
+                        height={80}
+                        className="h-12 w-auto max-w-[14rem] object-contain object-left sm:h-14 sm:max-w-[16rem] lg:h-16"
                       />
-                      <span className="text-xs font-semibold text-ink">{q.name}</span>
-                    </figcaption>
-                  </button>
-                </Reveal>
+                    ) : (
+                      <span
+                        role="img"
+                        aria-label={quote.company}
+                        className="testimonial-logo-mark h-12 w-44 max-w-[14rem] sm:h-14 sm:w-52 sm:max-w-[16rem] lg:h-16"
+                        style={{
+                          WebkitMaskImage: `url(${quote.logo})`,
+                          maskImage: `url(${quote.logo})`,
+                        }}
+                      />
+                    )}
+                    <div className="min-w-0">
+                      <span className="block font-bold text-ink">{quote.name}</span>
+                      <span className="mt-1 inline-block max-w-full truncate rounded-full border border-hairline px-3 py-0.5 text-xs text-ink-faint sm:max-w-none sm:whitespace-normal">
+                        {quote.role}, {quote.company}
+                      </span>
+                    </div>
+                  </figcaption>
+                </figure>
               );
             })}
-          </div>
-        </div>
-
-        {/* Mobile: carousel */}
-        <Reveal delay={80} className="lg:hidden">
-          <figure className="card-interactive rounded-xl border border-hairline bg-panel-card p-6">
-            <blockquote className="text-lg font-semibold leading-relaxed text-ink">
-              &ldquo;{active.quote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-6 flex flex-col gap-2 border-t border-hairline pt-5">
-              <Image
-                src={active.logo}
-                alt={active.company}
-                width={100}
-                height={28}
-                className="h-6 w-auto object-contain"
-              />
-              <span className="font-bold text-ink">{active.name}</span>
-              <span className="text-sm text-ink-body">
-                {active.role}, {active.company}
-              </span>
-            </figcaption>
-          </figure>
-
-          <div className="mt-6 flex items-center justify-center gap-4" role="tablist" aria-label="Testimonials">
-            {quotes.map((q, i) => (
-              <button
-                key={q.name}
-                type="button"
-                role="tab"
-                aria-selected={i === index}
-                aria-label={`Show testimonial from ${q.name}`}
-                onClick={() => setIndex(i)}
-                className={`h-2 w-10 rounded-full transition-colors ${
-                  i === index ? "bg-brand-blue" : "bg-white/30 hover:bg-white/50"
-                }`}
-              />
-            ))}
           </div>
         </Reveal>
       </div>

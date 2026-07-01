@@ -31,10 +31,10 @@ export const nav = {
 
 export const hero = {
   eyebrow: "AI Implementation Partner",
-  headlineWhite: "Your business is already running on AI.",
-  headlineGradient: "Just not yours.",
+  headlineWhite: "Businesses are already running on AI. Just not",
+  headlineGradient: "yours",
   subheadline:
-    "While your team is still handling enquiries, processing documents and coordinating workflows by hand, leading organisations have embedded AI directly into operations — and they are moving faster because of it.",
+    "Your competitors are automating workflows and cutting response times. Every week you wait, the gap widens.",
   primaryCta: { label: "Identify your first AI workflow", href: CONTACT_HREF },
   secondaryCta: { label: "See real implementations", href: "#clients" },
 };
@@ -88,7 +88,7 @@ export const capabilities = {
   eyebrow: "Capabilities",
   headingWhite: "AI agents supporting ",
   headingGradient: "real business workflows",
-  sub: "Capable of executing tasks across multiple business functions — not just answering questions.",
+  sub: "Capable of executing tasks across multiple business functions, not just answering questions.",
   cards: [
     {
       eyebrow: "Conversation AI",
@@ -121,7 +121,7 @@ export const why = {
   eyebrow: "Why PilotPulse",
   headingPre: "Built for ",
   headingGradient: "real operational workflows",
-  headingPost: "— not just AI demos",
+  headingPost: "not just AI demos",
   subPlain: "Many vendors stop at prototypes and chatbot experiments.",
   subLead: "PilotPulse focuses on ",
   subGradient: "deploying AI inside real operational workflows.",
@@ -189,36 +189,36 @@ export const values = {
 export const process = {
   eyebrow: "Our Process",
   heading: "From opportunity to implementation",
-  sub: "We work closely with you to identify and deploy high-impact AI workflows — practically and consultatively.",
+  sub: "We work closely with you to identify and deploy high-impact AI workflows. Practically and consultatively.",
   steps: [
     {
       n: "1",
-      title: "Executive AI Briefing",
-      body: "Understand how AI agents can transform your operational workflows.",
+      title: "AI Briefing",
+      body: "See where AI workflows can replace manual effort in your operations",
       icon: "/process/process-01-ai-briefing.png",
     },
     {
       n: "2",
       title: "Opportunity Scan",
-      body: "Identify high-impact use cases within your current processes.",
+      body: "Pinpoint the highest-impact workflows and process gaps to automate first",
       icon: "/process/process-02-opportunity-scan.png",
     },
     {
       n: "3",
-      title: "Solution Design & ROI Model",
-      body: "Define the AI workflow, integration requirements and expected business outcomes.",
+      title: "Solution Design",
+      body: "Map integration requirements, timelines and expected returns",
       icon: "/process/process-03-solution-design-ROI.png",
     },
     {
       n: "4",
-      title: "Implementation & Integration",
-      body: "Deploy AI agents into your existing operational environment.",
+      title: "Implementation",
+      body: "Deploy AI workflows into your existing operational environment",
       icon: "/process/process-04-implementation-integration.png",
     },
     {
       n: "5",
-      title: "Scale Across Workflows",
-      body: "Expand proven AI capabilities across the organisation.",
+      title: "Scaling",
+      body: "Roll out proven automations across the rest of the organisation",
       icon: "/process/process-05-scale-across-workflows.png",
     },
   ],
@@ -246,6 +246,7 @@ export const testimonials = {
       role: "Group CEO",
       company: "SFS Pharma Logistics",
       logo: "/images/client-17.png",
+      logoStyle: "original",
     },
     {
       quote:

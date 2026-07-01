@@ -34,12 +34,12 @@ export function OperationsPanel() {
                   {operations.bullets.map((item, i) => (
                     <li
                       key={item}
-                      className="bullet-interactive flex items-start gap-4 rounded-lg border border-hairline/50 bg-white/[0.02] px-4 py-3 text-ink"
+                      className="bullet-interactive flex items-start gap-4 rounded-xl px-4 py-3"
                     >
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-indigo/20 text-xs font-bold text-brand-cyan">
+                      <span className="bullet-dot flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dfe5f0] text-xs font-bold text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_2px_6px_-2px_rgba(5,0,43,0.15)]">
                         {i + 1}
                       </span>
-                      <span className="text-[1.0313rem] leading-snug text-white lg:text-lg">{item}</span>
+                      <span className="text-[1.0313rem] leading-snug text-base lg:text-lg">{item}</span>
                     </li>
                   ))}
                 </ol>

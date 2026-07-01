@@ -14,8 +14,8 @@ export function CredibilityBanner() {
           <Reveal>
             <div className="overflow-hidden rounded-xl border border-hairline bg-panel-card p-4 lg:p-6">
               <Image
-                src="/hero/IMDA.png"
-                alt="PilotPulse — IMDA GenAI for Digital Leaders initiative on mobile"
+                src="/hero/IMDA-empty.png"
+                alt="PilotPulse IMDA GenAI for Digital Leaders initiative on mobile"
                 width={459}
                 height={943}
                 sizes="(min-width: 1024px) 600px"
