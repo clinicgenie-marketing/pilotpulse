@@ -201,12 +201,22 @@
     box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.45);
   }
 
+  .card-icon,
+  .process-icon {
+    filter: drop-shadow(0 0 10px rgba(99, 141, 255, 0.35))
+      drop-shadow(0 0 22px rgba(70, 51, 255, 0.22));
+  }
+
   .card-interactive .card-icon {
-    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.3s ease;
   }
 
   .card-interactive:hover .card-icon {
     transform: scale(1.05);
+    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.5))
+      drop-shadow(0 0 28px rgba(70, 51, 255, 0.32));
   }
 
   .card-process-interactive {
@@ -233,6 +243,11 @@
 
   .process-icon {
     opacity: 1;
+  }
+
+  .card-process-interactive:hover .process-icon {
+    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.5))
+      drop-shadow(0 0 28px rgba(70, 51, 255, 0.32));
   }
 
   .logo-marquee-row {
