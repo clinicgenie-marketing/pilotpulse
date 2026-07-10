@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main id="main" className="grid min-h-[60vh] place-items-center px-5 py-24">
+      <main id="main" className="grid min-h-[60vh] place-items-center px-5 py-24 pt-32">
         <div className="flex max-w-xl flex-col items-center gap-6 text-center">
           <span className="text-7xl font-extrabold sm:text-8xl">
             <GradientText>404</GradientText>

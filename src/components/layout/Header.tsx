@@ -123,7 +123,7 @@ export function Header() {
   }, [activeHref, pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-transparent bg-transparent">
+    <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"

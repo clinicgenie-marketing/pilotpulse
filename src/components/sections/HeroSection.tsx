@@ -8,10 +8,10 @@ import { hero } from "@/lib/content";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[88vh] overflow-hidden bg-[#020A3A]">
-      <div className="container-edge relative min-h-[88vh] py-14 lg:py-20">
-        <div className="grid min-h-[72vh] items-center gap-12 lg:grid-cols-2 lg:gap-14">
-          <HeroParallax depth={0.05} className="max-w-xl">
+    <section className="relative flex h-svh min-h-svh flex-col overflow-hidden bg-[#020A3A]">
+      <div className="container-edge relative flex flex-1 items-center pt-16 md:pt-20">
+        <div className="grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <HeroParallax depth={0.05} className="flex max-w-xl items-center">
             <Reveal className="flex flex-col items-start gap-6">
               <Eyebrow>{hero.eyebrow}</Eyebrow>
               <h1 className="heading-1">
@@ -27,8 +27,8 @@ export function HeroSection() {
             </Reveal>
           </HeroParallax>
 
-          <HeroParallax depth={0.08}>
-            <Reveal delay={80}>
+          <HeroParallax depth={0.08} className="flex items-center justify-center lg:justify-end">
+            <Reveal delay={80} className="w-full">
               <div className="animate-hero-float relative">
                 <video
                   src="/hero/pilotpulse-hero-side.mp4"
