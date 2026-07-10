@@ -1,3 +1,9 @@
+import {
+  GlassCard,
+  GlassCardContent,
+  GlassCardHeader,
+  GlassCardTitle,
+} from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TechOverlay } from "@/components/ui/TechOverlay";
@@ -26,24 +32,27 @@ export function OperationsPanel() {
                 sub={operations.sub}
               />
 
-              <div>
-                <p className="mb-5 text-sm font-semibold uppercase tracking-wide text-ink">
-                  {operations.label}
-                </p>
-                <ol className="flex flex-col gap-4">
-                  {operations.bullets.map((item, i) => (
-                    <li
-                      key={item}
-                      className="bullet-interactive flex items-start gap-4 rounded-xl px-4 py-3"
-                    >
-                      <span className="bullet-dot flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dfe5f0] text-xs font-bold text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_2px_6px_-2px_rgba(5,0,43,0.15)]">
-                        {i + 1}
-                      </span>
-                      <span className="text-[1.0313rem] leading-snug text-base lg:text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+              <GlassCard className="w-full">
+                <GlassCardHeader>
+                  <GlassCardTitle className="text-sm font-semibold uppercase tracking-wide">
+                    {operations.label}
+                  </GlassCardTitle>
+                </GlassCardHeader>
+                <GlassCardContent className="pt-1">
+                  <ol className="flex flex-col gap-1">
+                    {operations.bullets.map((item, i) => (
+                      <li key={item} className="flex items-start gap-4 py-2.5">
+                        <span className="bullet-dot flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dfe5f0] text-xs font-bold text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_2px_6px_-2px_rgba(5,0,43,0.15)]">
+                          {i + 1}
+                        </span>
+                        <span className="text-[1.0313rem] leading-snug text-ink lg:text-lg">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </GlassCardContent>
+              </GlassCard>
             </Reveal>
 
             {/* Right: video card in elevated frame */}

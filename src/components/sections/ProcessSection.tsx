@@ -11,13 +11,13 @@ function StepCard({ step }: { step: Step }) {
       <span className="process-step-badge mb-8 text-sm font-bold text-brand-cyan">
         {step.n}
       </span>
-      <div className="process-icon-wrap mb-8 flex h-24 items-center justify-center">
+      <div className="process-icon-wrap mb-3 flex h-24 items-center justify-center">
         <Image
           src={step.icon}
           alt=""
-          width={80}
-          height={80}
-          className="process-icon h-32 w-auto object-contain"
+          width={100}
+          height={100}
+          className="process-icon h-24 w-24 object-contain"
         />
       </div>
       <h3 className="mb-2 text-base text-center font-bold leading-snug text-ink">{step.title}</h3>

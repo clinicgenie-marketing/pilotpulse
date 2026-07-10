@@ -3,20 +3,12 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { GradientText } from "@/components/ui/GradientText";
 import { HeroParallax } from "@/components/ui/HeroParallax";
 import { Reveal } from "@/components/ui/Reveal";
-import { TechOverlay } from "@/components/ui/TechOverlay";
 import { TextLink } from "@/components/ui/TextLink";
 import { hero } from "@/lib/content";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[88vh] overflow-hidden">
-      <HeroParallax depth={0.12} className="pointer-events-none absolute inset-0">
-        <div aria-hidden="true" className="relative h-full w-full">
-          <TechOverlay />
-          <div className="absolute inset-0 z-10 bg-[linear-gradient(180deg,#05002B_0%,rgba(5,0,43,0.92)_35%,rgba(5,0,43,0.72)_100%)]" />
-        </div>
-      </HeroParallax>
-
+    <section className="relative min-h-[88vh] overflow-hidden bg-[#020A3A]">
       <div className="container-edge relative min-h-[88vh] py-14 lg:py-20">
         <div className="grid min-h-[72vh] items-center gap-12 lg:grid-cols-2 lg:gap-14">
           <HeroParallax depth={0.05} className="max-w-xl">
@@ -37,7 +29,7 @@ export function HeroSection() {
 
           <HeroParallax depth={0.08}>
             <Reveal delay={80}>
-              <div className="animate-hero-float relative overflow-hidden rounded-3xl border border-hairline bg-panel-card/40 shadow-glow-soft">
+              <div className="animate-hero-float relative">
                 <video
                   src="/hero/pilotpulse-hero-side.mp4"
                   autoPlay
@@ -46,6 +38,19 @@ export function HeroSection() {
                   playsInline
                   preload="metadata"
                   className="h-full w-full object-cover"
+                />
+                {/* Soft edge fade into hero bg to hide video compression outline */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    backgroundImage: [
+                      "linear-gradient(to right, #020A3A 0%, transparent 5%)",
+                      "linear-gradient(to left, #020A3A 0%, transparent 5%)",
+                      "linear-gradient(to bottom, #020A3A 0%, transparent 5%)",
+                      "linear-gradient(to top, #020A3A 0%, transparent 5%)",
+                    ].join(", "),
+                  }}
                 />
               </div>
             </Reveal>

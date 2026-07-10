@@ -14,12 +14,38 @@ export function CredibilityBanner() {
           {/* IMDA lady image — height matches copy column; image anchored to bottom */}
           <Reveal className="h-full">
             <div className="relative h-full min-h-[250px] overflow-hidden rounded-xl border border-hairline bg-panel-card lg:min-h-10">
+              {/* Left-side brand halo only — clipped so the right edge stays clean */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-0"
+                style={{
+                  WebkitMaskImage:
+                    "linear-gradient(to right, #000 0%, #000 42%, transparent 58%)",
+                  maskImage:
+                    "linear-gradient(to right, #000 0%, #000 42%, transparent 58%)",
+                }}
+              >
+                <Image
+                  src="/hero/IMDA-empty.png"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 100vw"
+                  className="origin-bottom scale-110 object-contain object-bottom"
+                  style={{
+                    filter: [
+                      "drop-shadow(-6px 0 8px rgba(31,137,255,0.2))",
+                      "drop-shadow(-10px 2px 18px rgba(13,164,213,0.13))",
+                      "drop-shadow(-4px 0 28px rgba(70,51,255,0.196))",
+                    ].join(" "),
+                  }}
+                />
+              </div>
               <Image
                 src="/hero/IMDA-empty.png"
                 alt="PilotPulse IMDA GenAI for Digital Leaders initiative on mobile"
                 fill
                 sizes="(min-width: 1024px) 100vw"
-                className="origin-bottom scale-110 object-contain object-bottom"
+                className="relative z-10 origin-bottom scale-110 object-contain object-bottom"
               />
             </div>
           </Reveal>

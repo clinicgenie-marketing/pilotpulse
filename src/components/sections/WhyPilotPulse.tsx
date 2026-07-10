@@ -9,24 +9,26 @@ export function WhyPilotPulse() {
   return (
     <section id="why" className="scroll-mt-16 border-y border-hairline bg-panel/60">
       <div className="container-edge py-16 lg:py-24">
-        <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
+        <Reveal className="grid items-end gap-8 lg:grid-cols-2 lg:gap-16">
           <SectionHeader
             eyebrow={why.eyebrow}
             headingWhite={why.headingPre}
             headingGradient={why.headingGradient}
             headingPost={why.headingPost}
-            align="center"
+            align="left"
           />
-          <p className="text-base leading-relaxed text-ink-body lg:text-lg">
-            {why.subPlain}
-            <span className="mt-1 block">
-              {why.subLead}
-              <GradientText>{why.subGradient}</GradientText>
-            </span>
-          </p>
-          <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-ink-faint">
-            {why.label}
-          </p>
+          <div className="flex flex-col gap-4 lg:pb-1">
+            <p className="text-base leading-relaxed text-ink-body lg:text-lg">
+              {why.subPlain}
+              <span className="mt-1 block">
+                {why.subLead}
+                <GradientText>{why.subGradient}</GradientText>
+              </span>
+            </p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-ink-faint">
+              {why.label}
+            </p>
+          </div>
         </Reveal>
 
         <div className="group/grid mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14">

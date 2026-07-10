@@ -23,8 +23,8 @@ export const site = {
 export const nav = {
   links: [
     { label: "Home", href: "/" },
-    { label: "Contact Us", href: CONTACT_HREF },
     { label: "About Us", href: "#why" },
+    { label: "Contact Us", href: CONTACT_HREF },
   ],
   cta: { label: "Identify your first AI workflow", href: CONTACT_HREF },
 };
@@ -130,7 +130,7 @@ export const why = {
     {
       eyebrow: "Approach",
       title: "Workflow-First Design",
-      body: "AI agents are designed around real business processes — not generic prompts.",
+      body: "AI agents are designed around real business processes, not generic prompts.",
       icon: "/operational/op-workflow-first-design-w.png",
     },
     {
