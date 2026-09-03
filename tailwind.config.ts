@@ -1,8 +1,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Token values are measured directly from the design reference
- * (`landing dark.pdf`) — see docs/design-spec-pdf.md.
+ * Light-theme token values — cool enterprise palette with brand cyan/blue accents.
  */
 const config: Config = {
   darkMode: "class",
@@ -15,29 +14,29 @@ const config: Config = {
     extend: {
       colors: {
         base: {
-          DEFAULT: "#05002B",
-          deep: "#03001D",
+          DEFAULT: "#F4F7FC",
+          deep: "#E6ECF6",
         },
         panel: {
-          DEFAULT: "#110D3E",
-          card: "#090C3F",
-          why: "#27234A",
-          process: "#1B163F",
-          tile: "#2B2555",
-          nav: "#28224B",
+          DEFAULT: "#EEF2FA",
+          card: "#FFFFFF",
+          why: "#E8EEF8",
+          process: "#F0F4FB",
+          tile: "#E4EAF5",
+          nav: "#FFFFFF",
         },
         ink: {
-          DEFAULT: "#FFFFFF",
-          body: "#C6C8D3",
-          faint: "#8E8AA8",
+          DEFAULT: "#0B1220",
+          body: "#4A5568",
+          faint: "#7A8499",
         },
         brand: {
-          cyan: "#0DA4D5",
-          blue: "#1F89FF",
+          cyan: "#0891B2",
+          blue: "#1F6FE5",
           indigo: "#4633FF",
-          accent: "#3D7DFF",
+          accent: "#2563EB",
         },
-        hairline: "rgba(130,140,255,0.20)",
+        hairline: "rgba(30, 50, 100, 0.12)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -50,8 +49,8 @@ const config: Config = {
         signature: "linear-gradient(90deg, #1DBBEB 0%, #4DA3FF 45%, #8B7BFF 100%)",
       },
       boxShadow: {
-        glow: "0 0 60px -12px rgba(70,51,255,0.55)",
-        "glow-soft": "0 24px 80px -28px rgba(31,137,255,0.35)",
+        glow: "0 0 60px -12px rgba(70,51,255,0.22)",
+        "glow-soft": "0 24px 80px -28px rgba(31,137,255,0.18)",
       },
       keyframes: {
         fadeUp: {
@@ -65,11 +64,11 @@ const config: Config = {
         glowPulse: {
           "0%, 100%": {
             opacity: "0.85",
-            filter: "drop-shadow(0 0 8px rgba(70,51,255,0.3))",
+            filter: "drop-shadow(0 0 8px rgba(70,51,255,0.18))",
           },
           "50%": {
             opacity: "1",
-            filter: "drop-shadow(0 0 20px rgba(70,51,255,0.55))",
+            filter: "drop-shadow(0 0 20px rgba(70,51,255,0.32))",
           },
         },
       },

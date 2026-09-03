@@ -11,7 +11,7 @@ export function FinalCTA() {
     <section
       className="relative border-t border-hairline py-20 lg:py-28"
       style={{
-        background: "linear-gradient(180deg, #0A022C 0%, #05011C 100%)",
+        background: "linear-gradient(180deg, #EEF3FB 0%, #E4ECF8 100%)",
       }}
     >
       <FinalCTABackground />

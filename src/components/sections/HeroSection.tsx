@@ -8,7 +8,7 @@ import { hero } from "@/lib/content";
 
 export function HeroSection() {
   return (
-    <section className="relative flex h-svh min-h-svh flex-col overflow-hidden bg-[#020A3A]">
+    <section className="relative flex h-svh min-h-svh flex-col overflow-hidden bg-[#EAF1FB]">
       <div className="container-edge relative flex flex-1 items-center pt-16 md:pt-20">
         <div className="grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <HeroParallax depth={0.05} className="flex max-w-xl items-center">
@@ -45,10 +45,10 @@ export function HeroSection() {
                   className="pointer-events-none absolute inset-0"
                   style={{
                     backgroundImage: [
-                      "linear-gradient(to right, #020A3A 0%, transparent 5%)",
-                      "linear-gradient(to left, #020A3A 0%, transparent 5%)",
-                      "linear-gradient(to bottom, #020A3A 0%, transparent 5%)",
-                      "linear-gradient(to top, #020A3A 0%, transparent 5%)",
+                      "linear-gradient(to right, #EAF1FB 0%, transparent 5%)",
+                      "linear-gradient(to left, #EAF1FB 0%, transparent 5%)",
+                      "linear-gradient(to bottom, #EAF1FB 0%, transparent 5%)",
+                      "linear-gradient(to top, #EAF1FB 0%, transparent 5%)",
                     ].join(", "),
                   }}
                 />

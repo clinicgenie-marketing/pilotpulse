@@ -18,7 +18,7 @@ const RAMPS: Record<NonNullable<GradientTextProps["ramp"]>, string> = {
 };
 
 const GLOW =
-  "drop-shadow(0 0 6px rgba(45, 196, 255, 0.55)) drop-shadow(0 0 14px rgba(77, 163, 255, 0.35))";
+  "drop-shadow(0 0 6px rgba(45, 196, 255, 0.28)) drop-shadow(0 0 14px rgba(77, 163, 255, 0.18))";
 
 /**
  * Gradient-filled keyword text. Rendered inline-block + w-fit so the gradient

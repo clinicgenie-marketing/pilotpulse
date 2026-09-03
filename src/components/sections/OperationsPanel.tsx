@@ -18,7 +18,7 @@ export function OperationsPanel() {
         className="relative pb-20 pt-16 lg:pb-24 lg:pt-20"
         style={{
           background:
-            "linear-gradient(180deg, #05002B 0%, #05002B 45%, #272063 86%, #211683 100%)",
+            "linear-gradient(180deg, #F4F7FC 0%, #F4F7FC 45%, #E8EEF8 86%, #DEE6F5 100%)",
         }}
       >
         <div className="container-edge relative">
@@ -80,7 +80,7 @@ export function OperationsPanel() {
 
           {/* Pull-quote bar */}
           <Reveal className="mt-14 lg:mt-20">
-            <div className="rounded-xl border border-hairline bg-white/[0.03] px-6 py-8 lg:px-10 text-center">
+            <div className="rounded-xl border border-hairline bg-white/70 px-6 py-8 lg:px-10 text-center shadow-sm">
               {operations.bold.map((line) => (
                 <p
                   key={line.strong}

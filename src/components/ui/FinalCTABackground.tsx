@@ -15,7 +15,7 @@ function RadialGlowFallback() {
       className="pointer-events-none absolute inset-x-0 top-1/2 h-[480px] -translate-y-1/2 opacity-70"
       style={{
         background:
-          "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(70,51,255,0.25) 0%, transparent 70%)",
+          "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(70,51,255,0.14) 0%, transparent 70%)",
       }}
     />
   );
@@ -54,7 +54,7 @@ export function FinalCTABackground() {
             baseRadius={0.35}
             radiusStep={0.1}
             scaleRate={0.1}
-            opacity={0.65}
+            opacity={0.4}
             blur={2}
             noiseAmount={0.08}
             rotation={0}

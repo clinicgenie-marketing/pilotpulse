@@ -60,8 +60,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05002B",
-  colorScheme: "dark",
+  themeColor: "#F4F7FC",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -95,25 +95,25 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-SG" className={`${inter.variable} ${interTight.variable}`}>
-      <body className="relative bg-base font-sans antialiased">
+      <body className="relative bg-base font-sans antialiased text-ink">
         {/* Ambient radial glow blobs */}
         <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
           <div
-            className="absolute -left-[20%] top-[10%] h-[600px] w-[600px] rounded-full opacity-30"
+            className="absolute -left-[20%] top-[10%] h-[600px] w-[600px] rounded-full opacity-40"
             style={{
-              background: "radial-gradient(circle, rgba(13,164,213,0.15) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(13,164,213,0.12) 0%, transparent 70%)",
             }}
           />
           <div
-            className="absolute -right-[10%] top-[40%] h-[700px] w-[700px] rounded-full opacity-25"
+            className="absolute -right-[10%] top-[40%] h-[700px] w-[700px] rounded-full opacity-35"
             style={{
-              background: "radial-gradient(circle, rgba(70,51,255,0.18) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(70,51,255,0.1) 0%, transparent 70%)",
             }}
           />
           <div
-            className="absolute bottom-[5%] left-[30%] h-[500px] w-[500px] rounded-full opacity-20"
+            className="absolute bottom-[5%] left-[30%] h-[500px] w-[500px] rounded-full opacity-30"
             style={{
-              background: "radial-gradient(circle, rgba(31,137,255,0.12) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(31,137,255,0.1) 0%, transparent 70%)",
             }}
           />
         </div>

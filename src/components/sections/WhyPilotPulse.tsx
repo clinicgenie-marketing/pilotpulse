@@ -49,7 +49,7 @@ export function WhyPilotPulse() {
                     <h3 className="text-lg font-bold leading-snug text-ink lg:text-xl">
                       {reason.title}
                     </h3>
-                    <p className="card-desc mt-2 text-sm leading-relaxed !text-white lg:text-base">
+                    <p className="card-desc mt-2 text-sm leading-relaxed text-ink-body lg:text-base">
                       {reason.body}
                     </p>
                   </div>

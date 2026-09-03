@@ -3,14 +3,13 @@
 @tailwind utilities;
 
 /*
- * Tokens measured from the design reference (landing dark.pdf).
- * See docs/design-spec-pdf.md for the full sampled spec.
+ * Light-theme design tokens — cool enterprise surfaces with brand accents.
  */
 :root {
-  --bg-base: #05002b;
-  --text-primary: #ffffff;
-  --text-body: #c6c8d3;
-  --border-hairline: rgba(130, 140, 255, 0.2);
+  --bg-base: #f4f7fc;
+  --text-primary: #0b1220;
+  --text-body: #4a5568;
+  --border-hairline: rgba(30, 50, 100, 0.12);
   --gradient-signature: linear-gradient(90deg, #1dbbeb 0%, #4da3ff 45%, #8b7bff 100%);
 }
 
@@ -35,12 +34,12 @@
   }
 
   ::selection {
-    background: rgba(70, 51, 255, 0.45);
-    color: #fff;
+    background: rgba(31, 111, 229, 0.22);
+    color: #0b1220;
   }
 
   :focus-visible {
-    outline: 2px solid #1f89ff;
+    outline: 2px solid #1f6fe5;
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -115,28 +114,26 @@
   }
 
   .header-outside-logo img {
-    filter: brightness(0) invert(1);
     transition: filter 0.3s ease;
   }
 
   .header-outside-logo:hover img,
   .header-outside-logo:focus-visible img {
     filter:
-      brightness(0) invert(1)
-      drop-shadow(0 0 10px rgba(45, 196, 255, 0.9))
-      drop-shadow(0 0 22px rgba(77, 163, 255, 0.45));
+      drop-shadow(0 0 10px rgba(45, 196, 255, 0.55))
+      drop-shadow(0 0 22px rgba(77, 163, 255, 0.28));
   }
 
   .tech-grid-overlay {
     background-image:
-      linear-gradient(rgba(13, 164, 213, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(13, 164, 213, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(31, 111, 229, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31, 111, 229, 0.06) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 
   /* ---- buttons ---- */
   .btn {
-    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-8 py-4 text-[1.0625rem] font-bold leading-none text-ink transition-all duration-300 ease-out;
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full px-8 py-4 text-[1.0625rem] font-bold leading-none text-white transition-all duration-300 ease-out;
   }
 
   /* primary ramp is ~18% darker than the headline gradient (sampled) */
@@ -146,20 +143,20 @@
   }
 
   .btn-primary:hover {
-    filter: brightness(1.18);
-    box-shadow: 0 10px 36px -10px rgba(31, 137, 255, 0.65);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 36px -10px rgba(31, 137, 255, 0.45);
     transform: translateY(-1px);
   }
 
   .btn-secondary {
-    @apply btn border bg-transparent;
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 3px 14px -2px rgba(70, 51, 255, 0.45);
+    @apply btn border bg-transparent text-ink;
+    border-color: rgba(30, 50, 100, 0.22);
+    box-shadow: 0 3px 14px -2px rgba(31, 111, 229, 0.16);
   }
 
   .btn-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(31, 111, 229, 0.45);
+    background-color: rgba(31, 111, 229, 0.05);
     transform: translateY(-1px);
   }
 
@@ -174,12 +171,12 @@
   /* ---- cards ---- */
   .card-pdf {
     @apply rounded-3xl border bg-panel-card;
-    border-color: rgba(130, 140, 255, 0.16);
+    border-color: rgba(30, 50, 100, 0.1);
   }
 
   .card-why {
     @apply rounded-[1.3125rem] border bg-panel-why;
-    border-color: rgba(99, 141, 255, 0.45);
+    border-color: rgba(31, 111, 229, 0.18);
   }
 
   .card-process {
@@ -197,14 +194,14 @@
 
   .card-interactive:hover {
     transform: translateY(-2px);
-    border-color: rgba(99, 141, 255, 0.65);
-    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.45);
+    border-color: rgba(31, 111, 229, 0.4);
+    box-shadow: 0 12px 40px -12px rgba(31, 111, 229, 0.22);
   }
 
   .card-icon,
   .process-icon {
-    filter: drop-shadow(0 0 10px rgba(99, 141, 255, 0.35))
-      drop-shadow(0 0 22px rgba(70, 51, 255, 0.22));
+    filter: drop-shadow(0 0 10px rgba(99, 141, 255, 0.22))
+      drop-shadow(0 0 22px rgba(70, 51, 255, 0.12));
   }
 
   .card-interactive .card-icon {
@@ -215,8 +212,8 @@
 
   .card-interactive:hover .card-icon {
     transform: scale(1.05);
-    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.5))
-      drop-shadow(0 0 28px rgba(70, 51, 255, 0.32));
+    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.35))
+      drop-shadow(0 0 28px rgba(70, 51, 255, 0.18));
   }
 
   .card-process-interactive {
@@ -228,11 +225,11 @@
 
   .card-process-interactive:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.35);
+    box-shadow: 0 12px 40px -12px rgba(31, 111, 229, 0.18);
   }
 
   .card-process-interactive:hover .process-step-badge {
-    filter: brightness(1.2);
+    filter: brightness(1.08);
   }
 
   .process-icon-wrap {
@@ -246,8 +243,8 @@
   }
 
   .card-process-interactive:hover .process-icon {
-    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.5))
-      drop-shadow(0 0 28px rgba(70, 51, 255, 0.32));
+    filter: drop-shadow(0 0 14px rgba(99, 141, 255, 0.35))
+      drop-shadow(0 0 28px rgba(70, 51, 255, 0.18));
   }
 
   .logo-marquee-row {
@@ -303,8 +300,8 @@
 
   .tile-interactive:hover {
     transform: scale(1.04);
-    border-color: rgba(99, 141, 255, 0.55);
-    box-shadow: 0 8px 32px -8px rgba(70, 51, 255, 0.65);
+    border-color: rgba(31, 111, 229, 0.35);
+    box-shadow: 0 8px 32px -8px rgba(31, 111, 229, 0.28);
   }
 
   .row-interactive {
@@ -312,7 +309,7 @@
   }
 
   .row-interactive:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(31, 111, 229, 0.04);
   }
 
   .row-interactive .row-icon {
@@ -327,7 +324,7 @@
     background: radial-gradient(ellipse 130% 120% at 50% 15%, #f9fafd 0%, #eef2f9 50%, #e3e9f4 100%);
     border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow:
-      0 6px 18px -8px rgba(5, 0, 43, 0.2),
+      0 6px 18px -8px rgba(11, 18, 32, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.9),
       inset 0 -1px 0 rgba(196, 206, 226, 0.35);
     transition:
@@ -338,7 +335,7 @@
   .bullet-interactive:hover {
     background: radial-gradient(ellipse 130% 120% at 50% 15%, #fcfdff 0%, #f3f6fc 50%, #e8edf6 100%);
     box-shadow:
-      0 8px 22px -8px rgba(5, 0, 43, 0.24),
+      0 8px 22px -8px rgba(11, 18, 32, 0.16),
       inset 0 1px 0 rgba(255, 255, 255, 0.95),
       inset 0 -1px 0 rgba(196, 206, 226, 0.4);
   }
@@ -359,20 +356,21 @@
 
   .video-interactive:hover {
     transform: scale(1.01);
-    box-shadow: 0 16px 48px -12px rgba(70, 51, 255, 0.45);
+    box-shadow: 0 16px 48px -12px rgba(31, 111, 229, 0.22);
   }
 
-  /* legacy alias used by the contact page form */
+  /* frosted light surface for forms / ops cards */
   .glass {
     @apply rounded-3xl border;
-    background-color: rgba(16, 12, 56, 0.75);
-    border-color: rgba(130, 140, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.82);
+    border-color: rgba(30, 50, 100, 0.12);
     backdrop-filter: blur(14px);
+    box-shadow: 0 10px 36px -18px rgba(11, 18, 32, 0.12);
   }
 
   .glass.card-interactive:hover {
-    border-color: rgba(99, 141, 255, 0.55);
-    box-shadow: 0 12px 40px -12px rgba(70, 51, 255, 0.4);
+    border-color: rgba(31, 111, 229, 0.35);
+    box-shadow: 0 12px 40px -12px rgba(31, 111, 229, 0.18);
   }
 }
 
@@ -402,7 +400,7 @@
 }
 
 .card-why .card-desc {
-  color: #ffffff;
+  color: #4a5568;
 }
 
 @keyframes logoMarqueeLeft {
@@ -437,11 +435,11 @@
   0%,
   100% {
     opacity: 0.85;
-    filter: drop-shadow(0 0 8px rgba(70, 51, 255, 0.3));
+    filter: drop-shadow(0 0 8px rgba(70, 51, 255, 0.18));
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 20px rgba(70, 51, 255, 0.55));
+    filter: drop-shadow(0 0 20px rgba(70, 51, 255, 0.32));
   }
 }
 
@@ -483,14 +481,14 @@
 .testimonial-stack-card[role="button"]:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px rgba(31, 137, 255, 0.5),
-    0 24px 80px -28px rgba(31, 137, 255, 0.35);
+    0 0 0 2px rgba(31, 111, 229, 0.45),
+    0 24px 80px -28px rgba(31, 137, 255, 0.2);
 }
 
 .testimonial-logo-mark {
   display: block;
   flex-shrink: 0;
-  background-color: #ffffff;
+  background-color: #0b1220;
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
