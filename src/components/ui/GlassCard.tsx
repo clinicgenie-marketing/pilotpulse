@@ -4,7 +4,7 @@ function cn(...parts: Array<string | undefined | false>) {
   return parts.filter(Boolean).join(" ");
 }
 
-/** Frosted glass surface — translucent navy, hairline border, backdrop blur. */
+/** Frosted glass surface — translucent white, hairline border, backdrop blur. */
 export function GlassCard({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("glass card-interactive overflow-hidden", className)} {...props}>

@@ -9,13 +9,13 @@ const ITEM = "text-sm leading-relaxed text-ink-body transition-colors hover:text
 /** Micron-style two-tier footer: main band + legal bar. */
 export function Footer() {
   return (
-    <footer className="relative border-t border-hairline bg-[#04020E]">
+    <footer className="relative border-t border-hairline bg-panel">
       <div className="container-edge py-14 lg:py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           {/* Logo + tagline */}
           <div className="max-w-xs">
             <Image
-              src="/images/logo-header.png"
+              src="/brand/PilotPulse-Logo.svg"
               alt="PilotPulse.ai"
               width={206}
               height={37}

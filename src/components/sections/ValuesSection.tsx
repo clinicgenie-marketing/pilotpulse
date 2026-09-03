@@ -24,14 +24,14 @@ export function ValuesSection() {
             className="absolute inset-0 lg:hidden"
             style={{
               background:
-                "linear-gradient(180deg, rgba(5,0,43,0.3) 0%, rgba(5,0,43,0.85) 100%)",
+                "linear-gradient(180deg, rgba(244,247,252,0.15) 0%, rgba(244,247,252,0.92) 100%)",
             }}
           />
           <div
             aria-hidden="true"
             className="absolute inset-y-0 right-0 hidden w-40 lg:block"
             style={{
-              background: "linear-gradient(90deg, transparent 0%, #110D3E 100%)",
+              background: "linear-gradient(90deg, transparent 0%, #EEF2FA 100%)",
             }}
           />
         </div>
@@ -73,9 +73,9 @@ export function ValuesSection() {
                     <h3 className="text-lg font-bold text-brand-blue drop-shadow-[0_0_14px_rgba(31,137,255,0.35)] lg:text-lg">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/85 lg:text-base">
-                      <span className="block font-normal text-white">{item.bold}</span>
-                      <span className="mt-1 block text-white/50">{item.body}</span>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-body lg:text-base">
+                      <span className="block font-normal text-ink">{item.bold}</span>
+                      <span className="mt-1 block text-ink-faint">{item.body}</span>
                     </p>
                   </div>
                 </div>

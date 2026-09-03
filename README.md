@@ -14,7 +14,7 @@ consultation requests.
 | --- | --- |
 | Framework | Next.js 14 (App Router) |
 | Language | TypeScript |
-| Styling | Tailwind CSS (token-driven dark theme) |
+| Styling | Tailwind CSS (token-driven light theme) |
 | Icons | lucide-react (thin-line) |
 | Fonts | Inter + Inter Tight via `next/font` (self-hosted, no layout shift) |
 | Animation | Lightweight `IntersectionObserver` scroll reveals + CSS (respects `prefers-reduced-motion`) |
@@ -70,17 +70,17 @@ All copy lives in `src/lib/content.ts`. Edit `docs/content.md` and mirror change
 
 Defined as tokens in `tailwind.config.ts` + `src/app/globals.css`:
 
-- **Background:** near-black navy (`#06070F → #0A0B1E`) with fixed blue/violet radial glows
-- **Signature gradient:** `linear-gradient(120deg, #2563EB, #7C3AED)` — headline keyword, primary buttons, glow rings
-- **Glass cards:** translucent navy fill, hairline border, top inner highlight, hover lift + glow
-- **Typography:** Inter Tight headings (white + one gradient keyword), Inter body, uppercase letter-spaced blue eyebrows
+- **Background:** cool off-white (`#F4F7FC`) with soft blue/violet radial glows
+- **Signature gradient:** `linear-gradient(90deg, #1DBBEB, #4DA3FF, #8B7BFF)` — headline keyword, primary buttons, glow rings
+- **Glass cards:** translucent white fill, hairline border, soft shadow, hover lift
+- **Typography:** Inter Tight headings (navy + one gradient keyword), Inter body, uppercase letter-spaced cyan eyebrows
 - **Motion:** fade-and-rise on scroll, slow hero float, hover border-glow — all disabled under `prefers-reduced-motion`
 
 ## Accessibility & SEO
 
 - One `<h1>` (the hero); semantic `<h2>`/`<h3>` hierarchy throughout
 - Skip-to-content link, focus-visible rings, `aria-label`led nav/buttons, reduced-motion support
-- Body/secondary text meets WCAG AA contrast on the navy base
+- Body/secondary text meets WCAG AA contrast on the light base
 - Title/meta description, Open Graph + Twitter cards, canonical URLs, `Organization` JSON-LD, robots + sitemap
 
 ## Wiring before launch (intentional placeholders)
@@ -102,4 +102,4 @@ These are stubbed so nothing 404s, and are clearly marked in code:
 - Subsidy wording stays hedged ("may access", "up to 50%", "subject to programme terms and eligibility")
 - Only substantiated metrics are shown (Pick Network ≤ one-third support cost; Henderson up to
   25 min/candidate; Connect Energy Services up to 5× CVs). No invented numbers or pricing.
-- Dark theme only.
+- Light theme with cool enterprise surfaces and brand cyan/blue accents.

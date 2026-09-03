@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 
 const FIELD =
-  "w-full rounded-xl border border-hairline bg-white/[0.03] px-4 py-3 text-sm text-ink placeholder:text-ink-faint outline-none transition-colors focus:border-[rgba(140,160,255,0.45)] focus:ring-2 focus:ring-brand-blue/40";
+  "w-full rounded-xl border border-hairline bg-white px-4 py-3 text-sm text-ink placeholder:text-ink-faint outline-none transition-colors focus:border-[rgba(31,111,229,0.45)] focus:ring-2 focus:ring-brand-blue/30";
 const LABEL = "mb-1.5 block text-sm font-medium text-ink";
 
 /**

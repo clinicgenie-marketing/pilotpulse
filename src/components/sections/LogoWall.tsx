@@ -13,7 +13,7 @@ export function LogoWall() {
         className="pointer-events-none absolute inset-x-0 top-1/2 h-[400px] -translate-y-1/2 opacity-60"
         style={{
           background:
-            "linear-gradient(180deg, rgba(90,80,190,0) 0%, rgba(90,80,190,0.18) 50%, rgba(90,80,190,0) 100%)",
+            "linear-gradient(180deg, rgba(31,111,229,0) 0%, rgba(31,111,229,0.08) 50%, rgba(31,111,229,0) 100%)",
         }}
       />
 
@@ -39,7 +39,7 @@ export function LogoWall() {
                     {[...row, ...row].map((logo, idx) => (
                       <li
                         key={`${logo}-${idx}`}
-                        className={`tile-interactive flex h-48 w-48 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-4 shadow-sm transition-opacity sm:h-56 sm:w-56 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
+                        className={`tile-interactive flex h-48 w-48 items-center justify-center rounded-lg border border-hairline bg-white p-4 shadow-sm transition-opacity sm:h-56 sm:w-56 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
                           idx >= row.length ? "logo-marquee-clone" : ""
                         }`}
                         aria-hidden={idx >= row.length}

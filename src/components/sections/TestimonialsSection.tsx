@@ -10,7 +10,7 @@ function stackPosition(quoteIndex: number, activeIndex: number, total: number) {
   return (quoteIndex - activeIndex + total) % total;
 }
 
-/** Stacked card carousel — reference-style layout on dark theme. */
+/** Stacked card carousel — reference-style layout on light theme. */
 export function TestimonialsSection() {
   const [index, setIndex] = useState(0);
   const quotes = testimonials.quotes;

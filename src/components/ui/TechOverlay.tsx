@@ -17,7 +17,7 @@ export function TechOverlay({ className = "", withGlow = true }: TechOverlayProp
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 70% 60% at 70% 40%, rgba(31,137,255,0.12) 0%, transparent 65%)",
+              "radial-gradient(ellipse 70% 60% at 70% 40%, rgba(31,137,255,0.08) 0%, transparent 65%)",
           }}
         />
       )}
