@@ -61,7 +61,7 @@ export function EcosystemSection() {
       id="partnerships"
       ref={sectionRef}
       aria-labelledby={headingId}
-      className="section-pad border-b border-line bg-background"
+      className="section-pad border-b border-line bg-surface"
     >
       <div className="container-edge">
         <motion.div
