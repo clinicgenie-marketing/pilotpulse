@@ -29,7 +29,7 @@ export function WorkflowDemo() {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(workflowDemos[0].id);
   const [userStopped, setUserStopped] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [holdRotate, setHoldRotate] = useState(false);
   const [playbackDone, setPlaybackDone] = useState(false);
   const tabIds = useId();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -41,7 +41,7 @@ export function WorkflowDemo() {
   }, [activeId]);
 
   useEffect(() => {
-    if (instant || userStopped || paused || !playbackDone) return undefined;
+    if (instant || userStopped || holdRotate || !playbackDone) return undefined;
     const timer = window.setTimeout(() => {
       setActiveId((current) => {
         const index = workflowDemos.findIndex((item) => item.id === current);
@@ -49,7 +49,7 @@ export function WorkflowDemo() {
       });
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [instant, paused, playbackDone, userStopped]);
+  }, [instant, holdRotate, playbackDone, userStopped]);
 
   const markPlaybackDone = useCallback(() => {
     setPlaybackDone(true);
@@ -79,12 +79,12 @@ export function WorkflowDemo() {
       id="dashboard"
       ref={sectionRef}
       className="section-pad overflow-visible border-b border-line bg-background"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
+      onMouseEnter={() => setHoldRotate(true)}
+      onMouseLeave={() => setHoldRotate(false)}
+      onFocusCapture={() => setHoldRotate(true)}
       onBlurCapture={(event) => {
         if (!sectionRef.current?.contains(event.relatedTarget as Node | null)) {
-          setPaused(false);
+          setHoldRotate(false);
         }
       }}
     >
@@ -150,12 +150,7 @@ export function WorkflowDemo() {
                 transition={{ duration: 0.2 }}
                 className="h-full"
               >
-                <DemoPanel
-                  item={active}
-                  instant={instant}
-                  paused={paused}
-                  onComplete={markPlaybackDone}
-                />
+                <DemoPanel item={active} instant={instant} onComplete={markPlaybackDone} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -168,12 +163,10 @@ export function WorkflowDemo() {
 function DemoPanel({
   item,
   instant,
-  paused,
   onComplete,
 }: {
   item: WorkflowDemoItem;
   instant: boolean;
-  paused: boolean;
   onComplete: () => void;
 }) {
   const chatRef = useRef<HTMLDivElement | null>(null);
@@ -186,13 +179,13 @@ function DemoPanel({
   }, [item.id, instant, item.messages.length]);
 
   useEffect(() => {
-    if (instant || paused || visible >= item.messages.length) return undefined;
+    if (instant || visible >= item.messages.length) return undefined;
     const timer = window.setTimeout(
       () => setVisible((count) => count + 1),
       visible === 0 ? MESSAGE_START_MS : MESSAGE_STEP_MS,
     );
     return () => window.clearTimeout(timer);
-  }, [instant, item.id, item.messages.length, paused, visible]);
+  }, [instant, item.id, item.messages.length, visible]);
 
   useEffect(() => {
     if (complete) onComplete();
