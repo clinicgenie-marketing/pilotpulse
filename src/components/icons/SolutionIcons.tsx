@@ -7,7 +7,7 @@ type IconProps = {
 };
 
 const SIZE = 24;
-const SW = 1.85;
+const SW = 2.4;
 
 function Mark({
   children,

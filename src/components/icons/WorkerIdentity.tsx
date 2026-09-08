@@ -1,9 +1,13 @@
 import type { CSSProperties } from "react";
 import type { WorkerGlyphName } from "@/lib/home-content";
 
+const STROKE = 2.4;
+const ENGAGE_SCALE = 0.1021;
+const DOCUMENT_SCALE = 0.1143;
+
 const primary = {
   stroke: "var(--pp-primary)",
-  strokeWidth: 1.7,
+  strokeWidth: STROKE,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
 };
@@ -15,19 +19,19 @@ const accent = {
 
 function EngageGlyph() {
   return (
-    <g className="icon-engage" transform="translate(0.6 9.7) scale(0.1021)">
-      <g fill="none" stroke="var(--pp-primary)" strokeWidth={16.65} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M117 55h207c28 0 50 22 50 50v66c0 28-22 50-50 50H190l-61 42 4-42h-16c-28 0-50-22-50-50v-66c0-28 22-50 50-50Z" />
+    <g className="icon-engage" transform={`translate(1 10.3) scale(${ENGAGE_SCALE})`}>
+      <g fill="none" stroke="var(--pp-primary)" strokeWidth={STROKE / ENGAGE_SCALE} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M132 55h185c28 0 50 22 50 50v66c0 28-22 50-50 50H203l-61 42 4-42h-14c-28 0-50-22-50-50v-66c0-28 22-50 50-50Z" />
         <rect className="icon-node icon-process" x="8" y="21" width="48" height="48" rx="3" />
         <rect className="icon-node icon-process" x="8" y="108" width="48" height="48" rx="3" />
         <rect className="icon-node icon-process" x="8" y="199" width="48" height="48" rx="3" />
         <rect className="icon-node icon-node-in icon-process" x="407" y="108" width="48" height="48" rx="3" />
-        <path className="icon-process" d="M56 45h18l16 17M56 132h11M56 223h18l15-16M374 132h33" />
+        <path className="icon-process" d="M56 45h32l16 17M56 132h26M56 223h32l15-16M367 132h40" />
       </g>
       <g fill="var(--pp-primary)">
-        <circle className="icon-dot" cx="153" cy="138" r="20" />
-        <circle className="icon-dot" cx="205" cy="138" r="20" />
-        <circle className="icon-dot" cx="257" cy="138" r="20" />
+        <circle className="icon-dot" cx="168" cy="138" r="17" />
+        <circle className="icon-dot" cx="222" cy="138" r="17" />
+        <circle className="icon-dot" cx="276" cy="138" r="17" />
       </g>
     </g>
   );
@@ -48,8 +52,8 @@ function HireGlyph() {
 
 function DocumentGlyph() {
   return (
-    <g className="icon-file" transform="translate(0.5 6.9) scale(0.1143)">
-      <g fill="none" stroke="var(--pp-primary)" strokeWidth={14.87} strokeLinecap="round" strokeLinejoin="round">
+    <g className="icon-file" transform={`translate(0.5 6.9) scale(${DOCUMENT_SCALE})`}>
+      <g fill="none" stroke="var(--pp-primary)" strokeWidth={STROKE / DOCUMENT_SCALE} strokeLinecap="round" strokeLinejoin="round">
         <path d="M28 28h126l55 56v188H28Z" />
         <path d="M154 28v56h55" />
         <path className="icon-scanline icon-process" d="M67 119h101M67 160h101M67 201h101" />
@@ -126,12 +130,12 @@ function VoiceGlyph() {
       <circle className="icon-node" cx="9.86" cy="9.86" r="2.15" {...primary} />
       <path className="icon-arc icon-process" d="M38.14 9.86A20 20 0 0 1 38.14 38.14" {...primary} />
       <rect className="icon-node icon-node-in icon-process" x="35.54" y="35.54" width="5.2" height="5.2" rx="0.7" {...primary} />
-      <g className="icon-voice-bars">
-        <path className="icon-wave" d="M13 28.6V19.4" {...primary} />
-        <path className="icon-wave" d="M18.5 32.2V15.8" {...primary} />
-        <path className="icon-wave" d="M24 37.2V10.8" {...primary} />
-        <path className="icon-wave" d="M29.5 32.2V15.8" {...primary} />
-        <path className="icon-wave" d="M35 28.6V19.4" {...primary} />
+      <g className="icon-voice-bars" fill="var(--pp-primary)">
+        <rect className="icon-wave" x="11.45" y="19.4" width="3.1" height="9.2" rx="1.55" />
+        <rect className="icon-wave" x="16.95" y="15.8" width="3.1" height="16.4" rx="1.55" />
+        <rect className="icon-wave" x="22.45" y="10.8" width="3.1" height="26.4" rx="1.55" />
+        <rect className="icon-wave" x="27.95" y="15.8" width="3.1" height="16.4" rx="1.55" />
+        <rect className="icon-wave" x="33.45" y="19.4" width="3.1" height="9.2" rx="1.55" />
       </g>
     </g>
   );
