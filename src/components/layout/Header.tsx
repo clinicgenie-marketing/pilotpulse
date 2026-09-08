@@ -1,155 +1,128 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { usePathname } from "next/navigation";
-import PillNav from "@/components/ui/PillNav";
-import { nav } from "@/lib/content";
+import { useEffect, useId, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { CTAButton } from "@/components/ui/CTAButton";
+import { homeNav } from "@/lib/home-content";
 
-/** Sticky pill navigation with GSAP hover animations. */
 export function Header() {
-  const pathname = usePathname();
-
-  const activeHref =
-    nav.links.find((link) => {
-      if (link.href.startsWith("#")) return false;
-      if (link.href === "/") return pathname === "/";
-      return pathname.startsWith(link.href);
-    })?.href ?? (pathname === "/" ? "/" : undefined);
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
 
   useEffect(() => {
-    const pillLogoCount = document.querySelectorAll(".pill-nav .pill-logo").length;
-    const headerLogoCount = document.querySelectorAll(".header-outside-logo").length;
-    const navItemsCount = document.querySelectorAll(".pill-nav .pill").length;
-    const headerContainer = document.querySelector<HTMLElement>(".container-edge");
-    const navRoot = document.querySelector<HTMLElement>(".pill-nav-container");
-    const outsideLogo = document.querySelector<HTMLElement>(".header-outside-logo");
-    const outsideLogoImage = outsideLogo?.querySelector<HTMLImageElement>("img");
-    const outsideLogoStyles = outsideLogo ? window.getComputedStyle(outsideLogo) : null;
-    const outsideLogoImageStyles = outsideLogoImage ? window.getComputedStyle(outsideLogoImage) : null;
-    const headerContainerStyles = headerContainer ? window.getComputedStyle(headerContainer) : null;
-    const navRootStyles = navRoot ? window.getComputedStyle(navRoot) : null;
+    if (!open) return;
 
-    // #region agent log
-    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
-      body: JSON.stringify({
-        sessionId: "f7629c",
-        runId: "nav-debug-pre-fix",
-        hypothesisId: "H1",
-        location: "src/components/layout/Header.tsx:20",
-        message: "Header render logo placement snapshot",
-        data: { pathname, activeHref, pillLogoCount, headerLogoCount, navItemsCount },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
 
-    // #region agent log
-    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
-      body: JSON.stringify({
-        sessionId: "f7629c",
-        runId: "nav-debug-post-fix",
-        hypothesisId: "H6",
-        location: "src/components/layout/Header.tsx:35",
-        message: "Outside logo visual style snapshot",
-        data: {
-          hasOutsideLogoElement: Boolean(outsideLogo),
-          outsideLogoBackground: outsideLogoStyles?.backgroundColor ?? null,
-          outsideLogoBorderRadius: outsideLogoStyles?.borderRadius ?? null,
-          outsideLogoBoxSize: outsideLogo
-            ? { width: Math.round(outsideLogo.getBoundingClientRect().width), height: Math.round(outsideLogo.getBoundingClientRect().height) }
-            : null,
-          logoImageBoxSize: outsideLogoImage
-            ? {
-                width: Math.round(outsideLogoImage.getBoundingClientRect().width),
-                height: Math.round(outsideLogoImage.getBoundingClientRect().height),
-              }
-            : null,
-          logoImageHeightStyle: outsideLogoImageStyles?.height ?? null,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-
-    // #region agent log
-    fetch("http://127.0.0.1:7621/ingest/005452c7-7560-49d2-8ba7-6aa3a637ceed", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "f7629c" },
-      body: JSON.stringify({
-        sessionId: "f7629c",
-        runId: "nav-position-debug",
-        hypothesisId: "H7",
-        location: "src/components/layout/Header.tsx:49",
-        message: "Header layout positions and flex alignment",
-        data: {
-          viewportWidth: window.innerWidth,
-          headerContainerRect: headerContainer
-            ? {
-                x: Math.round(headerContainer.getBoundingClientRect().x),
-                y: Math.round(headerContainer.getBoundingClientRect().y),
-                w: Math.round(headerContainer.getBoundingClientRect().width),
-                h: Math.round(headerContainer.getBoundingClientRect().height),
-              }
-            : null,
-          navRootRect: navRoot
-            ? {
-                x: Math.round(navRoot.getBoundingClientRect().x),
-                y: Math.round(navRoot.getBoundingClientRect().y),
-                w: Math.round(navRoot.getBoundingClientRect().width),
-                h: Math.round(navRoot.getBoundingClientRect().height),
-              }
-            : null,
-          outsideLogoRect: outsideLogo
-            ? {
-                x: Math.round(outsideLogo.getBoundingClientRect().x),
-                y: Math.round(outsideLogo.getBoundingClientRect().y),
-                w: Math.round(outsideLogo.getBoundingClientRect().width),
-                h: Math.round(outsideLogo.getBoundingClientRect().height),
-              }
-            : null,
-          headerJustifyContent: headerContainerStyles?.justifyContent ?? null,
-          headerGap: headerContainerStyles?.columnGap ?? null,
-          navRootWidthStyle: navRootStyles?.width ?? null,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
-  }, [activeHref, pathname]);
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 backdrop-blur-xl">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-button focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
       >
-        Skip to content
+        Skip to main content
       </a>
 
-      <div className="container-edge flex items-center justify-between py-3 md:py-4">
-        <Link
-          href="/"
-          aria-label="PilotPulse home"
-          className="header-outside-logo inline-flex shrink-0 items-center justify-center"
+      <div className="container-edge relative flex h-16 items-center justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <Link
+            href="/"
+            aria-label="PilotPulse home"
+            className="inline-flex shrink-0 items-center"
+          >
+            <Image
+              src="/brand/PilotPulse-Logo.svg"
+              alt="PilotPulse"
+              width={180}
+              height={32}
+              className="h-7 w-auto object-contain"
+              priority
+            />
+          </Link>
+
+          <a
+            href={homeNav.status.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10.5px] font-medium text-emerald-700 sm:inline-flex"
+          >
+            <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+            {homeNav.status.label}
+            <span className="sr-only">System status</span>
+          </a>
+        </div>
+
+        <nav
+          aria-label="Main"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
         >
-          <img src="/brand/PilotPulse-Logo.svg" alt="PilotPulse.ai" className="h-7 w-auto object-contain" />
-        </Link>
-        <PillNav
-          items={nav.links}
-          activeHref={activeHref}
-          ease="power2.easeOut"
-          baseColor="#28224B"
-          pillColor="#110D3E"
-          pillTextColor="#FFFFFF"
-          hoveredPillTextColor="#0DA4D5"
-          initialLoadAnimation
-        />
+          {homeNav.links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-md px-3 py-2 text-[13.5px] font-medium text-ink-muted transition-colors hover:text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <CTAButton href={homeNav.cta.href} size="compact" className="hidden sm:inline-flex">
+            {homeNav.cta.label}
+          </CTAButton>
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-button border border-line bg-surface text-ink lg:hidden"
+            aria-expanded={open}
+            aria-controls={menuId}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          </button>
+        </div>
       </div>
+
+      {open ? (
+        <div
+          id={menuId}
+          className="border-t border-line bg-surface px-5 py-4 lg:hidden"
+        >
+          <nav aria-label="Mobile">
+            <ul className="flex flex-col gap-1">
+              {homeNav.links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-md px-3 py-3 text-sm font-medium text-ink hover:bg-primary-soft hover:text-primary"
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="mt-4">
+            <CTAButton href={homeNav.cta.href} className="w-full" onClick={() => setOpen(false)}>
+              {homeNav.cta.label}
+            </CTAButton>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }

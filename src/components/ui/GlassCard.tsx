@@ -4,10 +4,10 @@ function cn(...parts: Array<string | undefined | false>) {
   return parts.filter(Boolean).join(" ");
 }
 
-/** Frosted glass surface — translucent navy, hairline border, backdrop blur. */
+/** White surface card — border, 16px radius, optional hover glow when interactive. */
 export function GlassCard({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("glass card-interactive overflow-hidden", className)} {...props}>
+    <div className={cn("surface-card overflow-hidden p-6 md:p-8", className)} {...props}>
       {children}
     </div>
   );
@@ -15,7 +15,7 @@ export function GlassCard({ className = "", children, ...props }: HTMLAttributes
 
 export function GlassCardHeader({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("flex flex-col gap-1.5 px-5 pb-2 pt-5", className)} {...props}>
+    <div className={cn("flex flex-col gap-1.5", className)} {...props}>
       {children}
     </div>
   );
@@ -23,7 +23,7 @@ export function GlassCardHeader({ className = "", children, ...props }: HTMLAttr
 
 export function GlassCardTitle({ className = "", children, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3 className={cn("text-base font-semibold text-ink", className)} {...props}>
+    <h3 className={cn("heading-4", className)} {...props}>
       {children}
     </h3>
   );
@@ -35,7 +35,7 @@ export function GlassCardDescription({
   ...props
 }: HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn("text-sm leading-relaxed text-ink-body", className)} {...props}>
+    <p className={cn("text-base leading-relaxed text-ink-muted", className)} {...props}>
       {children}
     </p>
   );
@@ -43,7 +43,7 @@ export function GlassCardDescription({
 
 export function GlassCardContent({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("px-5 py-4", className)} {...props}>
+    <div className={cn("pt-4", className)} {...props}>
       {children}
     </div>
   );
@@ -51,10 +51,7 @@ export function GlassCardContent({ className = "", children, ...props }: HTMLAtt
 
 export function GlassCardFooter({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={cn("flex items-center gap-3 border-t border-hairline px-5 py-4", className)}
-      {...props}
-    >
+    <div className={cn("mt-4 flex items-center gap-3 border-t border-line pt-4", className)} {...props}>
       {children}
     </div>
   );

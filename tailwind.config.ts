@@ -1,9 +1,5 @@
 import type { Config } from "tailwindcss";
 
-/**
- * Token values are measured directly from the design reference
- * (`landing dark.pdf`) — see docs/design-spec-pdf.md.
- */
 const config: Config = {
   darkMode: "class",
   content: [
@@ -14,69 +10,100 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: {
-          DEFAULT: "#05002B",
-          deep: "#03001D",
+        background: {
+          DEFAULT: "#FAFAFA",
+          alt: "#F3F3F4",
         },
-        panel: {
-          DEFAULT: "#110D3E",
-          card: "#090C3F",
-          why: "#27234A",
-          process: "#1B163F",
-          tile: "#2B2555",
-          nav: "#28224B",
+        ground: "#FAFAFA",
+        surface: "#FFFFFF",
+        neutral: {
+          50: "#FAFAFA",
+          100: "#F3F3F4",
+          200: "#E7E6EA",
+          300: "#D3D3D9",
+          400: "#A2A1AF",
+          500: "#7C7B8E",
+          600: "#646374",
+          700: "#4E4D5B",
+          800: "#32313A",
+          900: "#1D1C21",
+          950: "#131316",
+        },
+        primary: {
+          50: "#E5E3FE",
+          100: "#D6D3FD",
+          200: "#B9B3FB",
+          300: "#948CF9",
+          400: "#6F64F7",
+          500: "#4638F5",
+          600: "#1F0EF5",
+          700: "#1507CC",
+          800: "#0F049F",
+          900: "#0A0271",
+          DEFAULT: "#4638F5",
+          text: "#4638F5",
+          "text-dark": "#786DF8",
+          hover: "#1F0EF5",
+          soft: "#E5E3FE",
+          dark: "#1F0EF5",
+        },
+        secondary: {
+          DEFAULT: "#A236F2",
+          text: "#A236F2",
+        },
+        accent: {
+          DEFAULT: "#3686F2",
+          hover: "#1372F1",
+          on: "#1D1C21",
+          text: "#0F6DEB",
+          "text-dark": "#3686F2",
+          soft: "#E8F3FE",
         },
         ink: {
-          DEFAULT: "#FFFFFF",
-          body: "#C6C8D3",
-          faint: "#8E8AA8",
+          DEFAULT: "#1D1C21",
+          muted: "#646374",
+          faint: "#9A99A6",
         },
-        brand: {
-          cyan: "#0DA4D5",
-          blue: "#1F89FF",
-          indigo: "#4633FF",
-          accent: "#3D7DFF",
+        line: "#E7E6EA",
+        outline: "#B9B3FB",
+        partner: {
+          imda: "#6B1F7C",
+          singtel: "#E01B1B",
+          ey: "#D4A017",
+          temasek: "#1A7A3A",
+          nyp: "#0057B8",
+          ite: "#8B0000",
         },
-        hairline: "rgba(130,140,255,0.20)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-inter-tight)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Arial", "sans-serif"],
+        display: ["var(--font-cal-sans)", "Arial", "sans-serif"],
       },
       maxWidth: {
-        content: "1330px",
+        content: "1320px",
       },
-      backgroundImage: {
-        signature: "linear-gradient(90deg, #1DBBEB 0%, #4DA3FF 45%, #8B7BFF 100%)",
+      borderRadius: {
+        button: "10px",
+        card: "16px",
       },
       boxShadow: {
-        glow: "0 0 60px -12px rgba(70,51,255,0.55)",
-        "glow-soft": "0 24px 80px -28px rgba(31,137,255,0.35)",
+        "glow-purple":
+          "0 0 0 1px rgba(70, 56, 245, 0.08), 0 12px 32px rgba(70, 56, 245, 0.12)",
+        "glow-blue":
+          "0 0 0 1px rgba(54, 134, 242, 0.08), 0 12px 32px rgba(54, 134, 242, 0.12)",
+        "btn-primary":
+          "0 0 0 1px rgba(70, 56, 245, 0.18), 0 8px 24px rgba(70, 56, 245, 0.26)",
+        "btn-accent":
+          "0 0 0 1px rgba(54, 134, 242, 0.18), 0 8px 24px rgba(54, 134, 242, 0.24)",
       },
       keyframes: {
         fadeUp: {
           "0%": { opacity: "0", transform: "translateY(26px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        heroFloat: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-12px)" },
-        },
-        glowPulse: {
-          "0%, 100%": {
-            opacity: "0.85",
-            filter: "drop-shadow(0 0 8px rgba(70,51,255,0.3))",
-          },
-          "50%": {
-            opacity: "1",
-            filter: "drop-shadow(0 0 20px rgba(70,51,255,0.55))",
-          },
-        },
       },
       animation: {
         "fade-up": "fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) forwards",
-        "hero-float": "heroFloat 9s ease-in-out infinite",
-        "glow-pulse": "glowPulse 4s ease-in-out infinite",
       },
     },
   },

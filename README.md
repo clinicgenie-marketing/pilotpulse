@@ -14,12 +14,12 @@ consultation requests.
 | --- | --- |
 | Framework | Next.js 14 (App Router) |
 | Language | TypeScript |
-| Styling | Tailwind CSS (token-driven dark theme) |
-| Icons | lucide-react (thin-line) |
-| Fonts | Inter + Inter Tight via `next/font` (self-hosted, no layout shift) |
+| Styling | Tailwind CSS (token-driven light theme) |
+| Icons | lucide-react (outline, 1.75–2px stroke) |
+| Fonts | Orbit headings + Inter body via `next/font` |
 | Animation | Lightweight `IntersectionObserver` scroll reveals + CSS (respects `prefers-reduced-motion`) |
 
-No heavy runtime dependencies — the hero "orb", glows and icons are pure CSS/SVG.
+No heavy runtime dependencies — workflow visuals, icons and motion stay lightweight.
 
 ## Run locally
 
@@ -43,17 +43,17 @@ npm run lint     # eslint (next/core-web-vitals)
 ```
 src/
 ├── app/
-│   ├── layout.tsx          # fonts, SEO metadata, Open Graph, JSON-LD, ambient background
+│   ├── layout.tsx          # fonts, SEO metadata, Open Graph, JSON-LD
 │   ├── page.tsx            # landing page — composes all sections in sitemap order
-│   ├── globals.css         # design tokens + glass/button/eyebrow component layer
+│   ├── globals.css         # design tokens + button/card/type layer
 │   ├── contact/page.tsx    # /contact — destination for every CTA (demo/consultation form)
-│   ├── not-found.tsx       # on-brand dark 404
+│   ├── not-found.tsx       # on-brand 404
 │   ├── icon.svg            # favicon
 │   ├── robots.ts           # robots.txt
 │   └── sitemap.ts          # sitemap.xml
 ├── components/
-│   ├── layout/             # Header (sticky glass nav + mobile menu), Footer
-│   ├── ui/                 # GlassCard, CTAButton, Reveal, SectionHeading, Eyebrow,
+│   ├── layout/             # Header (sticky surface nav + mobile menu), Footer
+│   ├── ui/                 # Surface cards, CTAButton, Reveal, SectionHeading, Eyebrow,
 │   │                       # GradientText, Logo, Icons
 │   ├── visuals/            # HeroOrb (pure CSS/SVG hero visual)
 │   └── sections/           # HeroSection, CredibilityBanner, PainPointsSection,
@@ -66,21 +66,21 @@ src/
 
 All copy lives in `src/lib/content.ts`. Edit `docs/content.md` and mirror changes there.
 
-## Design system (from the reference)
+## Design system
 
-Defined as tokens in `tailwind.config.ts` + `src/app/globals.css`:
+Defined by [`docs/style-guide.md`](docs/style-guide.md) and tokens in `tailwind.config.ts` + `src/app/globals.css`:
 
-- **Background:** near-black navy (`#06070F → #0A0B1E`) with fixed blue/violet radial glows
-- **Signature gradient:** `linear-gradient(120deg, #2563EB, #7C3AED)` — headline keyword, primary buttons, glow rings
-- **Glass cards:** translucent navy fill, hairline border, top inner highlight, hover lift + glow
-- **Typography:** Inter Tight headings (white + one gradient keyword), Inter body, uppercase letter-spaced blue eyebrows
-- **Motion:** fade-and-rise on scroll, slow hero float, hover border-glow — all disabled under `prefers-reduced-motion`
+- **Background:** grey-purple white (`#F7F6FB`) with `#F1EFF7` alternate bands and white surfaces
+- **Primary / accent:** PilotPulse Purple (`#4638F5`) and Electric Blue (`#1447E6`)
+- **Cards:** white, 16px radius, lavender-grey border, soft purple glow on interactive hover
+- **Typography:** Orbit headings, Inter for body and UI, one coloured phrase for emphasis
+- **Motion:** short ease-out hovers and scroll reveals — disabled under `prefers-reduced-motion`
 
 ## Accessibility & SEO
 
 - One `<h1>` (the hero); semantic `<h2>`/`<h3>` hierarchy throughout
 - Skip-to-content link, focus-visible rings, `aria-label`led nav/buttons, reduced-motion support
-- Body/secondary text meets WCAG AA contrast on the navy base
+- Body/secondary text meets WCAG AA contrast on the light page background
 - Title/meta description, Open Graph + Twitter cards, canonical URLs, `Organization` JSON-LD, robots + sitemap
 
 ## Wiring before launch (intentional placeholders)

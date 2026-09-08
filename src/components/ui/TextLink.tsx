@@ -6,10 +6,17 @@ type TextLinkProps = {
   children: React.ReactNode;
   className?: string;
   external?: boolean;
+  ariaLabel?: string;
 };
 
 /** Micron-style text link with trailing arrow. */
-export function TextLink({ href, children, className = "", external = false }: TextLinkProps) {
+export function TextLink({
+  href,
+  children,
+  className = "",
+  external = false,
+  ariaLabel,
+}: TextLinkProps) {
   const classes = `text-link group ${className}`.trim();
   const content = (
     <>
@@ -23,14 +30,20 @@ export function TextLink({ href, children, className = "", external = false }: T
 
   if (external || /^https?:\/\//.test(href)) {
     return (
-      <a href={href} className={classes} target="_blank" rel="noopener noreferrer">
+      <a
+        href={href}
+        className={classes}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+      >
         {content}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} aria-label={ariaLabel}>
       {content}
     </Link>
   );

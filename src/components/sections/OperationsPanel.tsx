@@ -6,24 +6,15 @@ import {
 } from "@/components/ui/GlassCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { TechOverlay } from "@/components/ui/TechOverlay";
 import { TextLink } from "@/components/ui/TextLink";
 import { operations } from "@/lib/content";
 
-/** Micron-style industrial feature section — split layout with video frame. */
 export function OperationsPanel() {
   return (
-    <section className="relative border-b border-hairline">
-      <div
-        className="relative pb-20 pt-16 lg:pb-24 lg:pt-20"
-        style={{
-          background:
-            "linear-gradient(180deg, #05002B 0%, #05002B 45%, #272063 86%, #211683 100%)",
-        }}
-      >
+    <section className="relative bg-feature">
+      <div className="relative section-pad">
         <div className="container-edge relative">
-          <div className="grid items-start gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16 justify-items-center items-center">
-            {/* Left: header + structured bullet rows */}
+          <div className="grid items-center justify-items-center gap-12 lg:grid-cols-[0.38fr_0.62fr] lg:gap-16">
             <Reveal className="flex flex-col gap-8">
               <SectionHeader
                 eyebrow={operations.eyebrow}
@@ -34,18 +25,16 @@ export function OperationsPanel() {
 
               <GlassCard className="w-full">
                 <GlassCardHeader>
-                  <GlassCardTitle className="text-sm font-semibold uppercase tracking-wide">
-                    {operations.label}
-                  </GlassCardTitle>
+                  <GlassCardTitle>{operations.label}</GlassCardTitle>
                 </GlassCardHeader>
-                <GlassCardContent className="pt-1">
+                <GlassCardContent>
                   <ol className="flex flex-col gap-1">
                     {operations.bullets.map((item, i) => (
                       <li key={item} className="flex items-start gap-4 py-2.5">
-                        <span className="bullet-dot flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dfe5f0] text-xs font-bold text-base shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_2px_6px_-2px_rgba(5,0,43,0.15)]">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-soft text-xs font-semibold text-primary">
                           {i + 1}
                         </span>
-                        <span className="text-[1.0313rem] leading-snug text-ink lg:text-lg">
+                        <span className="text-base leading-snug text-ink">
                           {item}
                         </span>
                       </li>
@@ -55,11 +44,9 @@ export function OperationsPanel() {
               </GlassCard>
             </Reveal>
 
-            {/* Right: video card in elevated frame */}
             <Reveal delay={120}>
-              <div className="relative overflow-hidden rounded-xl border border-hairline bg-panel-card">
-                <TechOverlay withGlow={false} className="opacity-40" />
-                <div className="video-interactive relative overflow-hidden rounded-xl">
+              <div className="relative overflow-hidden rounded-card border border-line bg-surface">
+                <div className="relative overflow-hidden">
                   <video
                     src={operations.video.src}
                     aria-label={`${operations.video.title} — ${operations.video.subtitle}`}
@@ -71,23 +58,22 @@ export function OperationsPanel() {
                     className="h-auto w-full object-cover"
                   />
                 </div>
-                <div className="relative border-t border-hairline px-5 py-4">
+                <div className="relative border-t border-line px-5 py-4">
                   <TextLink href={operations.videoLink.href}>{operations.videoLink.label}</TextLink>
                 </div>
               </div>
             </Reveal>
           </div>
 
-          {/* Pull-quote bar */}
           <Reveal className="mt-14 lg:mt-20">
-            <div className="rounded-xl border border-hairline bg-white/[0.03] px-6 py-8 lg:px-10 text-center">
+            <div className="rounded-card border border-line bg-surface px-6 py-8 text-center lg:px-10">
               {operations.bold.map((line) => (
                 <p
                   key={line.strong}
-                  className="text-base leading-relaxed text-ink lg:text-lg"
+                  className="text-base leading-relaxed text-ink"
                 >
                   {line.pre}
-                  <strong className="font-bold">{line.strong}</strong>
+                  <strong className="font-semibold">{line.strong}</strong>
                   {line.post}
                 </p>
               ))}

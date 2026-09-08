@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-labelledby="title">
+  <title id="title">Connected document icon</title>
+  <defs>
+    <linearGradient id="purple" x1="0" y1="0" x2="420" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5636dc"/>
+      <stop offset="1" stop-color="#7b42e8"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#purple)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 28h126l55 56v188H28Z"/>
+    <path d="M154 28v56h55"/>
+    <path d="M67 119h101M67 160h101M67 201h101"/>
+    <rect x="347" y="48" width="49" height="49" rx="3"/>
+    <rect x="347" y="126" width="49" height="49" rx="3"/>
+    <rect x="347" y="221" width="49" height="49" rx="3"/>
+    <path d="M209 84h43l47-36h48M209 150h138M209 201h43l47 45h48"/>
+  </g>
+</svg>

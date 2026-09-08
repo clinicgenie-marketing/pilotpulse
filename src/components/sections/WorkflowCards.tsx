@@ -5,10 +5,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TextLink } from "@/components/ui/TextLink";
 import { capabilities } from "@/lib/content";
 
-/** Micron-style icon solutions row + compact featured tiles. */
 export function WorkflowCards() {
   return (
-    <section className="py-16 md:py-20 lg:py-24">
+    <section className="section-pad">
       <div className="container-edge">
         <Reveal>
           <SectionHeader
@@ -19,50 +18,28 @@ export function WorkflowCards() {
           />
         </Reveal>
 
-        {/* Desktop: icon solutions row with hairline dividers */}
-        <Reveal delay={80} className="mt-12 hidden lg:grid lg:grid-cols-3 lg:divide-x lg:divide-hairline">
-          {capabilities.cards.map((card) => (
-            <div key={card.title} className="flex flex-col gap-5 px-8 first:pl-0 last:pr-0">
-              <Image
-                src={card.icon}
-                alt=""
-                width={100}
-                height={100}
-                className="card-icon h-24 w-24 object-contain"
-              />
-              <div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {capabilities.cards.map((card, i) => (
+            <Reveal key={card.title} delay={i * 80} className="h-full">
+              <article className="card-interactive flex h-full flex-col overflow-hidden p-6 md:p-8">
+                <div className="icon-soft mb-6 h-16 w-16">
+                  <Image
+                    src={card.icon}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 object-contain"
+                  />
+                </div>
                 <p className="eyebrow mb-2">{card.eyebrow}</p>
-                <h3 className="text-xl font-bold text-ink">
+                <h3 className="heading-3">
                   {card.titleGradient && (
                     <GradientText className="block">{card.titleGradient}</GradientText>
                   )}
                   <span>{card.title}</span>
                 </h3>
-              </div>
-              <p className="body-copy flex-1">{card.body}</p>
-              <TextLink href={card.link.href}>{card.link.label}</TextLink>
-            </div>
-          ))}
-        </Reveal>
-
-        {/* Mobile / tablet: compact featured tiles */}
-        <div className="group/grid mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:hidden">
-          {capabilities.cards.map((card, i) => (
-            <Reveal key={card.title} delay={i * 80} className="h-full">
-              <article className="card-pdf card-interactive flex h-full flex-col overflow-hidden transition-opacity lg:group-hover/grid:opacity-60 lg:hover:!opacity-100">
-                <div className="flex items-center justify-center border-b border-hairline bg-panel-tile/40 px-6 py-8">
-                  <Image
-                    src={card.icon}
-                    alt=""
-                    width={100}
-                    height={100}
-                    className="card-icon h-24 w-24 object-contain"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <p className="eyebrow">{card.eyebrow}</p>
-                  <h3 className="text-lg font-bold text-ink">{card.title}</h3>
-                  <p className="body-copy flex-1 text-sm">{card.body}</p>
+                <p className="body-copy mt-3 flex-1">{card.body}</p>
+                <div className="mt-6">
                   <TextLink href={card.link.href}>{card.link.label}</TextLink>
                 </div>
               </article>

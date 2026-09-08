@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 300" role="img" aria-labelledby="title">
+  <title id="title">Scanned verified profile icon</title>
+  <defs>
+    <linearGradient id="purple" x1="0" y1="0" x2="430" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5636dc"/>
+      <stop offset="1" stop-color="#7b42e8"/>
+    </linearGradient>
+    <mask id="clear-verification">
+      <rect width="430" height="300" fill="#fff"/>
+      <circle cx="331" cy="229" r="64" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="none" stroke="url(#purple)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 51V18h34M375 18h34v34M21 247v34h34"/>
+    <g mask="url(#clear-verification)">
+      <rect x="58" y="52" width="286" height="206" rx="48"/>
+      <circle cx="151" cy="118" r="29"/>
+      <path d="M105 212c0-39 21-66 46-66s46 27 46 66Z"/>
+      <path d="M232 117h93M232 151h79M232 185h50"/>
+    </g>
+    <circle cx="331" cy="229" r="57"/>
+    <path d="m306 230 21 23 34-49"/>
+  </g>
+</svg>

@@ -1,3 +1,5 @@
+> **Superseded.** The live visual system is [`docs/style-guide.md`](style-guide.md). This file is the previous dark-theme measurement notes only.
+
 # PDF-exact design spec (measured from `landing dark.pdf`)
 
 Canvas: 1728px wide · content from x=200 to x≈1530 (**~1330px content width**).

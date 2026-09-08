@@ -10,10 +10,10 @@ export default function NotFound() {
       <Header />
       <main id="main" className="grid min-h-[60vh] place-items-center px-5 py-24 pt-32">
         <div className="flex max-w-xl flex-col items-center gap-6 text-center">
-          <span className="text-7xl font-extrabold sm:text-8xl">
+          <span className="font-display text-7xl sm:text-8xl">
             <GradientText>404</GradientText>
           </span>
-          <h1 className="text-2xl font-bold text-ink sm:text-3xl">
+          <h1 className="heading-3">
             This page took a different workflow
           </h1>
           <p className="lead max-w-md">
@@ -24,7 +24,7 @@ export default function NotFound() {
             <CTAButton href="/" withArrow>
               Back to home
             </CTAButton>
-            <Link href="/contact" className="btn-secondary">
+            <Link href="/#contact" className="btn-secondary">
               Contact us
             </Link>
           </div>

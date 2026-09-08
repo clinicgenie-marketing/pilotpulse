@@ -6,17 +6,19 @@
  */
 
 /** Primary conversion destination for all CTAs. */
-export const CONTACT_HREF = "/contact";
-/** Blog is hosted separately/externally — wire this to the real URL at launch. */
-export const BLOG_HREF = "#";
+export const CONTACT_HREF = "/#contact";
+export const BLOG_HREF = "https://www.linkedin.com/company/pilotpulse-ai/";
+export const WHATSAPP_HREF = "https://wa.me/6598768216";
+export const STATUS_HREF = "https://uptime.pilotpulse.ai";
+export const LINKEDIN_HREF = "https://www.linkedin.com/company/pilotpulse-ai/";
 
 export const site = {
   name: "PilotPulse",
   domain: "pilotpulse.ai",
   email: "info@pilotpulse.ai",
-  phone: "(65) 9876 8216",
-  tagline: "Helping businesses move from manual operations to AI-supported execution.",
-  positioning: "PilotPulse builds AI where the work actually happens.",
+  phone: "+65 9876 8216",
+  tagline: "Agentic AI digital workers that execute real business workflows.",
+  positioning: "PilotPulse designs, deploys and manages agentic AI digital workers.",
 };
 
 /** Sticky header: logo + links + persistent CTA. */
@@ -303,8 +305,8 @@ export const footer = {
 };
 
 export const seo = {
-  title: "PilotPulse | AI Workflow Automation & Agentic AI in Singapore",
+  title: "PilotPulse | Agentic AI Digital Workers for Business",
   description:
-    "PilotPulse implements agentic AI inside real business operations — automating enquiries, documents and recruitment. IMDA-approved partner. Start with one workflow.",
-  h1: "Your business is already running on AI. Just not yours.",
+    "PilotPulse designs, deploys and manages agentic AI digital workers that complete real business workflows across your existing systems.",
+  h1: "Deploying Agentic AI that executes so your team can focus on what matters.",
 };

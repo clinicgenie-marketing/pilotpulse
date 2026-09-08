@@ -3,21 +3,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { clients } from "@/lib/content";
 
-/** Client logo wall with eyebrow and tighter enterprise grid. */
 export function LogoWall() {
   return (
-    <section id="clients" aria-label="Clients and partners" className="relative scroll-mt-16 border-y border-hairline bg-panel/40 py-14 lg:py-20">
-      {/* Subtle glow band */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 h-[400px] -translate-y-1/2 opacity-60"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(90,80,190,0) 0%, rgba(90,80,190,0.18) 50%, rgba(90,80,190,0) 100%)",
-        }}
-      />
-
-      <div className="container-edge relative">
+    <section id="clients" aria-label="Clients and partners" className="relative scroll-mt-16 bg-background-alt">
+      <div className="container-edge section-pad relative">
         <Reveal className="mx-auto mb-10 max-w-2xl">
           <SectionHeader
             eyebrow={clients.eyebrow}
@@ -39,7 +28,7 @@ export function LogoWall() {
                     {[...row, ...row].map((logo, idx) => (
                       <li
                         key={`${logo}-${idx}`}
-                        className={`tile-interactive flex h-48 w-48 items-center justify-center rounded-lg border border-hairline bg-[rgba(225,220,255,0.05)] p-4 shadow-sm transition-opacity sm:h-56 sm:w-56 lg:group-hover:opacity-60 lg:hover:!opacity-100 ${
+                        className={`tile-interactive flex h-32 w-32 items-center justify-center p-4 sm:h-40 sm:w-40 ${
                           idx >= row.length ? "logo-marquee-clone" : ""
                         }`}
                         aria-hidden={idx >= row.length}
@@ -47,8 +36,8 @@ export function LogoWall() {
                         <Image
                           src={`/images/${logo}.png`}
                           alt=""
-                          width={224}
-                          height={224}
+                          width={160}
+                          height={160}
                           className="h-full w-full object-contain"
                         />
                       </li>

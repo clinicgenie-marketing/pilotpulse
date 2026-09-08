@@ -7,29 +7,26 @@ type Step = (typeof process.steps)[number];
 
 function StepCard({ step }: { step: Step }) {
   return (
-    <div className="card-process-interactive flex h-full flex-col rounded-xl border border-hairline bg-panel-process p-8 items-center bg-opacity-80">
-      <span className="process-step-badge mb-8 text-sm font-bold text-brand-cyan">
-        {step.n}
-      </span>
-      <div className="process-icon-wrap mb-3 flex h-24 items-center justify-center">
+    <div className="card-process-interactive flex h-full flex-col items-center p-6 md:p-8">
+      <span className="mb-6 font-display text-3xl text-primary">{step.n}</span>
+      <div className="icon-soft-accent mb-4 flex h-16 w-16 items-center justify-center">
         <Image
           src={step.icon}
           alt=""
-          width={100}
-          height={100}
-          className="process-icon h-24 w-24 object-contain"
+          width={40}
+          height={40}
+          className="h-10 w-10 object-contain"
         />
       </div>
-      <h3 className="mb-2 text-base text-center font-bold leading-snug text-ink">{step.title}</h3>
-      <p className="body-copy text-sm text-center">{step.body}</p>
+      <h3 className="heading-4 mb-2 text-center">{step.title}</h3>
+      <p className="body-copy text-center">{step.body}</p>
     </div>
   );
 }
 
-/** Linear horizontal stepper on desktop; vertical timeline on mobile. */
 export function ProcessSection() {
   return (
-    <section className="py-16 md:py-20 lg:py-24">
+    <section className="section-pad">
       <div className="container-edge">
         <Reveal className="mx-auto max-w-3xl">
           <SectionHeader
@@ -40,7 +37,6 @@ export function ProcessSection() {
           />
         </Reveal>
 
-        {/* Desktop: 5-column stepper */}
         <div className="mt-14 hidden lg:block">
           <div className="grid grid-cols-5 gap-4">
             {process.steps.map((step, i) => (
@@ -51,12 +47,11 @@ export function ProcessSection() {
           </div>
         </div>
 
-        {/* Mobile: vertical timeline */}
-        <div className="relative mt-10 flex flex-col gap-6 border-l-2 border-brand-indigo/40 pl-6 lg:hidden">
+        <div className="relative mt-10 flex flex-col gap-6 border-l-2 border-primary-soft pl-6 lg:hidden">
           {process.steps.map((step, i) => (
             <Reveal key={step.n} delay={i * 60}>
               <div className="relative">
-                <span className="absolute -left-[calc(1.5rem+5px)] top-0 flex h-3 w-3 rounded-full bg-brand-cyan" />
+                <span className="absolute -left-[calc(1.5rem+5px)] top-0 flex h-3 w-3 rounded-full bg-primary" />
                 <StepCard step={step} />
               </div>
             </Reveal>

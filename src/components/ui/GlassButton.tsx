@@ -1,10 +1,15 @@
 import type { ButtonHTMLAttributes } from "react";
 
 type GlassButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "accent";
 };
 
-/** Glass-system button using the shared primary/secondary pill styles. */
+const VARIANT_CLASS = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  accent: "btn-accent",
+} as const;
+
 export function GlassButton({
   variant = "primary",
   className = "",
@@ -12,9 +17,8 @@ export function GlassButton({
   type = "button",
   ...props
 }: GlassButtonProps) {
-  const variantClass = variant === "primary" ? "btn-primary" : "btn-secondary";
   return (
-    <button type={type} className={`${variantClass} ${className}`.trim()} {...props}>
+    <button type={type} className={`${VARIANT_CLASS[variant]} ${className}`.trim()} {...props}>
       {children}
     </button>
   );

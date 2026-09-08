@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { seo, site } from "@/lib/content";
 
@@ -9,10 +10,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-inter-tight",
+const calSans = localFont({
+  src: "../fonts/CalSans-SemiBold.woff2",
+  variable: "--font-cal-sans",
   display: "swap",
+  weight: "600",
 });
 
 const SITE_URL = "https://pilotpulse.ai";
@@ -60,8 +62,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05002B",
-  colorScheme: "dark",
+  themeColor: "#FAFAFA",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
 };
@@ -77,9 +79,10 @@ const orgJsonLd = {
   slogan: site.positioning,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "60 Paya Lebar Road #07-54",
+    // VERIFY: Goldhill Plaza address is taken from the homepage prototype; confirm against the current registered office.
+    streetAddress: "51 Goldhill Plaza, #14-01",
     addressLocality: "Singapore",
-    postalCode: "409051",
+    postalCode: "308900",
     addressCountry: "SG",
   },
   areaServed: "SG",
@@ -94,30 +97,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-SG" className={`${inter.variable} ${interTight.variable}`}>
-      <body className="relative bg-base font-sans antialiased">
-        {/* Ambient radial glow blobs */}
-        <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-          <div
-            className="absolute -left-[20%] top-[10%] h-[600px] w-[600px] rounded-full opacity-30"
-            style={{
-              background: "radial-gradient(circle, rgba(13,164,213,0.15) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute -right-[10%] top-[40%] h-[700px] w-[700px] rounded-full opacity-25"
-            style={{
-              background: "radial-gradient(circle, rgba(70,51,255,0.18) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute bottom-[5%] left-[30%] h-[500px] w-[500px] rounded-full opacity-20"
-            style={{
-              background: "radial-gradient(circle, rgba(31,137,255,0.12) 0%, transparent 70%)",
-            }}
-          />
-        </div>
-
+    <html lang="en-SG" className={`${inter.variable} ${calSans.variable}`}>
+      <body className="relative bg-background font-sans text-ink antialiased">
         {/* No-JS fallback: never hide scroll-reveal content if JS fails to load */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
