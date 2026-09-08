@@ -1712,9 +1712,10 @@
 }
 
 .workflow-chat-out {
-  background: #ffffff;
-  color: var(--pp-text);
+  background: color-mix(in srgb, #ffffff 58%, var(--pp-primary-soft));
+  color: var(--pp-text-body);
   border-radius: 22px;
+  box-shadow: none;
 }
 
 .workflow-live-pill {
@@ -1736,6 +1737,9 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.35;
+  box-shadow:
+    0 4px 10px rgba(29, 28, 33, 0.1),
+    0 8px 22px rgba(29, 28, 33, 0.12);
 }
 
 .workflow-live-dot {
