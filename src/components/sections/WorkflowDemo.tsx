@@ -135,7 +135,7 @@ export function WorkflowDemo() {
         <div className="overflow-visible px-4">
           <div className="workflow-demo-card">
             <p className="workflow-live-pill">
-              <span className="workflow-live-dot size-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
+              <span className="workflow-live-dot size-2 rounded-full bg-emerald-500" aria-hidden="true" />
               {active.badge}
             </p>
             <AnimatePresence mode="wait" initial={false}>
