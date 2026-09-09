@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { agentWorkflow } from "@/lib/home-content";
 
 export function AgentWorkflow() {
@@ -16,13 +15,16 @@ export function AgentWorkflow() {
 
         <div className="mt-12 grid items-stretch gap-8 lg:grid-cols-2">
           <div className="how-it-works-frame">
-            <Image
-              src="/how-it-works.png"
-              alt="Diagram of an AI worker receiving an enquiry, checking systems and completing the task"
-              width={1196}
-              height={1315}
+            <video
+              src="/how-it-works.mp4"
+              poster="/how-it-works.png"
+              aria-label="Diagram of an AI worker receiving an enquiry, checking systems and completing the task"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
               className="how-it-works-still"
-              sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>
 

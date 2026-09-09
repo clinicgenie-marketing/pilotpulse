@@ -62,7 +62,14 @@ export function HeroSection() {
             </CTAButton>
           </div>
         </div>
-        <SupportBanner />
+        <motion.div
+          className="w-full"
+          initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.72, delay: reduceMotion ? 0 : 0.32, ease: SLOT_EASE }}
+        >
+          <SupportBanner />
+        </motion.div>
       </div>
     </section>
   );

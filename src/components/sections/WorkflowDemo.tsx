@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { Check, Heart, Truck, UserSearch, UtensilsCrossed } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { workflowDemos, type WorkflowDemoItem } from "@/lib/home-content";
@@ -29,19 +29,20 @@ export function WorkflowDemo() {
   const reduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(workflowDemos[0].id);
   const [userStopped, setUserStopped] = useState(false);
-  const [holdRotate, setHoldRotate] = useState(false);
   const [playbackDone, setPlaybackDone] = useState(false);
   const tabIds = useId();
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const inView = useInView(cardRef, { amount: 0.32, margin: "0px 0px -8% 0px" });
   const active = workflowDemos.find((item) => item.id === activeId) ?? workflowDemos[0];
   const instant = Boolean(reduceMotion);
+  const playing = instant || inView;
 
   useEffect(() => {
     setPlaybackDone(false);
   }, [activeId]);
 
   useEffect(() => {
-    if (instant || userStopped || holdRotate || !playbackDone) return undefined;
+    if (instant || userStopped || !inView || !playbackDone) return undefined;
     const timer = window.setTimeout(() => {
       setActiveId((current) => {
         const index = workflowDemos.findIndex((item) => item.id === current);
@@ -49,7 +50,7 @@ export function WorkflowDemo() {
       });
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [instant, holdRotate, playbackDone, userStopped]);
+  }, [instant, inView, playbackDone, userStopped]);
 
   const markPlaybackDone = useCallback(() => {
     setPlaybackDone(true);
@@ -77,16 +78,7 @@ export function WorkflowDemo() {
   return (
     <section
       id="dashboard"
-      ref={sectionRef}
       className="section-pad overflow-visible border-b border-line bg-background"
-      onMouseEnter={() => setHoldRotate(true)}
-      onMouseLeave={() => setHoldRotate(false)}
-      onFocusCapture={() => setHoldRotate(true)}
-      onBlurCapture={(event) => {
-        if (!sectionRef.current?.contains(event.relatedTarget as Node | null)) {
-          setHoldRotate(false);
-        }
-      }}
     >
       <div className="container-edge">
         <div className="mx-auto mb-10 max-w-[760px] text-center">
@@ -133,7 +125,7 @@ export function WorkflowDemo() {
         </div>
 
         <div className="overflow-visible px-4">
-          <div className="workflow-demo-wrap">
+          <div ref={cardRef} className="workflow-demo-wrap">
             <p className="workflow-live-pill">
               <span className="workflow-live-dot size-2 rounded-full bg-emerald-500" aria-hidden="true" />
               {active.badge}
@@ -151,7 +143,12 @@ export function WorkflowDemo() {
                 transition={{ duration: 0.2 }}
                 className="h-full"
               >
-                <DemoPanel item={active} instant={instant} onComplete={markPlaybackDone} />
+                <DemoPanel
+                  item={active}
+                  instant={instant}
+                  playing={playing}
+                  onComplete={markPlaybackDone}
+                />
               </motion.div>
             </AnimatePresence>
             </div>
@@ -165,10 +162,12 @@ export function WorkflowDemo() {
 function DemoPanel({
   item,
   instant,
+  playing,
   onComplete,
 }: {
   item: WorkflowDemoItem;
   instant: boolean;
+  playing: boolean;
   onComplete: () => void;
 }) {
   const chatRef = useRef<HTMLDivElement | null>(null);
@@ -181,13 +180,13 @@ function DemoPanel({
   }, [item.id, instant, item.messages.length]);
 
   useEffect(() => {
-    if (instant || visible >= item.messages.length) return undefined;
+    if (instant || !playing || visible >= item.messages.length) return undefined;
     const timer = window.setTimeout(
       () => setVisible((count) => count + 1),
       visible === 0 ? MESSAGE_START_MS : MESSAGE_STEP_MS,
     );
     return () => window.clearTimeout(timer);
-  }, [instant, item.id, item.messages.length, visible]);
+  }, [instant, item.id, item.messages.length, playing, visible]);
 
   useEffect(() => {
     if (complete) onComplete();
