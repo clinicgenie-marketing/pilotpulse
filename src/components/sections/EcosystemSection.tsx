@@ -14,8 +14,10 @@ function PartnerLogos({
   logos: PartnerLogo[];
   heightClass: string;
 }) {
+  const paired = logos.length > 1;
+
   return (
-    <div className={`flex items-center gap-4 ${heightClass}`}>
+    <div className={`flex w-full min-w-0 items-center ${paired ? "gap-4" : ""} ${heightClass}`}>
       {logos.map((logo) => (
         <Image
           key={logo.src}
@@ -23,28 +25,26 @@ function PartnerLogos({
           alt={logo.alt}
           width={200}
           height={64}
-          className="h-full w-auto max-w-[9rem] object-contain object-left"
+          className={`h-full w-auto object-contain object-left ${
+            paired ? "min-w-0 max-w-[calc(50%-0.5rem)]" : "max-w-[9rem]"
+          }`}
         />
       ))}
     </div>
   );
 }
 
-function PartnerCard({
-  item,
-  featured = false,
-}: {
-  item: EcosystemCard;
-  featured?: boolean;
-}) {
+function PartnerCard({ item }: { item: EcosystemCard }) {
   return (
     <article className="partner-card flex h-full flex-col">
-      <div className={featured ? "mb-5 h-14" : "mb-4 h-10"}>
-        <PartnerLogos logos={item.logos} heightClass={featured ? "h-14" : "h-10"} />
+      <div className="mb-5 h-14 w-full min-w-0">
+        <PartnerLogos logos={item.logos} heightClass="h-14" />
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-[color-mix(in_srgb,var(--pp-primary)_46%,#9a99a6)]">{item.category}</p>
-      <h4 className="partner-title mt-3">{item.title}</h4>
-      <p className="mt-3 text-base leading-relaxed text-ink-muted">{item.body}</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-[color-mix(in_srgb,var(--pp-primary)_46%,#9a99a6)]">
+        {item.category}
+      </p>
+      <h4 className="partner-title mt-3 min-h-[2.6em]">{item.title}</h4>
+      <p className="mt-3 min-h-[4.5em] flex-1 text-base leading-relaxed text-ink-muted">{item.body}</p>
     </article>
   );
 }
@@ -82,10 +82,11 @@ export function EcosystemSection() {
           <h3 className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
             {ecosystem.featuredHeading}
           </h3>
-          <ul className="partner-row partner-row-3 mt-6">
+          <ul className="partner-row mt-6">
             {ecosystem.featured.map((item, index) => (
               <motion.li
                 key={item.title}
+                className="h-full"
                 initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{
@@ -94,7 +95,7 @@ export function EcosystemSection() {
                   ease: EASE,
                 }}
               >
-                <PartnerCard item={item} featured />
+                <PartnerCard item={item} />
               </motion.li>
             ))}
           </ul>
@@ -104,10 +105,11 @@ export function EcosystemSection() {
           <h3 className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
             {ecosystem.supportingHeading}
           </h3>
-          <ul className="partner-row partner-row-4 mt-6">
+          <ul className="partner-row mt-6">
             {ecosystem.supporting.map((item, index) => (
               <motion.li
                 key={item.title}
+                className="h-full"
                 initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{

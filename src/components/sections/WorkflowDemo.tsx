@@ -133,11 +133,12 @@ export function WorkflowDemo() {
         </div>
 
         <div className="overflow-visible px-4">
-          <div className="workflow-demo-card">
+          <div className="workflow-demo-wrap">
             <p className="workflow-live-pill">
               <span className="workflow-live-dot size-2 rounded-full bg-emerald-500" aria-hidden="true" />
               {active.badge}
             </p>
+            <div className="workflow-demo-card">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={active.id}
@@ -153,6 +154,7 @@ export function WorkflowDemo() {
                 <DemoPanel item={active} instant={instant} onComplete={markPlaybackDone} />
               </motion.div>
             </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

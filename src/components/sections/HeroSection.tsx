@@ -25,7 +25,7 @@ export function HeroSection() {
   const [verb, industry] = heroContent.pairs[index];
 
   return (
-    <section className="relative overflow-hidden bg-surface">
+    <section className="relative -mt-16 flex min-h-svh flex-col overflow-hidden bg-surface">
       <div className="hero-aurora" aria-hidden="true">
         <Aurora
           colorStops={AURORA_STOPS}
@@ -35,30 +35,32 @@ export function HeroSection() {
           lightMode
         />
       </div>
-      <div className="container-edge relative z-10 flex flex-col items-center py-16 text-center lg:py-24">
-        <h1 className="heading-hero w-full">
-          <span className="block text-neutral-700">{heroContent.lineOne}</span>
-          <span className="mt-2 flex w-full justify-center">
-            <motion.span
-              className="inline-flex items-baseline justify-center whitespace-nowrap"
-              layout
-              transition={{ duration: reduceMotion ? 0 : 0.45, ease: SLOT_EASE }}
-            >
-              <RotatingSlot current={verb} reduceMotion={reduceMotion} />
-              <span className="hero-mid text-neutral-700">{heroContent.lineTwoMid}</span>
-              <RotatingSlot current={industry} reduceMotion={reduceMotion} />
-            </motion.span>
-          </span>
-          <span className="mt-2 block text-neutral-700">{heroContent.lineThree}</span>
-        </h1>
-        <p className="lead mx-auto mt-6 max-w-[52ch]">{heroContent.support}</p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <CTAButton href={heroContent.primaryCta.href} withArrow>
-            {heroContent.primaryCta.label}
-          </CTAButton>
-          <CTAButton href={heroContent.secondaryCta.href} variant="secondary">
-            {heroContent.secondaryCta.label}
-          </CTAButton>
+      <div className="container-edge relative z-10 flex flex-1 flex-col pb-10 pt-16 text-center lg:pb-12">
+        <div className="flex w-full flex-1 flex-col items-center justify-center py-10">
+          <h1 className="heading-hero w-full">
+            <span className="block text-neutral-700">{heroContent.lineOne}</span>
+            <span className="mt-2 flex w-full justify-center">
+              <motion.span
+                className="inline-flex items-baseline justify-center whitespace-nowrap"
+                layout
+                transition={{ duration: reduceMotion ? 0 : 0.45, ease: SLOT_EASE }}
+              >
+                <RotatingSlot current={verb} reduceMotion={reduceMotion} />
+                <span className="hero-mid text-neutral-700">{heroContent.lineTwoMid}</span>
+                <RotatingSlot current={industry} reduceMotion={reduceMotion} />
+              </motion.span>
+            </span>
+            <span className="mt-2 block text-neutral-700">{heroContent.lineThree}</span>
+          </h1>
+          <p className="lead mx-auto mt-6 max-w-[52ch]">{heroContent.support}</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <CTAButton href={heroContent.primaryCta.href} withArrow>
+              {heroContent.primaryCta.label}
+            </CTAButton>
+            <CTAButton href={heroContent.secondaryCta.href} variant="secondary">
+              {heroContent.secondaryCta.label}
+            </CTAButton>
+          </div>
         </div>
         <SupportBanner />
       </div>

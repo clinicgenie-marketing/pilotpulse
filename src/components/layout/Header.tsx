@@ -26,7 +26,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-surface/80 backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-50 border-b">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-button focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
@@ -74,7 +74,7 @@ export function Header() {
       {open ? (
         <div
           id={menuId}
-          className="border-t border-line bg-surface px-5 py-4 lg:hidden"
+          className="site-header-menu border-t px-5 py-4 lg:hidden"
         >
           <nav aria-label="Mobile">
             <ul className="flex flex-col gap-1">

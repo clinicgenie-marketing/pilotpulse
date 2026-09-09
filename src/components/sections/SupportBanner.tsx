@@ -3,7 +3,7 @@ import { supportBanner } from "@/lib/home-content";
 
 export function SupportBanner() {
   return (
-    <aside aria-label="Government support" className="mt-12 w-full lg:mt-18">
+    <aside aria-label="Government support" className="w-full">
       <div className="support-banner-card flex flex-col items-center gap-5 rounded-card border border-line bg-surface px-6 py-6 shadow-glow-purple sm:flex-row sm:items-center sm:gap-8 sm:px-8">
         <Image
           src="/partners/imda.webp"
