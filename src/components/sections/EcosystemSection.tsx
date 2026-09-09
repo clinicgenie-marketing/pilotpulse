@@ -15,7 +15,7 @@ function PartnerLogos({
   heightClass: string;
 }) {
   return (
-    <div className={`flex items-center gap-3 ${heightClass}`}>
+    <div className={`flex items-center gap-4 ${heightClass}`}>
       {logos.map((logo) => (
         <Image
           key={logo.src}
@@ -42,7 +42,7 @@ function PartnerCard({
       <div className={featured ? "mb-5 h-14" : "mb-4 h-10"}>
         <PartnerLogos logos={item.logos} heightClass={featured ? "h-14" : "h-10"} />
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">{item.category}</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-[color-mix(in_srgb,var(--pp-primary)_46%,#9a99a6)]">{item.category}</p>
       <h4 className="partner-title mt-3">{item.title}</h4>
       <p className="mt-3 text-base leading-relaxed text-ink-muted">{item.body}</p>
     </article>
@@ -79,7 +79,7 @@ export function EcosystemSection() {
         </motion.div>
 
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+          <h3 className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
             {ecosystem.featuredHeading}
           </h3>
           <ul className="partner-row partner-row-3 mt-6">
@@ -101,7 +101,7 @@ export function EcosystemSection() {
         </div>
 
         <div className="mt-12">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
+          <h3 className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
             {ecosystem.supportingHeading}
           </h3>
           <ul className="partner-row partner-row-4 mt-6">
