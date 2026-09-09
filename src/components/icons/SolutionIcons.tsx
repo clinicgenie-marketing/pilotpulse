@@ -113,10 +113,10 @@ function BriefcaseIcon({ className, size }: IconProps) {
 function CompassIcon({ className, size }: IconProps) {
   return (
     <Mark size={size} className={`icon-audit ${className ?? ""}`}>
-      <path d="M3.6 8.2h6.2M3.6 12h4.8M3.6 15.8h5.4" {...primary} />
+      <path className="icon-line icon-process" d="M3.6 8h8.2M3.6 12h8.2M3.6 16h8.2" {...primary} />
       <g className="icon-glass">
-        <circle cx="15.4" cy="11.2" r="4.2" {...primary} />
-        <path className="icon-process" d="M18.4 14.4 21 17.2" {...primary} />
+        <circle cx="14.6" cy="12" r="4.4" {...primary} />
+        <path className="icon-process" d="M17.7 15.1 20.8 18.2" {...primary} />
       </g>
     </Mark>
   );

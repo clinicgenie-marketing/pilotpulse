@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { WorkerGlyphName } from "@/lib/home-content";
 
 const STROKE = 2.4;
@@ -90,34 +89,17 @@ function BriefcaseGlyph() {
   );
 }
 
-const AUDIT_LINES = [
-  { y: 15.2, end: 24.4, from: 0.264, duration: "1.53s" },
-  { y: 22, end: 21.3, from: 0.322, duration: "1.37s" },
-  { y: 28.8, end: 24.4, from: 0.264, duration: "1.53s" },
-] as const;
-
 function CompassGlyph() {
   return (
     <g className="icon-audit">
       <g className="icon-audit-lines">
-        {AUDIT_LINES.map((line) => (
-          <path
-            key={line.y}
-            className="icon-line icon-process"
-            d={`M7 ${line.y}H${line.end}`}
-            style={
-              {
-                "--audit-from": line.from,
-                "--audit-duration": line.duration,
-              } as CSSProperties
-            }
-            {...primary}
-          />
-        ))}
+        <path className="icon-line icon-process" d="M8 16H23" {...primary} />
+        <path className="icon-line icon-process" d="M8 24H23" {...primary} />
+        <path className="icon-line icon-process" d="M8 32H23" {...primary} />
       </g>
       <g className="icon-glass">
-        <circle cx="32" cy="22" r="9" {...primary} />
-        <path className="icon-process" d="M38.4 28.4 42 32" {...accent} />
+        <circle cx="29" cy="24" r="8.8" {...primary} />
+        <path className="icon-process" d="M35.2 30.2 41.2 36.2" {...primary} />
       </g>
     </g>
   );

@@ -845,6 +845,40 @@
     color: transparent;
   }
 
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  .header-logo:focus-visible {
+    outline: 2px solid var(--pp-outline);
+    outline-offset: 4px;
+  }
+
+  .header-logo-mark {
+    display: block;
+    height: 40px;
+    aspect-ratio: 1509.86 / 316.65;
+    background-image: linear-gradient(
+      90deg,
+      var(--pp-primary) 0%,
+      var(--pp-primary) 42%,
+      var(--pp-accent) 100%
+    );
+    background-size: 220% 100%;
+    background-position: 0% 50%;
+    -webkit-mask: url("/brand/PilotPulse-Logo.svg") center / contain no-repeat;
+    mask: url("/brand/PilotPulse-Logo.svg") center / contain no-repeat;
+    mask-mode: alpha;
+    transition: background-position 220ms ease-out;
+  }
+
+  .header-logo:hover .header-logo-mark,
+  .header-logo:focus-visible .header-logo-mark {
+    background-position: 100% 50%;
+  }
+
   .partner-card {
     background: transparent;
     border: 0;
@@ -1801,6 +1835,13 @@
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .header-logo:hover .header-logo-mark,
+  .header-logo:focus-visible .header-logo-mark {
+    background-image: linear-gradient(90deg, var(--pp-primary), var(--pp-accent));
+    background-size: 100% 100%;
+    background-position: 0 50%;
   }
 
   .btn:hover,

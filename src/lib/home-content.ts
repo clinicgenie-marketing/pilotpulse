@@ -265,7 +265,7 @@ export const agentWorkflow = {
   eyebrow: "How it works",
   headingBefore: "What your AI worker does",
   headingAfter: "behind the scenes.",
-  sub: "Your AI worker checks systems, takes action, escalates when needed, and closes the loop — automatically.",
+  sub: "Your AI worker checks systems, takes action, escalates when needed, and closes the loop automatically.",
   steps: [
     {
       title: "Receives the message",
@@ -598,7 +598,7 @@ export const homeTestimonials: Testimonial[] = [
 export const partnershipProcess = {
   eyebrow: "Approach",
   heading: "How we partner with you.",
-  sub: "From the first conversation to a live AI worker — we stay with you at every step, ensuring the deployment succeeds and keeps improving.",
+  sub: "From the first conversation to a live AI worker. We stay with you at every step, ensuring the deployment succeeds and keeps improving.",
   cta: { label: "Show Us Your Workflow", href: CONTACT_HREF },
   steps: [
     {

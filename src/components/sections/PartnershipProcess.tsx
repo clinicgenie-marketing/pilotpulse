@@ -21,18 +21,18 @@ export function PartnershipProcess() {
           {partnershipProcess.steps.map((step) => (
             <li
               key={step.n}
-              className="grid gap-4 py-8 first:pt-0 last:pb-0 md:grid-cols-[3rem_minmax(0,1fr)] md:gap-8 lg:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12"
+              className="grid items-baseline gap-4 py-8 first:pt-0 last:pb-0 md:grid-cols-[3rem_minmax(0,1fr)] md:gap-8 lg:grid-cols-[3rem_minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12"
             >
-              <p className="font-sans text-sm font-semibold tabular-nums tracking-wider text-primary">
+              <p className="font-sans text-sm font-semibold tabular-nums tracking-wider text-ink-muted md:leading-[calc(1.3*var(--pp-heading-leading))]">
                 {step.n}
               </p>
               <div>
-                <h3 className="card-title">{step.title}</h3>
+                <h3 className="card-title text-accent">{step.title}</h3>
                 <p className="mt-2 max-w-[46ch] text-base leading-relaxed text-ink-muted">
                   {step.body}
                 </p>
               </div>
-              <ul className="space-y-2 md:col-start-2 lg:col-start-3">
+              <ul className="space-y-2 self-start md:col-start-2 lg:col-start-3">
                 {step.points.map((point) => (
                   <li key={point} className="flex items-start gap-2 text-base text-ink">
                     <span className="workforce-point-tick" aria-hidden="true">

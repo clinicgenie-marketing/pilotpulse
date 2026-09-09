@@ -95,7 +95,7 @@ export function WorkflowDemo() {
             Agentic AI across every <span className="heading-gradient">workflow.</span>
           </h2>
           <p className="lead mt-4">
-            Not a chatbot. Your AI worker takes action — across WhatsApp, email and web — checking
+            Not a chatbot. Your AI worker takes action across WhatsApp, email and web, checking
             systems, booking slots, escalating intelligently and closing the loop.
           </p>
         </div>

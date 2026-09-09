@@ -3,8 +3,9 @@ import Link from "next/link";
 import { homeFooter } from "@/lib/home-content";
 import { STATUS_HREF } from "@/lib/content";
 
-const HEAD = "text-xs font-semibold uppercase tracking-wider text-white/55";
-const ITEM = "text-base leading-relaxed text-white/75 transition-colors hover:text-white";
+const HEAD =
+  "text-[13px] font-semibold uppercase tracking-wider text-[color-mix(in_srgb,var(--pp-outline)_48%,#8d8b96)]";
+const ITEM = "text-[13px] leading-relaxed text-white/75 transition-colors hover:text-white";
 
 function FooterLink({
   href,
@@ -51,7 +52,7 @@ export function Footer() {
                 className="h-8 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="mt-3 max-w-[36ch] text-base leading-relaxed text-white/75">
+            <p className="mt-3 max-w-[36ch] text-[13px] leading-relaxed text-white/75">
               {homeFooter.blurb}
             </p>
             <a
@@ -93,7 +94,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-y-3 border-t border-white/15 pt-6 text-[12px] text-white/60">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-y-3 border-t border-white/15 pt-6 text-[13px] text-white/60">
           <p>
             <span className="font-medium uppercase tracking-wider">Singapore HQ:</span>{" "}
             {homeFooter.company.address} ·{" "}
@@ -109,7 +110,7 @@ export function Footer() {
             {homeFooter.company.securityEmail}
           </a>
         </div>
-        <div className="mt-4 flex flex-col gap-2 text-[11.5px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-2 text-[13px] text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <span>{homeFooter.copyright}</span>
           <span>{homeFooter.descriptors}</span>
         </div>

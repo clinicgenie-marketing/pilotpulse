@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -36,33 +35,9 @@ export function Header() {
       </a>
 
       <div className="container-edge relative flex h-16 items-center justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-3">
-          <Link
-            href="/"
-            aria-label="PilotPulse home"
-            className="inline-flex shrink-0 items-center"
-          >
-            <Image
-              src="/brand/PilotPulse-Logo.svg"
-              alt="PilotPulse"
-              width={180}
-              height={32}
-              className="h-7 w-auto object-contain"
-              priority
-            />
-          </Link>
-
-          <a
-            href={homeNav.status.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10.5px] font-medium text-emerald-700 sm:inline-flex"
-          >
-            <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-            {homeNav.status.label}
-            <span className="sr-only">System status</span>
-          </a>
-        </div>
+        <Link href="/" aria-label="PilotPulse home" className="header-logo shrink-0">
+          <span className="header-logo-mark" aria-hidden="true" />
+        </Link>
 
         <nav
           aria-label="Main"
