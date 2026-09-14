@@ -673,6 +673,10 @@ export function studyHref(industryId: string, studyId: string) {
   return `/case-studies/${industryId}#${studyId}`;
 }
 
+export function caseStudyWord(count: number) {
+  return count === 1 ? "study" : "studies";
+}
+
 export const caseStudiesNav = caseStudyIndustries.map((industry) => ({
   id: industry.id,
   label: industry.label,

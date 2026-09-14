@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { industryHref, type CaseStudyIndustry } from "@/lib/pages/case-studies";
+import { caseStudyWord, industryHref, type CaseStudyIndustry } from "@/lib/pages/case-studies";
 
 export function CaseStudyIndustryCard({ industry }: { industry: CaseStudyIndustry }) {
   const href = industryHref(industry.id);
@@ -14,7 +14,7 @@ export function CaseStudyIndustryCard({ industry }: { industry: CaseStudyIndustr
           <img src={industry.heroImage} alt="" />
         </div>
         <p className="eyebrow">
-          {count} case {count === 1 ? "study" : "studies"}
+          {count} case {caseStudyWord(count)}
         </p>
         <h2 className="heading-3 mt-2">{industry.label}</h2>
         <ul className="mt-5 flex-1 space-y-2">

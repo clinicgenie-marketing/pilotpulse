@@ -9,19 +9,20 @@ export function IndustryStack({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const stack = rootRef.current;
-    if (!stack || typeof IntersectionObserver === "undefined") return undefined;
+    const node = rootRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return undefined;
+    const root: HTMLDivElement = node;
 
-    const sections = [...stack.querySelectorAll<HTMLElement>("[data-industry-section]")];
+    const sections = Array.from(root.querySelectorAll<HTMLElement>("[data-industry-section]"));
     if (!sections.length) return undefined;
 
     const ratios = new Map<string, number>();
     let focusedId = "";
 
     function apply(nextId: string, armed: boolean) {
-      if (nextId === focusedId && stack.classList.contains("is-armed") === armed) return;
+      if (nextId === focusedId && root.classList.contains("is-armed") === armed) return;
       focusedId = nextId;
-      stack.classList.toggle("is-armed", armed);
+      root.classList.toggle("is-armed", armed);
       sections.forEach((section) => {
         section.classList.toggle("is-focused", armed && section.id === nextId);
       });
@@ -35,7 +36,7 @@ export function IndustryStack({ children }: { children: ReactNode }) {
 
         let bestId = "";
         let bestRatio = 0;
-        for (const [id, ratio] of ratios) {
+        for (const [id, ratio] of Array.from(ratios.entries())) {
           if (ratio > bestRatio) {
             bestRatio = ratio;
             bestId = id;

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { CaseStudyCard } from "@/components/pages/CaseStudyCard";
 import { CaseStudyIndustryHero } from "@/components/pages/CaseStudyIndustryHero";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
-import { caseStudiesPage, caseStudyIndustries, getCaseStudyIndustry } from "@/lib/pages/case-studies";
+import { caseStudiesPage, caseStudyIndustries, caseStudyWord, getCaseStudyIndustry } from "@/lib/pages/case-studies";
 
 type IndustryParams = {
   industry: string;
@@ -20,7 +20,7 @@ export function generateMetadata({ params }: { params: IndustryParams }): Metada
   const count = industry.studies.length;
   return {
     title: `${industry.label} Case Studies`,
-    description: `${count} ${industry.label} case ${count === 1 ? "study" : "studies"} covering the business challenge, AI implementation and outcomes.`,
+    description: `${count} ${industry.label} case ${caseStudyWord(count)} covering the business challenge, AI implementation and outcomes.`,
   };
 }
 
@@ -35,7 +35,7 @@ export default function CaseStudyIndustryPage({ params }: { params: IndustryPara
     <>
       <CaseStudyIndustryHero
         title={industry.label}
-        lead={`${count} case ${count === 1 ? "study" : "studies"} covering the business challenge, the AI implementation and the outcomes.`}
+        lead={`${count} case ${caseStudyWord(count)} covering the business challenge, the AI implementation and the outcomes.`}
         image={industry.heroImage}
       />
       <section className="border-b border-line bg-background">
