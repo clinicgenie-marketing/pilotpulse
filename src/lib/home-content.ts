@@ -5,22 +5,29 @@ import {
   WHATSAPP_HREF,
   site,
 } from "@/lib/content";
+import { caseStudiesMenu } from "@/lib/pages/case-studies";
 
 export const WHATSAPP_DEMO_HREF =
   "https://wa.me/6598768216?text=Hi%20PilotPulse%2C%20I%27d%20like%20a%20demo";
 
-export type NavLink = {
+export type NavChild = {
   label: string;
   href: string;
 };
 
+export type NavLink = {
+  label: string;
+  href: string;
+  children?: readonly NavChild[];
+};
+
 export const homeNav = {
   links: [
-    { label: "Your Digital Workforce", href: "/#products" },
-    { label: "What a Digital Worker Does", href: "/#dashboard" },
-    { label: "Customers", href: "/#testimonials" },
-    { label: "Resources", href: "/#community" },
-    { label: "Contact", href: CONTACT_HREF },
+    { label: "Digital Workers", href: "/digital-workers" },
+    { label: "Solutions", href: "/solutions" },
+    { label: "Industries", href: "/industries" },
+    { label: "Case Studies", href: "/case-studies", children: caseStudiesMenu },
+    { label: "Resources", href: "/resources" },
   ] satisfies NavLink[],
   cta: { label: "Get a Demo", href: CONTACT_HREF },
   status: { label: "Live", href: STATUS_HREF },
@@ -766,6 +773,7 @@ export type CommunityStory = {
   description: string;
   href: string;
   date?: string;
+  image?: string;
 };
 
 export const latestUpdates = {
@@ -855,38 +863,45 @@ export const homeFooter = {
       ],
     },
     {
-      heading: "Customers",
+      heading: "Case Studies",
       links: [
-        { label: "What AI workers deliver", href: "/#results" },
-        { label: "Client voices", href: "/#testimonials" },
+        { label: "All case studies", href: "/case-studies" },
+        { label: "Logistics", href: "/case-studies/logistics" },
+        { label: "Healthcare", href: "/case-studies/healthcare" },
+        { label: "Construction", href: "/case-studies/construction" },
+        { label: "Retail & F&B", href: "/case-studies/retail-fnb" },
+        { label: "Facilities Management", href: "/case-studies/facilities" },
+        { label: "HR Services", href: "/case-studies/hr-services" },
       ],
     },
     {
       heading: "Resources",
       links: [
-        { label: "Latest from PilotPulse", href: "/#community" },
+        { label: "From the field", href: "/resources" },
         { label: "LinkedIn", href: LINKEDIN_HREF, external: true },
       ],
     },
     {
       heading: "Trust",
       links: [
-        { label: "Architecture and security", href: "/#security" },
+        { label: "Architecture and security", href: "/digital-workers#security" },
         { label: "System status", href: STATUS_HREF, external: true },
       ],
     },
     {
       heading: "Company",
       links: [
+        { label: "About", href: "/about" },
         { label: "Partnerships", href: "/#partnerships" },
         { label: "Contact", href: CONTACT_HREF },
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
         { label: "WhatsApp", href: WHATSAPP_HREF, external: true },
         { label: "Careers", href: "mailto:careers@pilotpulse.ai" },
       ],
     },
   ] satisfies FooterGroup[],
   company: {
-    // VERIFY: Confirm Goldhill Plaza as the public headquarters address.
     address: "51 Goldhill Plaza, #14-01, Singapore 308900",
     phone: site.phone,
     email: site.email,

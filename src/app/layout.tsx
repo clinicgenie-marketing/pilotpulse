@@ -39,7 +39,6 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   publisher: site.name,
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_SG",
@@ -79,7 +78,6 @@ const orgJsonLd = {
   slogan: site.positioning,
   address: {
     "@type": "PostalAddress",
-    // VERIFY: Goldhill Plaza address is taken from the homepage prototype; confirm against the current registered office.
     streetAddress: "51 Goldhill Plaza, #14-01",
     addressLocality: "Singapore",
     postalCode: "308900",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { Check, Heart, Truck, UserSearch, UtensilsCrossed } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -25,9 +25,31 @@ function actionUnlockCount(item: WorkflowDemoItem, visible: number) {
   return Math.round((seen / actionMessages.length) * item.actions.length);
 }
 
-export function WorkflowDemo() {
+type WorkflowDemoProps = {
+  id?: string;
+  eyebrow?: string;
+  heading?: ReactNode;
+  lead?: string;
+  defaultTab?: string;
+  hideHeader?: boolean;
+  hideTabs?: boolean;
+  hideOutcome?: boolean;
+  compact?: boolean;
+};
+
+export function WorkflowDemo({
+  id = "dashboard",
+  eyebrow = "In production",
+  heading,
+  lead,
+  defaultTab,
+  hideHeader = false,
+  hideTabs = false,
+  hideOutcome = false,
+  compact = false,
+}: WorkflowDemoProps = {}) {
   const reduceMotion = useReducedMotion();
-  const [activeId, setActiveId] = useState(workflowDemos[0].id);
+  const [activeId, setActiveId] = useState(defaultTab ?? workflowDemos[0].id);
   const [userStopped, setUserStopped] = useState(false);
   const [playbackDone, setPlaybackDone] = useState(false);
   const tabIds = useId();
@@ -42,7 +64,7 @@ export function WorkflowDemo() {
   }, [activeId]);
 
   useEffect(() => {
-    if (instant || userStopped || !inView || !playbackDone) return undefined;
+    if (hideTabs || instant || userStopped || !inView || !playbackDone) return undefined;
     const timer = window.setTimeout(() => {
       setActiveId((current) => {
         const index = workflowDemos.findIndex((item) => item.id === current);
@@ -50,7 +72,7 @@ export function WorkflowDemo() {
       });
     }, HOLD_MS);
     return () => window.clearTimeout(timer);
-  }, [instant, inView, playbackDone, userStopped]);
+  }, [hideTabs, instant, inView, playbackDone, userStopped]);
 
   const markPlaybackDone = useCallback(() => {
     setPlaybackDone(true);
@@ -75,85 +97,97 @@ export function WorkflowDemo() {
     document.getElementById(`${tabIds}-${workflowDemos[next].id}`)?.focus();
   }
 
+  const headingNode = heading ?? (
+    <>
+      Agentic AI across every <span className="heading-gradient">workflow.</span>
+    </>
+  );
+  const leadText =
+    lead ??
+    "Not a chatbot. Your AI worker takes action across WhatsApp, email and web, checking systems, booking slots, escalating intelligently and closing the loop.";
+
+  const card = (
+    <div className={compact ? "" : "overflow-visible px-4"}>
+      <div ref={cardRef} className="workflow-demo-wrap">
+        <p className="workflow-live-pill">
+          <span className="workflow-live-dot size-2 rounded-full bg-emerald-500" aria-hidden="true" />
+          {active.badge}
+        </p>
+        <div className="workflow-demo-card">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active.id}
+              id={`${tabIds}-panel-${active.id}`}
+              role="tabpanel"
+              aria-labelledby={`${tabIds}-${active.id}`}
+              initial={instant ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={instant ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="h-full"
+            >
+              <DemoPanel
+                item={active}
+                instant={instant}
+                playing={playing}
+                hideOutcome={hideOutcome}
+                onComplete={markPlaybackDone}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (compact) return card;
+
   return (
-    <section
-      id="dashboard"
-      className="section-pad overflow-visible border-b border-line bg-background"
-    >
+    <section id={id} className="section-pad overflow-visible border-b border-line bg-background">
       <div className="container-edge">
-        <div className="mx-auto mb-10 max-w-[760px] text-center">
-          <p className="eyebrow">In production</p>
-          <h2 className="heading-2 mt-3">
-            Agentic AI across every <span className="heading-gradient">workflow.</span>
-          </h2>
-          <p className="lead mt-4">
-            Not a chatbot. Your AI worker takes action across WhatsApp, email and web, checking
-            systems, booking slots, escalating intelligently and closing the loop.
-          </p>
-        </div>
-
-        <div
-          role="tablist"
-          aria-label="Industry workflow examples"
-          className="mb-8 flex flex-wrap justify-center gap-2"
-        >
-          {workflowDemos.map((item, index) => {
-            const Icon = ICONS[item.icon];
-            const selected = item.id === activeId;
-            return (
-              <button
-                key={item.id}
-                id={`${tabIds}-${item.id}`}
-                type="button"
-                role="tab"
-                aria-selected={selected}
-                aria-controls={`${tabIds}-panel-${item.id}`}
-                tabIndex={selected ? 0 : -1}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12.5px] font-medium transition-colors duration-[200ms] ${
-                  selected
-                    ? "border-primary bg-primary text-white"
-                    : "border-line bg-surface text-ink-muted hover:border-primary/40 hover:text-ink"
-                }`}
-                onClick={() => selectTab(item.id, true)}
-                onKeyDown={(event) => onTabKeyDown(event, index)}
-              >
-                <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="overflow-visible px-4">
-          <div ref={cardRef} className="workflow-demo-wrap">
-            <p className="workflow-live-pill">
-              <span className="workflow-live-dot size-2 rounded-full bg-emerald-500" aria-hidden="true" />
-              {active.badge}
-            </p>
-            <div className="workflow-demo-card">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active.id}
-                id={`${tabIds}-panel-${active.id}`}
-                role="tabpanel"
-                aria-labelledby={`${tabIds}-${active.id}`}
-                initial={instant ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={instant ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: 0.2 }}
-                className="h-full"
-              >
-                <DemoPanel
-                  item={active}
-                  instant={instant}
-                  playing={playing}
-                  onComplete={markPlaybackDone}
-                />
-              </motion.div>
-            </AnimatePresence>
-            </div>
+        {hideHeader ? null : (
+          <div className="mx-auto mb-10 max-w-[760px] text-center">
+            <p className="eyebrow">{eyebrow}</p>
+            <h2 className="heading-2 mt-3">{headingNode}</h2>
+            <p className="lead mt-4">{leadText}</p>
           </div>
-        </div>
+        )}
+
+        {hideTabs ? null : (
+          <div
+            role="tablist"
+            aria-label="Industry workflow examples"
+            className="mb-8 flex flex-wrap justify-center gap-2"
+          >
+            {workflowDemos.map((item, index) => {
+              const Icon = ICONS[item.icon];
+              const selected = item.id === activeId;
+              return (
+                <button
+                  key={item.id}
+                  id={`${tabIds}-${item.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls={`${tabIds}-panel-${item.id}`}
+                  tabIndex={selected ? 0 : -1}
+                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[12.5px] font-medium transition-colors duration-[200ms] ${
+                    selected
+                      ? "border-primary bg-primary text-white"
+                      : "border-line bg-surface text-ink-muted hover:border-primary/40 hover:text-ink"
+                  }`}
+                  onClick={() => selectTab(item.id, true)}
+                  onKeyDown={(event) => onTabKeyDown(event, index)}
+                >
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {card}
       </div>
     </section>
   );
@@ -163,11 +197,13 @@ function DemoPanel({
   item,
   instant,
   playing,
+  hideOutcome,
   onComplete,
 }: {
   item: WorkflowDemoItem;
   instant: boolean;
   playing: boolean;
+  hideOutcome: boolean;
   onComplete: () => void;
 }) {
   const chatRef = useRef<HTMLDivElement | null>(null);
@@ -199,7 +235,7 @@ function DemoPanel({
   }, [instant, visible]);
 
   return (
-    <div className="workflow-demo-panel">
+    <div className={`workflow-demo-panel${hideOutcome ? " workflow-demo-panel--chat-only" : ""}`}>
       <div ref={chatRef} className="workflow-chat h-full overflow-y-auto p-5 pt-14 sm:p-7 sm:pt-16">
         <div className="flex flex-col" aria-live="polite" aria-relevant="additions">
           {item.messages.slice(0, visible).map((message, index) => {
@@ -229,43 +265,45 @@ function DemoPanel({
           })}
         </div>
       </div>
-      <motion.div
-        className="workflow-outcome space-y-3"
-        initial={instant ? false : { opacity: 0, x: -72 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
-      >
-        <p className="font-sans text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
-          What the AI did
-        </p>
-        <ul className="space-y-2 text-[12.5px] text-ink">
-          {item.actions.map((action, index) => {
-            const revealed = index < unlocked;
-            return (
-              <li
-                key={action}
-                className={`flex items-start gap-2 transition-opacity duration-300 ${revealed ? "opacity-100" : "opacity-35"}`}
-              >
-                <span
-                  className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full transition-colors duration-300 ${
-                    revealed ? "bg-emerald-100 text-emerald-700" : "bg-line text-transparent"
-                  }`}
-                >
-                  <Check className="h-2.5 w-2.5" strokeWidth={3} aria-hidden="true" />
-                </span>
-                <span>{action}</span>
-              </li>
-            );
-          })}
-        </ul>
-        <p
-          className={`mt-2 rounded-lg bg-background-alt p-3 text-[11.5px] text-ink-muted transition-opacity duration-300 ${
-            complete ? "opacity-100" : "opacity-40"
-          }`}
+      {hideOutcome ? null : (
+        <motion.div
+          className="workflow-outcome space-y-3"
+          initial={instant ? false : { opacity: 0, x: -72 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
         >
-          {item.result}
-        </p>
-      </motion.div>
+          <p className="font-sans text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+            What the AI did
+          </p>
+          <ul className="space-y-2 text-[12.5px] text-ink">
+            {item.actions.map((action, index) => {
+              const revealed = index < unlocked;
+              return (
+                <li
+                  key={action}
+                  className={`flex items-start gap-2 transition-opacity duration-300 ${revealed ? "opacity-100" : "opacity-35"}`}
+                >
+                  <span
+                    className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full transition-colors duration-300 ${
+                      revealed ? "bg-emerald-100 text-emerald-700" : "bg-line text-transparent"
+                    }`}
+                  >
+                    <Check className="h-2.5 w-2.5" strokeWidth={3} aria-hidden="true" />
+                  </span>
+                  <span>{action}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p
+            className={`mt-2 rounded-lg bg-background-alt p-3 text-[11.5px] text-ink-muted transition-opacity duration-300 ${
+              complete ? "opacity-100" : "opacity-40"
+            }`}
+          >
+            {item.result}
+          </p>
+        </motion.div>
+      )}
     </div>
   );
 }

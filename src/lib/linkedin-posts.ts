@@ -2,17 +2,43 @@ import { latestUpdates, type CommunityStory } from "@/lib/home-content";
 
 const POST_LIMIT = 5;
 const REVALIDATE_SECONDS = 1800;
+const IMAGE_URN = /^urn:li:image:[A-Za-z0-9_-]+$/;
+
+type LinkedInMedia = {
+  id?: string;
+};
 
 type LinkedInPostElement = {
   id?: string;
   commentary?: string;
   publishedAt?: number;
   createdAt?: number;
+  content?: {
+    media?: LinkedInMedia;
+    multiImage?: { images?: LinkedInMedia[] };
+    article?: { thumbnail?: string };
+  };
 };
 
 type LinkedInPostsResponse = {
   elements?: LinkedInPostElement[];
 };
+
+type LinkedInImageResponse = {
+  downloadUrl?: string;
+};
+
+export function isLinkedInImageUrn(urn: string) {
+  return IMAGE_URN.test(urn);
+}
+
+function linkedInHeaders(token: string) {
+  return {
+    Authorization: `Bearer ${token}`,
+    "LinkedIn-Version": "202411",
+    "X-Restli-Protocol-Version": "2.0.0",
+  };
+}
 
 function formatDate(date?: Date) {
   if (!date || Number.isNaN(date.getTime())) return undefined;
@@ -23,7 +49,7 @@ function formatDate(date?: Date) {
   });
 }
 
-function toStory(text: string, href: string, date?: Date): CommunityStory {
+function toStory(text: string, href: string, date?: Date, image?: string): CommunityStory {
   const tags = Array.from(text.matchAll(/#([A-Za-z0-9_]+)/g), (match) => match[1]);
   const cleaned = text.replace(/#\w+/g, "").replace(/\s+/g, " ").trim();
   const sentence = cleaned.match(/^.+?[.!?]\s/)?.[0].trim() || cleaned;
@@ -36,6 +62,7 @@ function toStory(text: string, href: string, date?: Date): CommunityStory {
     description: remainder || cleaned,
     href,
     date: formatDate(date),
+    image,
   };
 }
 
@@ -50,6 +77,34 @@ function decodeXml(value: string) {
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function imageUrnFromPost(element: LinkedInPostElement) {
+  const candidates = [
+    element.content?.media?.id,
+    element.content?.multiImage?.images?.[0]?.id,
+    element.content?.article?.thumbnail,
+  ];
+  return candidates.find((value) => value && isLinkedInImageUrn(value));
+}
+
+function linkedInImageSrc(urn: string) {
+  return `/api/linkedin-image?urn=${encodeURIComponent(urn)}`;
+}
+
+function rssImage(item: string) {
+  const enclosureTag = item.match(/<enclosure\b[^>]*>/i)?.[0];
+  const enclosureUrl = enclosureTag?.match(/\burl=["']([^"']+)["']/i)?.[1];
+  const enclosureType = enclosureTag?.match(/\btype=["']([^"']+)["']/i)?.[1] ?? "";
+  if (
+    enclosureUrl &&
+    (enclosureType.startsWith("image/") || /\.(jpe?g|png|webp|gif)(\?|$)/i.test(enclosureUrl))
+  ) {
+    return decodeXml(enclosureUrl);
+  }
+
+  const media = item.match(/<media:(?:content|thumbnail)\b[^>]*\burl=["']([^"']+)["']/i)?.[1];
+  return media ? decodeXml(media) : undefined;
 }
 
 function parseRss(xml: string): CommunityStory[] {
@@ -73,7 +128,12 @@ function parseRss(xml: string): CommunityStory[] {
       item.match(/<published[^>]*>([\s\S]*?)<\/published>/i)?.[1] ??
       item.match(/<updated[^>]*>([\s\S]*?)<\/updated>/i)?.[1];
     if (!href) return [];
-    const story = toStory(rawBody || title, href, dateValue ? new Date(dateValue) : undefined);
+    const story = toStory(
+      rawBody || title,
+      href,
+      dateValue ? new Date(dateValue) : undefined,
+      rssImage(item),
+    );
     return [{ ...story, title: title || story.title }];
   });
 }
@@ -87,11 +147,7 @@ async function fetchLinkedInApi(): Promise<CommunityStory[] | null> {
   const response = await fetch(
     `https://api.linkedin.com/rest/posts?q=author&author=${author}&count=${POST_LIMIT}&sortBy=LAST_MODIFIED`,
     {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "LinkedIn-Version": "202411",
-        "X-Restli-Protocol-Version": "2.0.0",
-      },
+      headers: linkedInHeaders(token),
       next: { revalidate: REVALIDATE_SECONDS },
     },
   );
@@ -107,7 +163,15 @@ async function fetchLinkedInApi(): Promise<CommunityStory[] | null> {
     const href = urn
       ? `https://www.linkedin.com/feed/update/${encodeURIComponent(urn)}`
       : latestUpdates.linkedIn.href;
-    return [toStory(text, href, timestamp ? new Date(timestamp) : undefined)];
+    const imageUrn = imageUrnFromPost(element);
+    return [
+      toStory(
+        text,
+        href,
+        timestamp ? new Date(timestamp) : undefined,
+        imageUrn ? linkedInImageSrc(imageUrn) : undefined,
+      ),
+    ];
   });
 }
 
@@ -120,6 +184,20 @@ async function fetchLinkedInRss(): Promise<CommunityStory[] | null> {
   const xml = await response.text();
   const posts = parseRss(xml);
   return posts.length ? posts : null;
+}
+
+export async function getLinkedInImageDownloadUrl(urn: string): Promise<string | null> {
+  const token = process.env.LINKEDIN_ACCESS_TOKEN;
+  if (!token || !isLinkedInImageUrn(urn)) return null;
+
+  const response = await fetch(`https://api.linkedin.com/rest/images/${encodeURIComponent(urn)}`, {
+    headers: linkedInHeaders(token),
+    next: { revalidate: REVALIDATE_SECONDS },
+  });
+  if (!response.ok) return null;
+
+  const data = (await response.json()) as LinkedInImageResponse;
+  return data.downloadUrl?.trim() || null;
 }
 
 export async function getCommunityStories(): Promise<CommunityStory[]> {

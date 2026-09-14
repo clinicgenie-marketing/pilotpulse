@@ -119,10 +119,14 @@ function MetricStat({
         <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
           {metric.context}
         </p>
-        <p className="heading-1 mt-3 whitespace-nowrap tabular-nums">
-          <span className="text-ink-muted">{metric.prefix}</span>
-          <span className="text-primary">{value}</span>
-          <span className="text-ink-muted">{metric.suffix}</span>
+        <p className="stat-figure mt-3 whitespace-nowrap tabular-nums">
+          {metric.prefix ? <span className="stat-figure-meta">{metric.prefix}</span> : null}
+          <span className="stat-figure-value">{value}</span>
+          {metric.suffix ? (
+            <span className={`stat-figure-meta${metric.suffix.startsWith(" ") ? " stat-figure-meta--word" : ""}`}>
+              {metric.suffix.trimStart()}
+            </span>
+          ) : null}
         </p>
         <p className="mt-3 max-w-[28ch] text-base leading-relaxed text-ink-muted">{metric.description}</p>
       </motion.div>

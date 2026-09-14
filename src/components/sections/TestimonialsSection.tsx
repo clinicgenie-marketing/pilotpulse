@@ -10,11 +10,25 @@ const COMPANY_LOGOS: Partial<Record<string, string>> = {
   "SuperWorld Electronics": "/logos/superworld.png",
 };
 
-const LOOP = [...homeTestimonials, ...homeTestimonials];
+type TestimonialsSectionProps = {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
+  quotes?: readonly Testimonial[];
+  className?: string;
+};
 
-export function TestimonialsSection() {
+export function TestimonialsSection({
+  id = "testimonials",
+  eyebrow = "Client voices",
+  heading = "What our clients say.",
+  quotes = homeTestimonials,
+  className = "",
+}: TestimonialsSectionProps = {}) {
+  const loop = [...quotes, ...quotes];
+
   return (
-    <section id="testimonials" className="relative overflow-hidden bg-surface section-pad">
+    <section id={id} className={`relative overflow-hidden bg-surface section-pad${className ? ` ${className}` : ""}`}>
       <div className="hero-aurora" aria-hidden="true">
         <Aurora
           colorStops={AURORA_STOPS}
@@ -27,16 +41,16 @@ export function TestimonialsSection() {
       <div className="relative z-10">
         <div className="container-edge">
           <div className="max-w-[640px]">
-            <p className="eyebrow">Client voices</p>
-            <h2 className="heading-2 mt-3 text-ink">What our clients say.</h2>
+            <p className="eyebrow">{eyebrow}</p>
+            <h2 className="heading-2 mt-3 text-ink">{heading}</h2>
           </div>
         </div>
 
         <div className="testimonial-marquee mt-12" tabIndex={0}>
           <div className="testimonial-marquee-viewport px-5 md:px-6 lg:px-8">
             <div className="testimonial-marquee-track">
-              {LOOP.map((quote, index) => {
-                const clone = index >= homeTestimonials.length;
+              {loop.map((quote, index) => {
+                const clone = index >= quotes.length;
                 return (
                   <TestimonialCard
                     key={`${quote.id}-${index}`}

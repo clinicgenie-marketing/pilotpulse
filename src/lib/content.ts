@@ -6,7 +6,7 @@
  */
 
 /** Primary conversion destination for all CTAs. */
-export const CONTACT_HREF = "/#contact";
+export const CONTACT_HREF = "/contact";
 export const BLOG_HREF = "https://www.linkedin.com/company/pilotpulse-ai/";
 export const WHATSAPP_HREF = "https://wa.me/6598768216";
 export const STATUS_HREF = "https://uptime.pilotpulse.ai";
@@ -282,7 +282,7 @@ export const finalCta = {
 };
 
 export const footer = {
-  location: { heading: "Location", lines: ["60 Paya Lebar Road #07-54", "Singapore 409051"] },
+  location: { heading: "Location", lines: ["51 Goldhill Plaza, #14-01", "Singapore 308900"] },
   contact: { heading: "Contact", phone: site.phone, email: site.email },
   hours: { heading: "Opening Hours", lines: ["Mon-Sat: 0900-1800", "Sun & PH: Closed"] },
   sitelinks: {

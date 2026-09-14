@@ -78,17 +78,26 @@ function StoryCard({ story }: { story: CommunityStory }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${story.title} (opens in a new tab)`}
-      className="story-card group flex h-full flex-col rounded-card p-6 outline-none font-sans"
+      className="story-card group flex h-full flex-col overflow-hidden rounded-card outline-none font-sans"
     >
-      <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">{meta}</p>
-      <h3 className="story-title mt-3 font-sans text-base font-semibold leading-snug text-ink">
-        {story.title}
-      </h3>
-      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted">{story.description}</p>
-      <span className="story-arrow mt-auto inline-flex items-center gap-1 pt-6 text-sm font-semibold text-primary">
-        View on LinkedIn
-        <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
-      </span>
+      {story.image ? (
+        <div className="story-card-media">
+          {/* LinkedIn CDN URLs expire; same-origin proxy and RSS hosts vary. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={story.image} alt="" />
+        </div>
+      ) : null}
+      <div className="flex min-h-0 flex-1 flex-col p-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">{meta}</p>
+        <h3 className="story-title mt-3 font-sans text-base font-semibold leading-snug text-ink">
+          {story.title}
+        </h3>
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted">{story.description}</p>
+        <span className="story-arrow mt-auto inline-flex items-center gap-1 pt-6 text-sm font-semibold text-primary">
+          View on LinkedIn
+          <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+        </span>
+      </div>
     </a>
   );
 }

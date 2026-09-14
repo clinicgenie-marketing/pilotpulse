@@ -1,5 +1,5 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import type { Metadata } from "next";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustedLogos } from "@/components/sections/TrustedLogos";
 import { WorkflowDemo } from "@/components/sections/WorkflowDemo";
@@ -14,26 +14,26 @@ import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { LatestUpdates } from "@/components/sections/LatestUpdates";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function HomePage() {
   return (
-    <>
-      <Header />
-      <main id="main">
-        <HeroSection />
-        <TrustedLogos />
-        <WorkflowDemo />
-        <AgentWorkflow />
-        <DigitalWorkforce />
-        <IntegrationStrip />
-        <ResultsSection />
-        <TestimonialsSection />
-        <PartnershipProcess />
-        <SecuritySection />
-        <EcosystemSection />
-        <LatestUpdates />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </>
+    <SiteChrome>
+      <HeroSection />
+      <TrustedLogos />
+      <WorkflowDemo />
+      <AgentWorkflow />
+      <DigitalWorkforce />
+      <IntegrationStrip />
+      <ResultsSection />
+      <TestimonialsSection />
+      <PartnershipProcess />
+      <SecuritySection />
+      <EcosystemSection />
+      <LatestUpdates />
+      <FinalCTA />
+    </SiteChrome>
   );
 }
