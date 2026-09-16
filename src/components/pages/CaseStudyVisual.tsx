@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { Check } from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
+import { Check, Clock } from "lucide-react";
 
 export type CaseStudyTab = "challenge" | "implementation" | "outcomes";
 
@@ -7,7 +7,13 @@ type ChatMessage = { from: "in" | "out" | "status"; text: string };
 type Field = { label: string; value: string };
 type Line = { label: string; value: string };
 type Row = { name: string; meta: string; tone?: "ok" | "warn" | "risk" };
-type Step = { label: string; meta: string };
+type Step = {
+  label: string;
+  meta: string;
+  start: string;
+  end: string;
+  tone?: "primary" | "accent";
+};
 type InboxItem = { subject: string; meta: string; status: string };
 type OverviewRow = { label: string; value: string; tone?: "ok" | "warn" | "risk" };
 
@@ -134,9 +140,9 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "timeline",
       title: "Delivery control tower",
       steps: [
-        { label: "Cargo received at origin", meta: "Email · Supplier · 09:14" },
-        { label: "Vessel delayed 2 days", meta: "Flagged · Carrier · 11:02" },
-        { label: "Revised ETA confirmed", meta: "Customer notified · 11:08" },
+        { label: "Cargo received at origin", meta: "Email · Supplier", start: "09:00", end: "10:30", tone: "primary" },
+        { label: "Vessel delayed 2 days", meta: "Flagged · Carrier", start: "11:00", end: "12:00", tone: "accent" },
+        { label: "Revised ETA confirmed", meta: "Customer notified", start: "11:00", end: "12:00", tone: "primary" },
       ],
     },
     outcomes: {
@@ -222,9 +228,9 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "timeline",
       title: "Care pathway",
       steps: [
-        { label: "Symptoms and history collected", meta: "Conversational assessment" },
-        { label: "Pathway branch applied", meta: "Age · risk · prior screening" },
-        { label: "Follow-up recommended", meta: "Book consultation" },
+        { label: "Symptoms and history collected", meta: "Conversational assessment", start: "09:00", end: "10:00", tone: "primary" },
+        { label: "Pathway branch applied", meta: "Age · risk · prior screening", start: "10:00", end: "11:00", tone: "accent" },
+        { label: "Follow-up recommended", meta: "Book consultation", start: "11:00", end: "12:00", tone: "primary" },
       ],
     },
     outcomes: {
@@ -363,9 +369,9 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "timeline",
       title: "Project intelligence",
       steps: [
-        { label: "VO raised in email", meta: "Linked to BOQ item 4.2" },
-        { label: "Drawing rev C received", meta: "Tied to clause 8.1" },
-        { label: "Cost impact flagged", meta: "QS and commercial" },
+        { label: "VO raised in email", meta: "Linked to BOQ item 4.2", start: "09:00", end: "10:00", tone: "primary" },
+        { label: "Drawing rev C received", meta: "Tied to clause 8.1", start: "10:30", end: "11:30", tone: "accent" },
+        { label: "Cost impact flagged", meta: "QS and commercial", start: "13:00", end: "14:00", tone: "primary" },
       ],
     },
     outcomes: {
@@ -541,9 +547,9 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "timeline",
       title: "Campaign calendar",
       steps: [
-        { label: "Set lunch · 3 brands", meta: "Live this week" },
-        { label: "WhatsApp blast · members", meta: "Tied to 18 leads" },
-        { label: "Review ROAS", meta: "Sales + marketing" },
+        { label: "Set lunch · 3 brands", meta: "Live this week", start: "10:30", end: "11:30", tone: "primary" },
+        { label: "WhatsApp blast · members", meta: "Tied to 18 leads", start: "11:30", end: "12:30", tone: "accent" },
+        { label: "Review ROAS", meta: "Sales + marketing", start: "14:00", end: "15:00", tone: "primary" },
       ],
     },
     outcomes: {
@@ -740,9 +746,9 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "timeline",
       title: "Onboarding tracker",
       steps: [
-        { label: "Offer accepted", meta: "Journey started" },
-        { label: "Documents received", meta: "NRIC · bank · certs" },
-        { label: "Reminder sent", meta: "Safety briefing outstanding" },
+        { label: "Offer accepted", meta: "Journey started", start: "09:00", end: "10:00", tone: "primary" },
+        { label: "Documents received", meta: "NRIC · bank · certs", start: "10:00", end: "11:30", tone: "accent" },
+        { label: "Reminder sent", meta: "Safety briefing outstanding", start: "14:00", end: "15:00", tone: "primary" },
       ],
     },
     outcomes: {
@@ -968,18 +974,120 @@ function BoardVisual({
   );
 }
 
+function parseMinutes(time: string) {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+function hourLabel(hour: number) {
+  const wrapped = ((hour % 24) + 24) % 24;
+  if (wrapped === 12) return "Noon";
+  if (wrapped === 0) return "12 AM";
+  if (wrapped < 12) return `${wrapped} AM`;
+  return `${wrapped - 12} PM`;
+}
+
+function formatClock(time: string) {
+  const [hours, minutes] = time.split(":").map(Number);
+  if (hours === 12 && minutes === 0) return "Noon";
+  const suffix = hours >= 12 ? "PM" : "AM";
+  const hour12 = hours % 12 || 12;
+  if (minutes === 0) return `${hour12} ${suffix}`;
+  return `${hour12}:${String(minutes).padStart(2, "0")} ${suffix}`;
+}
+
+type LaidOutStep = Step & {
+  startM: number;
+  endM: number;
+  col: number;
+  cols: number;
+};
+
+function layoutTimeline(steps: readonly Step[]) {
+  const timed: LaidOutStep[] = steps.map((step) => ({
+    ...step,
+    startM: parseMinutes(step.start),
+    endM: parseMinutes(step.end),
+    col: 0,
+    cols: 1,
+  }));
+
+  const columnEnds: number[] = [];
+  for (const event of [...timed].sort((a, b) => a.startM - b.startM || a.endM - b.endM)) {
+    let col = columnEnds.findIndex((end) => end <= event.startM);
+    if (col === -1) {
+      col = columnEnds.length;
+      columnEnds.push(event.endM);
+    } else {
+      columnEnds[col] = event.endM;
+    }
+    event.col = col;
+  }
+
+  for (const event of timed) {
+    let maxCol = event.col;
+    for (const other of timed) {
+      if (event.startM < other.endM && other.startM < event.endM) {
+        maxCol = Math.max(maxCol, other.col);
+      }
+    }
+    event.cols = maxCol + 1;
+  }
+
+  const minStart = Math.min(...timed.map((step) => step.startM));
+  const maxEnd = Math.max(...timed.map((step) => step.endM));
+  const startHour = Math.floor(minStart / 60);
+  const endHour = Math.max(Math.ceil(maxEnd / 60), startHour + 3);
+
+  return { events: timed, startHour, endHour };
+}
+
 function TimelineVisual({ visual }: { visual: Extract<Visual, { kind: "timeline" }> }) {
+  const { events, startHour, endHour } = layoutTimeline(visual.steps);
+  const hours = Array.from({ length: endHour - startHour + 1 }, (_, index) => startHour + index);
+  const rangeStart = startHour * 60;
+  const rangeMinutes = (endHour - startHour) * 60;
+
   return (
     <>
       <VisualHead title={visual.title} />
-      <ol className="case-study-visual-body case-study-visual-steps">
-        {visual.steps.map((step) => (
-          <li key={step.label}>
-            <p>{step.label}</p>
-            <p>{step.meta}</p>
-          </li>
-        ))}
-      </ol>
+      <div className="case-study-calendar">
+        <ol className="case-study-calendar-hours">
+          {hours.map((hour, index) => (
+            <li key={hour} className={index === hours.length - 1 ? "is-end" : undefined}>
+              <span>{hourLabel(hour)}</span>
+              <span />
+            </li>
+          ))}
+        </ol>
+        <div className="case-study-calendar-lane">
+          {events.map((event) => {
+            const top = ((event.startM - rangeStart) / rangeMinutes) * 100;
+            const height = ((event.endM - event.startM) / rangeMinutes) * 100;
+            return (
+              <article
+                key={event.label}
+                className={`case-study-cal-event is-${event.tone ?? "primary"}`}
+                style={
+                  {
+                    top: `${top}%`,
+                    height: `calc(${height}% - 3px)`,
+                    left: `calc(${(event.col / event.cols) * 100}% + 2px)`,
+                    width: `calc(${(1 / event.cols) * 100}% - 4px)`,
+                  } as CSSProperties
+                }
+              >
+                <p>{event.label}</p>
+                <p>
+                  <Clock className="h-3 w-3" strokeWidth={2.25} aria-hidden="true" />
+                  {formatClock(event.start)} – {formatClock(event.end)}
+                </p>
+                <p>{event.meta}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }

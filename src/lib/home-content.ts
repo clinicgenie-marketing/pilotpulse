@@ -323,6 +323,43 @@ export type DigitalWorkerProfile = {
   glyph: WorkerGlyphName;
 };
 
+export type DigitalWorkerOfferingIcon =
+  | "message"
+  | "quote"
+  | "candidate"
+  | "workflow"
+  | "compare"
+  | "milestones";
+
+export type DigitalWorkerOffering = {
+  id: string;
+  number: "01" | "02" | "03" | "04" | "05" | "06";
+  title: string;
+  headline: string;
+  bullets: readonly [string, string, string];
+  channels?: string;
+  examples: readonly string[];
+  icon: DigitalWorkerOfferingIcon;
+};
+
+export type PlatformLayerId = "01" | "02" | "03" | "04" | "05";
+
+export type PlatformBullet =
+  | string
+  | {
+      lead: string;
+      rest: string;
+    };
+
+export type PlatformLayer = {
+  id: PlatformLayerId;
+  title: string;
+  summary: string;
+  intro?: string;
+  bullets: readonly PlatformBullet[];
+  closing?: string;
+};
+
 export type OnPremisesPanelContent = {
   eyebrow: string;
   name: string;
@@ -343,8 +380,9 @@ export type Solution = {
 
 export const digitalWorkforce = {
   eyebrow: "Your digital workforce",
-  heading: "Meet the AI workers built for real work.",
-  sub: "Each PilotPulse Digital Worker is designed for a specific role, connected to your existing systems and supported by human oversight.",
+  headingBefore: "AI workers built for",
+  headingAccent: "real work",
+  sub: "Digital Workers take on specific business roles and workflows. Working across conversations, documents and business systems to complete tasks, make decisions and escalate to your team when human judgement is needed.",
   workers: [
     {
       code: "DW-01",
@@ -387,6 +425,100 @@ export const digitalWorkforce = {
       glyph: "phone",
     },
   ] satisfies DigitalWorkerProfile[],
+  offerings: [
+    {
+      id: "customer-engagement",
+      number: "01",
+      title: "Customer Engagement AI",
+      headline: "Engage customers. Answer enquiries. Drive the next action.",
+      bullets: [
+        "Enquiries & customer support",
+        "Recommendations & lead qualification",
+        "Booking & proactive follow-up",
+      ],
+      channels: "WhatsApp · Web · Email · Voice",
+      examples: [
+        "Customer service, patient engagement, product recommendations, appointment booking, sales enquiries, technical support, customer re-engagement.",
+      ],
+      icon: "message",
+    },
+    {
+      id: "sales-quotation",
+      number: "02",
+      title: "Sales & Quotation AI",
+      headline: "Turn enquiries and RFQs into quotes faster.",
+      bullets: [
+        "RFQ & requirements analysis",
+        "Costing, pricing & quotation generation",
+        "Proposals, follow-ups & CRM updates",
+      ],
+      examples: [
+        "Air-freight quotations, MRO/product quotations, technical sales proposals, B2B RFQs and complex sales enquiries.",
+      ],
+      icon: "quote",
+    },
+    {
+      id: "recruitment",
+      number: "03",
+      title: "Recruitment AI",
+      headline: "Screen, qualify and coordinate candidates at scale.",
+      bullets: [
+        "CV matching & shortlisting",
+        "Conversational candidate screening",
+        "Interview scheduling & onboarding",
+      ],
+      examples: [
+        "CV-to-job matching, high-volume recruitment, blue-collar candidate validation, interview scheduling, CV preparation and new-hire onboarding. The document specifically describes conversational WhatsApp screening against role-specific requirements.",
+      ],
+      icon: "candidate",
+    },
+    {
+      id: "operations",
+      number: "04",
+      title: "Operations AI",
+      headline: "Monitor everyday operations and keep work moving.",
+      bullets: [
+        "Workflow, incident & status tracking",
+        "Automated system updates & actions",
+        "Exception, SLA & KPI monitoring",
+      ],
+      examples: [
+        "Shipment updates, incident monitoring, field-service tracking, SLA monitoring, workflow automation and operational dashboards. The FM use case, for example, converts WhatsApp operational conversations into structured incident records and SLA tracking.",
+      ],
+      icon: "workflow",
+    },
+    {
+      id: "procurement",
+      number: "05",
+      title: "Procurement AI",
+      headline: "Source, compare and procure faster.",
+      bullets: [
+        "Supplier RFQs & follow-up",
+        "Quote & historical price comparison",
+        "Costing & procurement decision support",
+      ],
+      examples: [
+        "MRO procurement, construction sourcing, supplier quotation comparison, historical rate retrieval and tender preparation.",
+        "The construction use case explicitly covers searching historical quotations and project costs, comparing supplier rates, automating supplier RFQs and supporting tender evaluation.",
+      ],
+      icon: "compare",
+    },
+    {
+      id: "project-intelligence",
+      number: "06",
+      title: "Project Intelligence AI",
+      headline: "Know where every project stands — and what needs attention.",
+      bullets: [
+        "Progress & milestone tracking",
+        "Risks, delays & outstanding actions",
+        "Project summaries & management reporting",
+      ],
+      examples: [
+        "Logistics delivery projects, construction projects, email-heavy project coordination, management reporting and project control towers. In the logistics example, the AI reads project emails, extracts milestones, commitments, delays and actions, and updates a unified project view.",
+      ],
+      icon: "milestones",
+    },
+  ] satisfies DigitalWorkerOffering[],
   onPremises: {
     eyebrow: "Private deployment",
     name: "On-Premises AI",
@@ -423,6 +555,105 @@ export const digitalWorkforce = {
       icon: "compass",
     },
   ] satisfies Solution[],
+};
+
+export const platformBehind = {
+  eyebrow: "The platform behind your workforce",
+  heading: "What powers every Digital Worker",
+  sub: "Every PilotPulse Digital Worker runs on a shared enterprise AI platform, customised around your workflows, knowledge and systems.",
+  iceberg: {
+    aboveTitle: "What your team sees",
+    aboveBody: "WhatsApp, web, email, voice and dashboards",
+    belowTitle: "What powers the work",
+  },
+  layers: [
+    {
+      id: "01",
+      title: "AI Workflow & Reasoning Design",
+      summary: "The right level of AI for every task.",
+      intro:
+        "We design each workflow around the business problem first, using deterministic logic where it works, AI reasoning where judgement is needed, and autonomous agents only where they add real value.",
+      bullets: [
+        "Deterministic workflows for predictable rules and processes",
+        "Bounded AI reasoning for ambiguous or data-rich tasks",
+        "Enterprise retrieval when current or private knowledge is required",
+        "Scoped tools and actions when AI needs to interact with business systems",
+        "Agentic workflows when AI needs to dynamically determine the next step",
+        "Multi-agent orchestration only when the complexity genuinely requires it",
+      ],
+      closing: "No unnecessary AI complexity. Every layer earns its place.",
+    },
+    {
+      id: "02",
+      title: "Enterprise Knowledge & Tools",
+      summary: "Connect AI to the knowledge and systems needed to do real work.",
+      bullets: [
+        "Enterprise knowledge bases and RAG",
+        "Documents, SOPs and business data",
+        "Agentic AI tools",
+        "Existing business system integrations",
+        "Continuous data synchronisation",
+      ],
+    },
+    {
+      id: "03",
+      title: "Human Oversight & Governance",
+      summary: "Keep people in control of important decisions and actions.",
+      bullets: [
+        "Human-in-the-loop approvals",
+        "Role-based and least-privilege permissions",
+        "Scoped access to tools and systems",
+        "AI guardrails",
+        "Audit trails",
+        "Controlled actions, escalation and rollback",
+      ],
+    },
+    {
+      id: "04",
+      title: "Safe & Robust AI",
+      summary: "Multiple layers of safeguards help keep AI behaviour controlled and reliable.",
+      intro: "The architecture applies safeguards at different stages:",
+      bullets: [
+        {
+          lead: "Clear instructions and examples:",
+          rest: "Define how the AI should behave.",
+        },
+        {
+          lead: "Controlled context and state:",
+          rest: "Give AI the relevant information for the task.",
+        },
+        {
+          lead: "Human-in-the-loop design:",
+          rest: "Escalate or seek approval when required.",
+        },
+        {
+          lead: "Self-check before action:",
+          rest: "Validate outputs before important actions.",
+        },
+        {
+          lead: "Governed learning:",
+          rest: "Control how improvements are introduced.",
+        },
+        {
+          lead: "Real-time monitoring:",
+          rest: "Monitor AI behaviour and identify issues.",
+        },
+      ],
+    },
+    {
+      id: "05",
+      title: "Enterprise Infrastructure",
+      summary: "Designed to run reliably as part of everyday operations.",
+      bullets: [
+        "Secure cloud infrastructure",
+        "Microservices and databases",
+        "Scalability and failover",
+        "Observability and monitoring",
+        "Client data isolation",
+        "Cloud, private or on-premise deployment",
+      ],
+    },
+  ] satisfies PlatformLayer[],
 };
 
 export type IntegrationName =

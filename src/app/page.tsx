@@ -5,6 +5,7 @@ import { TrustedLogos } from "@/components/sections/TrustedLogos";
 import { WorkflowDemo } from "@/components/sections/WorkflowDemo";
 import { AgentWorkflow } from "@/components/sections/AgentWorkflow";
 import { DigitalWorkforce } from "@/components/sections/DigitalWorkforce";
+import { PlatformSection } from "@/components/sections/PlatformSection";
 import { IntegrationStrip } from "@/components/sections/IntegrationStrip";
 import { ResultsSection } from "@/components/sections/ResultsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <WorkflowDemo />
       <AgentWorkflow />
       <DigitalWorkforce />
+      <PlatformSection />
       <IntegrationStrip />
       <ResultsSection />
       <TestimonialsSection />
