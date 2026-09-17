@@ -165,12 +165,17 @@ export default function Aurora({
       if (!ctn) return;
       const width = ctn.offsetWidth;
       const height = ctn.offsetHeight;
+      if (!width || !height) return;
       renderer.setSize(width, height);
+      gl.canvas.style.width = "100%";
+      gl.canvas.style.height = "100%";
       if (program) {
         program.uniforms.uResolution.value = [width, height];
       }
     }
     window.addEventListener("resize", resize);
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(resize) : null;
+    resizeObserver?.observe(ctn);
 
     const geometry = new Triangle(gl);
     if (geometry.attributes.uv) {
@@ -224,6 +229,7 @@ export default function Aurora({
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener("resize", resize);
+      resizeObserver?.disconnect();
       if (gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }

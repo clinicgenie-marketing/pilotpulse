@@ -78,9 +78,9 @@ const orgJsonLd = {
   slogan: site.positioning,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "51 Goldhill Plaza, #14-01",
+    streetAddress: "60 Paya Lebar Road #07-54",
     addressLocality: "Singapore",
-    postalCode: "308900",
+    postalCode: "409051",
     addressCountry: "SG",
   },
   areaServed: "SG",

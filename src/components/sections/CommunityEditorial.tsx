@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { MediaPlaceholder } from "@/components/ui/MediaPlaceholder";
 import { latestUpdates, type CommunityStory } from "@/lib/home-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -70,7 +71,9 @@ export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
 }
 
 function StoryCard({ story }: { story: CommunityStory }) {
+  const [broken, setBroken] = useState(false);
   const meta = story.date ? `${story.category} · ${story.date}` : story.category;
+  const showImage = Boolean(story.image) && !broken;
 
   return (
     <a
@@ -80,19 +83,21 @@ function StoryCard({ story }: { story: CommunityStory }) {
       aria-label={`${story.title} (opens in a new tab)`}
       className="story-card group flex h-full flex-col overflow-hidden rounded-card outline-none font-sans"
     >
-      {story.image ? (
-        <div className="story-card-media">
-          {/* LinkedIn CDN URLs expire; same-origin proxy and RSS hosts vary. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={story.image} alt="" />
-        </div>
-      ) : null}
+      <div className="story-card-media">
+        {showImage ? (
+          // LinkedIn CDN URLs expire; local copies and same-origin proxy are preferred.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={story.image} alt="" onError={() => setBroken(true)} />
+        ) : (
+          <MediaPlaceholder fill label={`${story.title} image`} />
+        )}
+      </div>
       <div className="flex min-h-0 flex-1 flex-col p-6">
         <p className="text-xs font-semibold uppercase tracking-wider text-ink-muted">{meta}</p>
         <h3 className="story-title mt-3 font-sans text-base font-semibold leading-snug text-ink">
           {story.title}
         </h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-muted">{story.description}</p>
+        <p className="story-body mt-2 text-sm leading-relaxed text-ink-muted">{story.description}</p>
         <span className="story-arrow mt-auto inline-flex items-center gap-1 pt-6 text-sm font-semibold text-primary">
           View on LinkedIn
           <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />

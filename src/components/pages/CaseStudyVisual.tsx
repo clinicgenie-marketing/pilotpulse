@@ -771,7 +771,12 @@ export function CaseStudyVisual({ studyId, tab }: { studyId: string; tab: CaseSt
   if (!visual) return null;
 
   return (
-    <figure className={`case-study-visual is-${tab}`} aria-hidden="true">
+    <figure
+      className={`case-study-visual is-${tab}${visual.kind === "quote" ? " is-quote" : ""}${
+        visual.kind === "extract" && visual.title === "Shipment extract" ? " is-shipment" : ""
+      }`}
+      aria-hidden="true"
+    >
       {visual.kind === "inbox" ? <InboxVisual visual={visual} /> : null}
       {visual.kind === "overview" ? <OverviewVisual visual={visual} /> : null}
       {visual.kind === "chat" ? <ChatVisual visual={visual} /> : null}
@@ -911,7 +916,15 @@ function ChatVisual({ visual }: { visual: Extract<Visual, { kind: "chat" }> }) {
   );
 }
 
+function extractField(fields: readonly Field[], label: string) {
+  return fields.find((field) => field.label === label)?.value ?? "";
+}
+
 function ExtractVisual({ visual }: { visual: Extract<Visual, { kind: "extract" }> }) {
+  if (visual.title === "Shipment extract") {
+    return <ShipmentExtract visual={visual} />;
+  }
+
   return (
     <>
       <VisualHead title={visual.title} />
@@ -930,23 +943,59 @@ function ExtractVisual({ visual }: { visual: Extract<Visual, { kind: "extract" }
   );
 }
 
+function ShipmentExtract({ visual }: { visual: Extract<Visual, { kind: "extract" }> }) {
+  const bl = extractField(visual.fields, "BL");
+  const route = extractField(visual.fields, "POL / POD");
+  const etd = extractField(visual.fields, "ETD");
+  const status = extractField(visual.fields, "Status");
+  const tone = inboxStatusTone(status) ?? "ok";
+
+  return (
+    <div className="case-study-visual-body case-study-shipment-wrap">
+      <article className="case-study-shipment">
+        <div className="case-study-shipment-top">
+          <div>
+            <p className="case-study-shipment-kicker">BL</p>
+            <p className="case-study-shipment-id">{bl}</p>
+          </div>
+          {status ? (
+            <span className={`case-study-shipment-status is-${tone}`}>{status}</span>
+          ) : null}
+        </div>
+        <div className="case-study-shipment-route">
+          <span className="case-study-shipment-pin" />
+          <div>
+            <p className="case-study-shipment-label">POL / POD</p>
+            <p className="case-study-shipment-value">{route}</p>
+            {etd ? (
+              <p className="case-study-shipment-date">
+                <span>ETD</span> {etd}
+              </p>
+            ) : null}
+          </div>
+        </div>
+      </article>
+    </div>
+  );
+}
+
 function QuoteVisual({ visual }: { visual: Extract<Visual, { kind: "quote" }> }) {
   return (
     <>
       <VisualHead title={visual.title} />
       <div className="case-study-visual-body">
-        <ul className="case-study-visual-quote">
+        <dl className="case-study-receipt">
           {visual.lines.map((line) => (
-            <li key={line.label}>
-              <span>{line.label}</span>
-              <span>{line.value}</span>
-            </li>
+            <div key={line.label} className="case-study-receipt-row">
+              <dt>{line.label}</dt>
+              <dd>{line.value}</dd>
+            </div>
           ))}
-          <li className="is-total">
-            <span>Total</span>
-            <span>{visual.total}</span>
-          </li>
-        </ul>
+          <div className="case-study-receipt-row is-total">
+            <dt>Total</dt>
+            <dd>{visual.total}</dd>
+          </div>
+        </dl>
       </div>
     </>
   );

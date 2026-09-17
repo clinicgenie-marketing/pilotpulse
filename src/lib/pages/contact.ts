@@ -1,5 +1,4 @@
-import { CONTACT_HREF, LINKEDIN_HREF, WHATSAPP_HREF } from "@/lib/content";
-import { WHATSAPP_DEMO_HREF } from "@/lib/home-content";
+import { LINKEDIN_HREF, TWITTER_HREF, WHATSAPP_HREF, YOUTUBE_HREF, site } from "@/lib/content";
 import { OFFICE_ADDRESS } from "@/lib/pages/shared";
 
 export const contactWorkflows = [
@@ -12,51 +11,79 @@ export const contactWorkflows = [
 
 export const contactPage = {
   meta: {
-    title: "Contact",
+    title: "Get a Demo",
     description: "Start with one pilot. See what it unlocks.",
   },
   hero: {
-    titleBefore: "Start with ",
-    titleHighlight: "one pilot.",
-    titleAfter: " See what it unlocks.",
-    lead: "We don't do generic demos or vague promises. We listen. We scope. We show you what AI can do for your workflows, your team, and your business.",
-    closing: "Let's talk about where you want to start.",
+    titleLine1: "Start with one pilot.",
+    titleLine2: "See what it unlocks.",
+    lead: "We don’t do generic demos or vague promises. We listen. We scope. We show you what AI can do for your workflows, your team, and your business.",
+    closing: "Let’s talk about where you want to start.",
+  },
+  next: {
+    heading: "What happens next?",
+    lead: "You’re one conversation closer to a working pilot.",
+    steps: [
+      {
+        n: "01",
+        titleBefore: "We’ll ",
+        titleHighlight: "listen",
+        body: "One workflow, your systems, and what success actually looks like.",
+      },
+      {
+        n: "02",
+        titleBefore: "We’ll ",
+        titleHighlight: "scope",
+        body: "What we connect, what we measure, and what the first week looks like.",
+      },
+      {
+        n: "03",
+        titleBefore: "We’ll ",
+        titleHighlight: "show",
+        body: "A pilot you can run with your team — then decide if it earns the next one.",
+      },
+    ],
   },
   form: {
-    eyebrow: "Request a demo",
-    heading: "Tell us the workflow.",
-    intro: "Share a little context. We'll come back with a practical place to start.",
-    name: "Name",
+    intro: "Write us a few words about the workflow and we’ll come back within",
+    introHighlight: "one Singapore business day.",
+    name: "Your name",
     email: "Work email",
     company: "Company",
-    workflow: "Which workflow should we look at first?",
+    workflow: "Which workflow",
+    optional: "Optional",
     message: "Tell us a little about the work",
     submit: "Get a Demo",
-    whatsapp: "WhatsApp PilotPulse",
-    note: "We will get back to you within one Singapore business day.",
+    noteBefore: "If you’d rather email first, write to",
     placeholders: {
-      name: "Jane Tan",
-      email: "jane@company.com",
-      company: "Your company",
+      name: "Your name",
+      email: "Work email",
+      company: "Company",
+      workflow: "Which workflow",
       message: "A WhatsApp queue for locker enquiries, or screening drivers as they apply…",
     },
-    demoHref: WHATSAPP_DEMO_HREF,
     whatsappHref: WHATSAPP_HREF,
   },
-  inquiries: {
-    heading: "General Inquiries",
-    body: "Have a question about our AI assistants, funding eligibility, or partnership opportunities? Reach out. We'll get back to you within 1–2 business days.",
-    email: "info@pilotpulse.ai",
+  links: [
+    { label: "LinkedIn", href: LINKEDIN_HREF },
+    { label: "WhatsApp", href: WHATSAPP_HREF },
+    { label: "Email", href: `mailto:${site.email}` },
+  ] as const,
+  details: {
+    office: {
+      heading: "Office Address",
+      company: OFFICE_ADDRESS.company,
+      lines: OFFICE_ADDRESS.lines,
+    },
+    follow: {
+      heading: "Follow Us",
+      body: "Stay updated on new pilots, features, and case studies.",
+      links: [
+        { label: "LinkedIn", href: LINKEDIN_HREF },
+        { label: "Twitter", href: TWITTER_HREF },
+        { label: "YouTube", href: YOUTUBE_HREF },
+      ] as const,
+    },
   },
-  office: {
-    heading: "Office Address",
-    company: OFFICE_ADDRESS.company,
-    lines: OFFICE_ADDRESS.lines,
-  },
-  follow: {
-    heading: "Follow Us",
-    body: "Stay updated on new pilots, features, and case studies.",
-    linkedIn: { label: "LinkedIn", href: LINKEDIN_HREF },
-  },
-  contactHref: CONTACT_HREF,
+  email: site.email,
 };

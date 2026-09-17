@@ -382,7 +382,7 @@ export const digitalWorkforce = {
   eyebrow: "Your digital workforce",
   headingBefore: "AI workers built for",
   headingAccent: "real work",
-  sub: "Digital Workers take on specific business roles and workflows. Working across conversations, documents and business systems to complete tasks, make decisions and escalate to your team when human judgement is needed.",
+  sub: "Digital Workers handle business workflows across conversations, documents and systems, completing tasks and escalating to your team when human judgement is needed.",
   workers: [
     {
       code: "DW-01",
@@ -572,16 +572,15 @@ export const platformBehind = {
       title: "AI Workflow & Reasoning Design",
       summary: "The right level of AI for every task.",
       intro:
-        "We design each workflow around the business problem first, using deterministic logic where it works, AI reasoning where judgement is needed, and autonomous agents only where they add real value.",
+        "We start with the business problem, using rules where possible and AI reasoning where it adds value.",
       bullets: [
-        "Deterministic workflows for predictable rules and processes",
-        "Bounded AI reasoning for ambiguous or data-rich tasks",
-        "Enterprise retrieval when current or private knowledge is required",
-        "Scoped tools and actions when AI needs to interact with business systems",
-        "Agentic workflows when AI needs to dynamically determine the next step",
-        "Multi-agent orchestration only when the complexity genuinely requires it",
+        "Rules-based workflows for predictable tasks",
+        "AI reasoning for ambiguous or data-rich tasks",
+        "Secure retrieval for private or current information",
+        "Controlled tools, actions and agentic workflows",
+        "Multi-agent orchestration when complexity requires it",
       ],
-      closing: "No unnecessary AI complexity. Every layer earns its place.",
+      closing: "Every layer earns its place.",
     },
     {
       id: "02",
@@ -590,8 +589,7 @@ export const platformBehind = {
       bullets: [
         "Enterprise knowledge bases and RAG",
         "Documents, SOPs and business data",
-        "Agentic AI tools",
-        "Existing business system integrations",
+        "AI tools and system integrations",
         "Continuous data synchronisation",
       ],
     },
@@ -600,18 +598,16 @@ export const platformBehind = {
       title: "Human Oversight & Governance",
       summary: "Keep people in control of important decisions and actions.",
       bullets: [
-        "Human-in-the-loop approvals",
-        "Role-based and least-privilege permissions",
-        "Scoped access to tools and systems",
-        "AI guardrails",
-        "Audit trails",
-        "Controlled actions, escalation and rollback",
+        "Human approvals where needed",
+        "Role-based, least-privilege access",
+        "Scoped tools and system permissions",
+        "Guardrails, audit trails and rollback",
       ],
     },
     {
       id: "04",
       title: "Safe & Robust AI",
-      summary: "Multiple layers of safeguards help keep AI behaviour controlled and reliable.",
+      summary: "Safeguards help keep AI behaviour controlled and reliable.",
       intro: "The architecture applies safeguards at different stages:",
       bullets: [
         {
@@ -623,7 +619,7 @@ export const platformBehind = {
           rest: "Give AI the relevant information for the task.",
         },
         {
-          lead: "Human-in-the-loop design:",
+          lead: "Human review for sensitive actions:",
           rest: "Escalate or seek approval when required.",
         },
         {
@@ -631,24 +627,20 @@ export const platformBehind = {
           rest: "Validate outputs before important actions.",
         },
         {
-          lead: "Governed learning:",
-          rest: "Control how improvements are introduced.",
-        },
-        {
-          lead: "Real-time monitoring:",
-          rest: "Monitor AI behaviour and identify issues.",
+          lead: "Governed improvements and monitoring:",
+          rest: "Control how improvements are introduced and monitor AI behaviour.",
         },
       ],
     },
     {
       id: "05",
       title: "Enterprise Infrastructure",
-      summary: "Designed to run reliably as part of everyday operations.",
+      summary: "Built to run reliably in everyday operations.",
       bullets: [
         "Secure cloud infrastructure",
         "Microservices and databases",
         "Scalability and failover",
-        "Observability and monitoring",
+        "Monitoring and observability",
         "Client data isolation",
         "Cloud, private or on-premise deployment",
       ],
@@ -842,49 +834,49 @@ export const partnershipProcess = {
     {
       n: "01",
       title: "Clarify ROI",
-      body: "We start by understanding what success looks like for your business.",
+      body: "We define what success looks like for your business.",
       points: [
         "Increase revenue",
-        "Increase manpower productivity",
-        "Eliminate staff churn friction",
+        "Improve team productivity",
+        "Reduce repetitive workload",
       ],
     },
     {
       n: "02",
       title: "Design the workflow",
-      body: "We map your workflows and define the workflow logic, decision rules, system permissions and human approval points.",
+      body: "We map the process, decision rules, system permissions and human handover points.",
       points: [
-        "Handling SOPs and Q&As",
-        "Workflow and decision-rule design",
+        "SOPs and Q&As",
+        "Workflow and decision rules",
         "Human handover thresholds",
       ],
     },
     {
       n: "03",
       title: "Build into your stack",
-      body: "We build and integrate the AI worker into your existing stack.",
+      body: "We integrate the Digital Worker with your existing systems.",
       points: [
-        "Clear, small prompt context",
-        "System integration (CRM, calendar, ERP)",
-        "Security and guardrails design",
+        "Focused prompt context",
+        "CRM, calendar and ERP integration",
+        "Security and guardrails",
       ],
     },
     {
       n: "04",
       title: "Iterate in production",
-      body: "We run the pilot alongside your team and tune it in real time.",
+      body: "We run the pilot alongside your team and improve it using live feedback.",
       points: [
-        "Easy feedback interface for your team",
-        "Fast enhancements based on live data",
+        "Simple team feedback",
+        "Fast improvements from live data",
       ],
     },
     {
       n: "05",
       title: "Report what matters",
-      body: "We measure what matters to your business, not vanity metrics.",
+      body: "We measure meaningful business outcomes, not vanity metrics.",
       points: [
-        "Success measures that matter to you",
-        "Insights on AI gaps and improvement areas",
+        "Success measures that matter",
+        "Insights into gaps and improvements",
       ],
     },
   ],
@@ -1019,18 +1011,21 @@ export const latestUpdates = {
       description:
         "Behind the scenes of how a real business workflow becomes a working PilotPulse Digital Worker.",
       href: "https://www.linkedin.com/posts/activity-7462886298559778819-cwda",
+      image: "/community/connect-energy.jpg",
     },
     {
       category: "Field notes",
       title: "What deploying AI workers really takes.",
       description: "Lessons from turning business processes into reliable production workflows.",
       href: "https://www.linkedin.com/posts/pilotpulse-ai_our-founder-chong-kian-s-sharing-stories-activity-7459977705158201344-ei4Y",
+      image: "/community/ai-bridge.jpg",
     },
     {
       category: "Ecosystem",
       title: "PilotPulse and the GenAI x Digital Leaders initiative.",
       description: "How PilotPulse is supporting practical AI adoption for Singapore SMEs.",
       href: "https://www.linkedin.com/posts/pilotpulse-ai_we-are-honored-to-be-invited-by-imda-and-activity-7451619476195942400-zo-e",
+      image: "/community/dlab.jpg",
     },
     {
       category: "Perspective",
@@ -1038,6 +1033,7 @@ export const latestUpdates = {
       description:
         "Why successful AI transformation removes repetitive work while keeping people in control.",
       href: "https://www.linkedin.com/posts/pilotpulse-ai_aitransformation-singapore-makinghumanirreplaceable-activity-7364098745212260352-soe9",
+      image: "/community/empowered-hr.jpg",
     },
     {
       category: "Events",
@@ -1045,6 +1041,7 @@ export const latestUpdates = {
       description:
         "Connecting with the founders, enterprises and programme partners shaping the next phase of AI adoption.",
       href: "https://www.linkedin.com/posts/pilotpulse-ai_aifa2026-activity-7421420314011705345-mSRs",
+      image: "/community/aifa-2026.jpg",
     },
   ] satisfies CommunityStory[],
 };
@@ -1133,7 +1130,7 @@ export const homeFooter = {
     },
   ] satisfies FooterGroup[],
   company: {
-    address: "51 Goldhill Plaza, #14-01, Singapore 308900",
+    address: "60 Paya Lebar Road #07-54, Singapore 409051",
     phone: site.phone,
     email: site.email,
     adminEmail: "techadmin@pilotpulse.ai",

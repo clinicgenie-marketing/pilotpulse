@@ -2,8 +2,8 @@ import { CONTACT_HREF } from "@/lib/content";
 
 export const OFFICE_ADDRESS = {
   company: "PilotPulse Pte Ltd",
-  lines: ["51 Goldhill Plaza, #14-01", "Singapore 308900"] as const,
-  singleLine: "51 Goldhill Plaza, #14-01, Singapore 308900",
+  lines: ["60 Paya Lebar Road #07-54", "Singapore 409051"] as const,
+  singleLine: "60 Paya Lebar Road #07-54, Singapore 409051",
 };
 
 export const innerFinalCta = {

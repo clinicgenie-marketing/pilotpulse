@@ -11,7 +11,11 @@ export function CaseStudyIndustryCard({ industry }: { industry: CaseStudyIndustr
       <Link href={href} className="surface-card dest-card dest-card-media h-full text-ink">
         <div className="dest-card-photo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={industry.heroImage} alt="" />
+          <img
+            src={industry.heroImage}
+            alt=""
+            style={industry.heroImagePosition ? { objectPosition: industry.heroImagePosition } : undefined}
+          />
         </div>
         <p className="eyebrow">
           {count} case {caseStudyWord(count)}

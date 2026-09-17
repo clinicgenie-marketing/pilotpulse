@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import type { PlatformLayerId } from "@/lib/home-content";
 import { platformBehind } from "@/lib/home-content";
@@ -10,11 +12,22 @@ const MARKERS: { id: PlatformLayerId; top: string }[] = [
   { id: "05", top: "86%" },
 ];
 
-export function IcebergIllustration({ activeId }: { activeId: PlatformLayerId | null }) {
-  const { iceberg } = platformBehind;
+export function IcebergIllustration({
+  activeId,
+  onSelect,
+}: {
+  activeId: PlatformLayerId | null;
+  onSelect: (id: PlatformLayerId) => void;
+}) {
+  const { iceberg, layers } = platformBehind;
 
   return (
     <div className="platform-iceberg">
+      <div className="platform-iceberg-labels">
+        <p className="platform-iceberg-kicker">{iceberg.aboveTitle}</p>
+        <p className="platform-iceberg-support">{iceberg.aboveBody}</p>
+        <p className="platform-iceberg-kicker platform-iceberg-below-title">{iceberg.belowTitle}</p>
+      </div>
       <div className="platform-iceberg-art">
         <Image
           src="/platform/iceberg-lowpoly.jpg"
@@ -24,24 +37,26 @@ export function IcebergIllustration({ activeId }: { activeId: PlatformLayerId | 
           className="platform-iceberg-image"
           sizes="(min-width: 900px) 36vw, min(100vw, 22rem)"
         />
-        <div className="platform-iceberg-label platform-iceberg-label-above">
-          <p className="platform-iceberg-kicker">{iceberg.aboveTitle}</p>
-          <p className="platform-iceberg-support">{iceberg.aboveBody}</p>
-        </div>
-        <p className="platform-iceberg-label platform-iceberg-label-below">
-          <span className="platform-iceberg-kicker">{iceberg.belowTitle}</span>
-        </p>
-        <ol className="platform-iceberg-markers" aria-hidden="true">
-          {MARKERS.map((marker) => (
-            <li
-              key={marker.id}
-              className="platform-marker"
-              data-active={activeId === marker.id ? "true" : "false"}
-              style={{ top: marker.top }}
-            >
-              {marker.id}
-            </li>
-          ))}
+        <ol className="platform-iceberg-markers">
+          {MARKERS.map((marker) => {
+            const layer = layers.find((item) => item.id === marker.id);
+            const active = activeId === marker.id;
+
+            return (
+              <li key={marker.id} className="platform-marker-slot" style={{ top: marker.top }}>
+                <button
+                  type="button"
+                  className="platform-marker"
+                  data-active={active ? "true" : "false"}
+                  aria-pressed={active}
+                  aria-label={`Show layer ${marker.id}${layer ? `: ${layer.title}` : ""}`}
+                  onClick={() => onSelect(marker.id)}
+                >
+                  {marker.id}
+                </button>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </div>

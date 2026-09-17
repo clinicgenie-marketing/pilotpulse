@@ -60,7 +60,10 @@ export default function SolutionsPage() {
       <section id={page.engagement.id} className="section-pad scroll-mt-28 border-b border-line bg-surface">
         <div className="container-edge">
           <p className="eyebrow">{page.engagement.eyebrow}</p>
-          <h2 className="heading-2 mt-4 max-w-[20ch]">{page.engagement.heading}</h2>
+          <h2 className="heading-2 mt-4">
+            {page.engagement.headingLine1}
+            <span className="block">{page.engagement.headingLine2}</span>
+          </h2>
           <p className="lead mt-4 max-w-[65ch]">{page.engagement.lead}</p>
           <ul className="mt-12 grid gap-8 md:grid-cols-3">
             {page.engagement.features.map((feature, index) => {

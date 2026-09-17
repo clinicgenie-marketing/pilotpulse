@@ -3,6 +3,17 @@ import { latestUpdates, type CommunityStory } from "@/lib/home-content";
 const POST_LIMIT = 5;
 const REVALIDATE_SECONDS = 1800;
 const IMAGE_URN = /^urn:li:image:[A-Za-z0-9_-]+$/;
+const COMPANY_PAGE = "https://www.linkedin.com/company/pilotpulse-ai/";
+const BROWSER_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+
+type LinkedInJsonLdPost = {
+  "@type"?: string;
+  url?: string;
+  mainEntityOfPage?: string;
+  text?: string;
+  datePublished?: string;
+};
 
 type LinkedInMedia = {
   id?: string;
@@ -175,6 +186,49 @@ async function fetchLinkedInApi(): Promise<CommunityStory[] | null> {
   });
 }
 
+async function fetchOgImage(url: string): Promise<string | undefined> {
+  const response = await fetch(url, {
+    headers: { "User-Agent": BROWSER_UA, "Accept-Language": "en-US,en;q=0.9" },
+    next: { revalidate: REVALIDATE_SECONDS },
+  });
+  if (!response.ok) return undefined;
+  const html = await response.text();
+  return html.match(/property="og:image" content="([^"]+)"/)?.[1]?.replace(/&amp;/g, "&");
+}
+
+async function fetchPublicCompanyPosts(): Promise<CommunityStory[] | null> {
+  const response = await fetch(COMPANY_PAGE, {
+    headers: { "User-Agent": BROWSER_UA, "Accept-Language": "en-US,en;q=0.9" },
+    next: { revalidate: REVALIDATE_SECONDS },
+  });
+  if (!response.ok) return null;
+
+  const html = await response.text();
+  const raw = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+  if (!raw) return null;
+
+  const data = JSON.parse(raw) as { "@graph"?: LinkedInJsonLdPost[] };
+  const posts = (data["@graph"] ?? []).filter(
+    (item) => item["@type"] === "DiscussionForumPosting" && item.text?.trim(),
+  );
+
+  const stories = await Promise.all(
+    posts.slice(0, POST_LIMIT).map(async (post) => {
+      const href = post.url || post.mainEntityOfPage || "";
+      const image = href ? await fetchOgImage(href) : undefined;
+      return toStory(
+        post.text ?? "",
+        href,
+        post.datePublished ? new Date(post.datePublished) : undefined,
+        image,
+      );
+    }),
+  );
+
+  const usable = stories.filter((story) => story.href);
+  return usable.length ? usable : null;
+}
+
 async function fetchLinkedInRss(): Promise<CommunityStory[] | null> {
   const feedUrl = process.env.LINKEDIN_RSS_URL;
   if (!feedUrl) return null;
@@ -204,6 +258,13 @@ export async function getCommunityStories(): Promise<CommunityStory[]> {
   try {
     const fromApi = await fetchLinkedInApi();
     if (fromApi?.length) return fromApi.slice(0, POST_LIMIT);
+  } catch {
+    // Fall through to RSS, then curated stories.
+  }
+
+  try {
+    const fromPublic = await fetchPublicCompanyPosts();
+    if (fromPublic?.length) return fromPublic.slice(0, POST_LIMIT);
   } catch {
     // Fall through to RSS, then curated stories.
   }

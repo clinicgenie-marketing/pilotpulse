@@ -32,35 +32,36 @@ export const solutionsPage = {
   engagement: {
     id: "customer-engagement",
     eyebrow: "Customer Engagement",
-    heading: "Transforming customer interactions with intelligent automation",
+    headingLine1: "Transforming customer interactions",
+    headingLine2: "with intelligent automation",
     lead: "PilotPulse automates meaningful conversations across multiple channels while maintaining your brand's tone and responsiveness.",
     features: [
       {
-        title: "Pre Sales Enquiries",
-        body: "Automate frequently asked questions and product recommendations using AI agents tuned to your business. Engage customers across WhatsApp, email, social media and web chat with consistent communication across each touchpoint.",
+        title: "Answer pre-sales enquiries",
+        body: "Answer questions, recommend products and qualify leads across key channels.",
       },
       {
-        title: "Appointment Scheduling",
-        body: "Check live calendar availability and match customer records in your CRM. Available slots can be presented during the conversation. Once selected, the appointment is booked, confirmation is sent and a reminder is scheduled automatically.",
+        title: "Schedule appointments",
+        body: "Check availability, book appointments and send confirmations and reminders automatically.",
       },
       {
-        title: "Proactive, Personalised Customer Follow Up",
-        body: "Stay top of mind with customers through personalised nudges, reminders and updates. PilotPulse can also track conversations across email, WhatsApp and online chats for follow ups.",
+        title: "Follow up with customers",
+        body: "Send timely updates, reminders and follow-ups while keeping every conversation connected.",
       },
     ],
   },
   sales: {
     id: "sales-operations",
     eyebrow: "Sales Operations",
-    heading: "Quotation, assessment and reporting in the flow of work.",
+    heading: "Quotations and reporting, built into your workflow",
     blocks: [
       {
-        title: "Quotation Generation",
-        body: "PilotPulse has deployed Quotation AI as part of live business operations. For Call Lade Enterprises, the Quotation AI supports carpark leasing enquiries and enables the team to respond promptly.",
+        title: "Generate quotations",
+        body: "Quotation AI supports live carpark leasing enquiries for Call Lade Enterprises, helping the team respond faster.",
       },
       {
-        title: "Assessment & Reporting",
-        body: "PilotPulse supports AI readiness assessment and custom reporting. Reporting focuses on the success measures that matter to your business, together with insights on AI gaps and areas for improvement.",
+        title: "Assess and report",
+        body: "Evaluate your AI readiness, measure what matters and identify gaps and opportunities for improvement.",
       },
     ],
   },
@@ -70,7 +71,7 @@ export const solutionsPage = {
     heading: "Handle volume, keep humans for when it matters.",
     handling: {
       title: "Customer Support Handling",
-      body: "Handle customer enquiries at volume while keeping human support available when it matters. Customer Support AI can triage support tickets, while built in workflows allow conversations to move smoothly to human agents when deeper care is required.",
+      body: "Handle support enquiries at scale, triage requests and hand complex cases to your team with the right context.",
     },
     documents: {
       title: "Document Processing",

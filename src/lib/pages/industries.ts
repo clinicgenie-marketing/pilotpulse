@@ -42,7 +42,7 @@ export const industriesPage = {
       id: "logistics",
       eyebrow: "Logistics & Delivery",
       heading: ["Order status.", "Locker handoff.", "Without the call queue."],
-      lead: "Your AI worker handles customer enquiries about parcels, lockers, and PINs so your operations team can spend less time on routine WhatsApp conversations.",
+      lead: "Your AI worker handles parcel, locker and PIN enquiries, freeing your operations team from routine WhatsApp conversation.",
       featured: { value: "~30%", unit: "AI conversation handling" },
       facts: [
         { value: "S$0.13", unit: "AI runtime cost per conversation" },
@@ -55,7 +55,7 @@ export const industriesPage = {
       id: "security",
       eyebrow: "Security & Manpower",
       heading: ["Officer scheduling.", "Payroll questions.", "Operations messages."],
-      lead: "Your AI worker handles officer scheduling queries, payroll questions, and routine operations messages, freeing your team to manage what actually needs a human.",
+      lead: "Your AI worker handles scheduling, payroll and routine queries, so your team can focus on work that needs a human.",
       featured: { value: "S$5,500", unit: "Monthly operational savings" },
       facts: [
         { value: "~1.5 FTE", unit: "Freed for higher value work" },
@@ -68,7 +68,7 @@ export const industriesPage = {
       id: "recruitment",
       eyebrow: "Recruitment & HR",
       heading: ["Screen candidates.", "In minutes.", "Not days."],
-      lead: "Your AI worker screens every applicant the moment they apply, scoring, shortlisting, and scheduling interviews before a human reads a single CV.",
+      lead: "Your AI worker screens applicants as they apply, prioritises candidates for HR review and supports interview scheduling.",
       featured: { value: "Under 3 min", unit: "Candidate suitability decision" },
       facts: [
         { value: "~20 min", unit: "Saved per candidate" },
@@ -93,7 +93,7 @@ export const industriesPage = {
       id: "food-service",
       eyebrow: "Food Service & Hospitality",
       heading: ["Reservations.", "Menus.", "Special requests."],
-      lead: "Your AI worker takes reservations, answers menu questions, and handles special requests across multiple outlets in four languages, around the clock.",
+      lead: "Your AI worker handles reservations, menu questions and special requests across outlets in four languages.",
       featured: { value: "24/7", unit: "Reservation intake on WhatsApp" },
       facts: [
         { value: "Multi outlet", unit: "Menu and pricing sync" },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { IcebergIllustration } from "@/components/sections/IcebergIllustration";
@@ -12,6 +12,14 @@ import {
 } from "@/lib/home-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const LAYER_IDS = platformBehind.layers.map((layer) => layer.id);
+const LAYER_DWELL_MS: Record<PlatformLayerId, number> = {
+  "01": 7000,
+  "02": 5500,
+  "03": 5500,
+  "04": 7000,
+  "05": 5500,
+};
 
 function isLeadBullet(bullet: PlatformBullet): bullet is { lead: string; rest: string } {
   return typeof bullet === "object";
@@ -95,13 +103,41 @@ export function PlatformSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const inView = useInView(sectionRef, { once: true, amount: 0.16 });
+  const touring = useInView(sectionRef, { amount: 0.4 });
   const show = Boolean(reduceMotion || inView);
   const headingId = "platform-heading";
   const [activeId, setActiveId] = useState<PlatformLayerId | null>("01");
+  const [paused, setPaused] = useState(false);
+  const [userLocked, setUserLocked] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion || userLocked || paused || !touring || !activeId) return undefined;
+
+    const index = LAYER_IDS.indexOf(activeId);
+    if (index < 0 || index >= LAYER_IDS.length - 1) return undefined;
+
+    const timer = window.setTimeout(() => {
+      setActiveId(LAYER_IDS[index + 1]);
+    }, LAYER_DWELL_MS[activeId]);
+
+    return () => window.clearTimeout(timer);
+  }, [activeId, paused, reduceMotion, touring, userLocked]);
+
+  const lockAndSet = (id: PlatformLayerId | null) => {
+    setUserLocked(true);
+    setActiveId(id);
+  };
 
   const toggle = (id: PlatformLayerId) => {
-    setActiveId((current) => (current === id ? null : id));
+    lockAndSet(activeId === id ? null : id);
   };
+
+  const select = (id: PlatformLayerId) => {
+    lockAndSet(id);
+  };
+
+  const pauseTour = () => setPaused(true);
+  const resumeTour = () => setPaused(false);
 
   return (
     <section
@@ -131,19 +167,29 @@ export function PlatformSection() {
             animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.08, ease: EASE }}
           >
-            <IcebergIllustration activeId={activeId} />
+            <IcebergIllustration activeId={activeId} onSelect={select} />
           </motion.div>
 
-          <motion.ul
-            className="platform-accordion"
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-            animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
-          >
-            {platformBehind.layers.map((layer) => (
-              <LayerRow key={layer.id} layer={layer} open={activeId === layer.id} onToggle={toggle} />
-            ))}
-          </motion.ul>
+          <div className="platform-copy">
+            <motion.ul
+              className="platform-accordion"
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
+              onMouseEnter={pauseTour}
+              onMouseLeave={resumeTour}
+              onFocus={pauseTour}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  resumeTour();
+                }
+              }}
+            >
+              {platformBehind.layers.map((layer) => (
+                <LayerRow key={layer.id} layer={layer} open={activeId === layer.id} onToggle={toggle} />
+              ))}
+            </motion.ul>
+          </div>
         </div>
       </div>
     </section>

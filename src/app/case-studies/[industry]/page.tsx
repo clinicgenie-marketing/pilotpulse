@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CaseStudyCard } from "@/components/pages/CaseStudyCard";
 import { CaseStudyIndustryHero } from "@/components/pages/CaseStudyIndustryHero";
+import { CaseStudyIndustryView } from "@/components/pages/CaseStudyIndustryView";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
 import { caseStudiesPage, caseStudyIndustries, caseStudyWord, getCaseStudyIndustry } from "@/lib/pages/case-studies";
 
@@ -37,12 +37,11 @@ export default function CaseStudyIndustryPage({ params }: { params: IndustryPara
         title={industry.label}
         lead={`${count} case ${caseStudyWord(count)} covering the business challenge, the AI implementation and the outcomes.`}
         image={industry.heroImage}
+        imagePosition={industry.heroImagePosition}
       />
-      <section className="border-b border-line bg-background">
+      <section className="bg-background">
         <div className="container-edge">
-          {industry.studies.map((study, index) => (
-            <CaseStudyCard key={study.id} study={study} industryLabel={industry.label} index={index} />
-          ))}
+          <CaseStudyIndustryView industry={industry} />
         </div>
       </section>
       <FinalCtaBand
