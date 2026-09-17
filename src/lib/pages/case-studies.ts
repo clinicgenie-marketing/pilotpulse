@@ -654,7 +654,7 @@ export const caseStudyIndustries = [
   },
 ] as const satisfies readonly CaseStudyIndustry[];
 
-export function getCaseStudyIndustry(slug: string) {
+export function getCaseStudyIndustry(slug: string): CaseStudyIndustry | undefined {
   return caseStudyIndustries.find((industry) => industry.id === slug);
 }
 
