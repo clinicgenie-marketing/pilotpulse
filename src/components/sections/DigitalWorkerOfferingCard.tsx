@@ -1,33 +1,14 @@
 "use client";
 
 import { useId, useState } from "react";
-import {
-  ArrowLeftRight,
-  Check,
-  FileText,
-  Flag,
-  MessageCircle,
-  Minus,
-  Plus,
-  UserSearch,
-  Workflow,
-  type LucideIcon,
-} from "lucide-react";
-import type { DigitalWorkerOffering, DigitalWorkerOfferingIcon } from "@/lib/home-content";
-
-const ICONS: Record<DigitalWorkerOfferingIcon, LucideIcon> = {
-  message: MessageCircle,
-  quote: FileText,
-  candidate: UserSearch,
-  workflow: Workflow,
-  compare: ArrowLeftRight,
-  milestones: Flag,
-};
+import { Check, Minus, Plus } from "lucide-react";
+import { DIGITAL_WORKER_ICONS } from "@/components/sections/digitalWorkerIcons";
+import type { DigitalWorkerOffering } from "@/lib/home-content";
 
 export function DigitalWorkerOfferingCard({ offering }: { offering: DigitalWorkerOffering }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
-  const Icon = ICONS[offering.icon];
+  const Icon = DIGITAL_WORKER_ICONS[offering.icon];
   const label = `DIGITAL WORKER ${offering.number}`;
 
   return (

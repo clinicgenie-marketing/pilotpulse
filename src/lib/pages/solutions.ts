@@ -2,11 +2,11 @@ import { CONTACT_HREF } from "@/lib/content";
 
 export const solutionsNav = [
   { id: "customer-engagement", label: "Customer Engagement" },
-  { id: "sales-operations", label: "Sales Operations" },
-  { id: "customer-support", label: "Customer Support" },
-  { id: "human-resources", label: "Human Resources" },
-  { id: "project-management", label: "Project Management" },
-  { id: "advanced-capabilities", label: "Advanced AI" },
+  { id: "sales", label: "Sales Operations" },
+  { id: "support", label: "Customer Support" },
+  { id: "hr", label: "Human Resources" },
+  { id: "projects", label: "Project Management" },
+  { id: "advanced", label: "Advanced AI" },
 ] as const;
 
 export const solutionsPage = {
@@ -19,8 +19,8 @@ export const solutionsPage = {
     eyebrow: "AI Agent Solutions",
     titleBefore: "AI that runs the work ",
     titleHighlight: "around every role.",
-    lead: "They schedule, quote, screen, and file from the conversation — then hand work back when a human needs to step in.",
-    chips: ["Scheduling", "Quotations", "Screening", "Documents"] as const,
+    lead: "They schedule, quote, screen, and file from the conversation. Then hand work back when a human needs to step in.",
+    capabilities: ["Scheduling", "Quotations", "Screening", "Documents"] as const,
     cta: { label: "Get a Demo", href: CONTACT_HREF },
     secondaryCta: { label: "Browse workflows", href: "#customer-engagement" },
     preview: {
@@ -51,7 +51,7 @@ export const solutionsPage = {
     ],
   },
   sales: {
-    id: "sales-operations",
+    id: "sales",
     eyebrow: "Sales Operations",
     heading: "Quotations and reporting, built into your workflow",
     blocks: [
@@ -66,7 +66,7 @@ export const solutionsPage = {
     ],
   },
   support: {
-    id: "customer-support",
+    id: "support",
     eyebrow: "Customer Support",
     heading: "Handle volume, keep humans for when it matters.",
     handling: {
@@ -90,7 +90,7 @@ export const solutionsPage = {
     },
   },
   hr: {
-    id: "human-resources",
+    id: "hr",
     eyebrow: "Human Resources",
     pull: "Screen every applicant. Book the right ones.",
     recruitment: {
@@ -108,13 +108,13 @@ export const solutionsPage = {
     },
   },
   projects: {
-    id: "project-management",
+    id: "projects",
     eyebrow: "Project Management",
     heading: "Project and Important Event Tracking",
     body: "Track conversations across email, WhatsApp and online chats for follow ups. Project Management AI can support time sensitive customer follow ups so important actions remain part of the workflow.",
   },
   advanced: {
-    id: "advanced-capabilities",
+    id: "advanced",
     eyebrow: "Advanced AI Capabilities",
     headingBefore: "",
     headingHighlight: "Thinking",

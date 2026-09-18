@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 export type LegalSection = {
   id: string;
+  n?: string;
   heading: string;
   content: ReactNode;
 };
@@ -9,11 +10,13 @@ export type LegalSection = {
 export function LegalLayout({
   eyebrow = "Legal",
   title,
+  lead,
   lastUpdated,
   sections,
 }: {
   eyebrow?: string;
   title: string;
+  lead?: string;
   lastUpdated: string;
   sections: LegalSection[];
 }) {
@@ -25,7 +28,8 @@ export function LegalLayout({
             <ul className="space-y-2">
               {sections.map((section) => (
                 <li key={section.id}>
-                  <a href={`#${section.id}`} className="text-sm font-medium text-ink-muted hover:text-primary">
+                  <a href={`#${section.id}`} className="legal-nav-link">
+                    {section.n ? <span className="legal-nav-index">{section.n}</span> : null}
                     {section.heading}
                   </a>
                 </li>
@@ -36,10 +40,18 @@ export function LegalLayout({
         <article className="legal-prose">
           <p className="eyebrow">{eyebrow}</p>
           <h1 className="heading-1 mt-4">{title}</h1>
+          {lead ? <p className="lead mt-4">{lead}</p> : null}
           <p className="mt-3 text-sm text-ink-muted">{lastUpdated}</p>
           {sections.map((section) => (
             <section key={section.id} id={section.id} className="legal-section scroll-mt-28">
-              <h2>{section.heading}</h2>
+              <h2>
+                {section.n ? (
+                  <span className="legal-index" aria-hidden="true">
+                    {section.n}
+                  </span>
+                ) : null}
+                {section.heading}
+              </h2>
               {section.content}
             </section>
           ))}

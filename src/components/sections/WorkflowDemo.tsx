@@ -38,7 +38,7 @@ type WorkflowDemoProps = {
 };
 
 export function WorkflowDemo({
-  id = "dashboard",
+  id = "in-production",
   eyebrow = "In production",
   heading,
   lead,

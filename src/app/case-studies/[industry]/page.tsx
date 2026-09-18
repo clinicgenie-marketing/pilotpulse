@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { CaseStudyIndustryHero } from "@/components/pages/CaseStudyIndustryHero";
 import { CaseStudyIndustryView } from "@/components/pages/CaseStudyIndustryView";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
-import { caseStudiesPage, caseStudyIndustries, caseStudyWord, getCaseStudyIndustry } from "@/lib/pages/case-studies";
+import {
+  caseStudiesPage,
+  caseStudyIndustries,
+  caseStudyWord,
+  getCaseStudyIndustry,
+  getIndustrySlugRedirect,
+} from "@/lib/pages/case-studies";
 
 type IndustryParams = {
   industry: string;
@@ -14,6 +20,9 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: IndustryParams }): Metadata {
+  const redirected = getIndustrySlugRedirect(params.industry);
+  if (redirected) return { title: "Case Studies" };
+
   const industry = getCaseStudyIndustry(params.industry);
   if (!industry) return { title: "Case Studies" };
 
@@ -25,6 +34,9 @@ export function generateMetadata({ params }: { params: IndustryParams }): Metada
 }
 
 export default function CaseStudyIndustryPage({ params }: { params: IndustryParams }) {
+  const redirected = getIndustrySlugRedirect(params.industry);
+  if (redirected) redirect(`/case-studies/${redirected}`);
+
   const industry = getCaseStudyIndustry(params.industry);
   if (!industry) notFound();
 

@@ -35,7 +35,7 @@ type StudyVisuals = {
 };
 
 const VISUALS: Record<string, StudyVisuals> = {
-  "last-mile-logistics-customer-support": {
+  "last-mile-support": {
     challenge: {
       kind: "inbox",
       title: "Support inbox",
@@ -65,7 +65,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "freight-forwarder-data-processing": {
+  "freight-data-processing": {
     challenge: {
       kind: "inbox",
       title: "Incoming operations",
@@ -96,7 +96,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "air-cargo-quotation-automation": {
+  "air-cargo-quotation": {
     challenge: {
       kind: "inbox",
       title: "Quotation queue",
@@ -126,7 +126,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "logistics-project-email-intelligence": {
+  "project-email-intelligence": {
     challenge: {
       kind: "inbox",
       title: "Project inbox",
@@ -155,7 +155,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-demand-planning-inventory": {
+  "demand-planning-inventory": {
     challenge: {
       kind: "inbox",
       title: "Planner inbox",
@@ -184,7 +184,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-patient-engagement": {
+  "patient-engagement": {
     challenge: {
       kind: "inbox",
       title: "Clinic inbox",
@@ -214,7 +214,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-patient-assessment": {
+  "patient-assessment": {
     challenge: {
       kind: "inbox",
       title: "Assessment queue",
@@ -243,7 +243,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-patient-counselling": {
+  "patient-counselling": {
     challenge: {
       kind: "inbox",
       title: "Counselling inbox",
@@ -264,7 +264,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-contract-intelligence": {
+  "contract-intelligence": {
     challenge: {
       kind: "inbox",
       title: "Contract watchlist",
@@ -295,7 +295,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-costing-rfq-tender": {
+  "costing-rfq-tender": {
     challenge: {
       kind: "inbox",
       title: "QS inbox",
@@ -325,7 +325,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-drawing-regulatory-compliance": {
+  "drawing-compliance": {
     challenge: {
       kind: "inbox",
       title: "Review queue",
@@ -355,7 +355,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "construction-project-intelligence-hub": {
+  "project-intelligence-hub": {
     challenge: {
       kind: "inbox",
       title: "Project fragments",
@@ -384,7 +384,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-customer-enquiry-sales": {
+  "customer-enquiry-sales": {
     challenge: {
       kind: "inbox",
       title: "Sales inbox",
@@ -414,7 +414,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "proactive-ai-customer-engagement": {
+  "proactive-customer-engagement": {
     challenge: {
       kind: "inbox",
       title: "Follow-up list",
@@ -444,7 +444,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-product-menu-recommendation": {
+  "product-menu-recommendation": {
     challenge: {
       kind: "inbox",
       title: "Catalogue questions",
@@ -473,7 +473,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-enquiry-to-order": {
+  "enquiry-to-order": {
     challenge: {
       kind: "inbox",
       title: "Order inbox",
@@ -504,7 +504,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-sales-marketing-lead-management": {
+  "sales-lead-management": {
     challenge: {
       kind: "inbox",
       title: "Lead sources",
@@ -533,7 +533,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-marketing-planning": {
+  "marketing-planning": {
     challenge: {
       kind: "inbox",
       title: "Campaign fragments",
@@ -562,7 +562,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-demand-planning-retail": {
+  "demand-planning-retail": {
     challenge: {
       kind: "inbox",
       title: "Inventory exceptions",
@@ -591,7 +591,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-incident-sla-operations": {
+  "incident-sla-operations": {
     challenge: {
       kind: "inbox",
       title: "Ops WhatsApp",
@@ -617,7 +617,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-field-service-maintenance": {
+  "field-service-maintenance": {
     challenge: {
       kind: "inbox",
       title: "Field jobs",
@@ -643,7 +643,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-cv-preparation": {
+  "cv-preparation": {
     challenge: {
       kind: "inbox",
       title: "Incoming CVs",
@@ -673,7 +673,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-cv-matching": {
+  "cv-matching": {
     challenge: {
       kind: "inbox",
       title: "Screening pile",
@@ -702,7 +702,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-candidate-validation": {
+  "candidate-validation": {
     challenge: {
       kind: "inbox",
       title: "Applicant questions",
@@ -732,7 +732,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       ],
     },
   },
-  "ai-candidate-onboarding": {
+  "candidate-onboarding": {
     challenge: {
       kind: "inbox",
       title: "Onboarding follow-up",

@@ -3,9 +3,36 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, HardHat, HeartPulse, Menu, Store, Truck, Users, Wrench, X, type LucideIcon } from "lucide-react";
 import { CTAButton } from "@/components/ui/CTAButton";
-import { homeNav, type NavLink } from "@/lib/home-content";
+import { homeNav, type NavChild, type NavLink } from "@/lib/home-content";
+
+const MENU_ICONS: Record<string, LucideIcon> = {
+  logistics: Truck,
+  healthcare: HeartPulse,
+  construction: HardHat,
+  "retail-and-fnb": Store,
+  "facilities-management": Wrench,
+  "hr-services": Users,
+};
+
+function MenuRow({ child }: { child: NavChild }) {
+  const Icon = child.icon ? MENU_ICONS[child.icon] : undefined;
+
+  return (
+    <>
+      {Icon ? (
+        <span className="nav-dd-icon" aria-hidden="true">
+          <Icon className="h-4 w-4" strokeWidth={1.85} />
+        </span>
+      ) : null}
+      <span className="nav-dd-copy">
+        <span className="nav-dd-title">{child.label}</span>
+        {child.description ? <span className="nav-dd-desc">{child.description}</span> : null}
+      </span>
+    </>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -57,7 +84,12 @@ export function Header() {
         >
           {homeNav.links.map((link) =>
             link.children ? (
-              <DesktopDropdown key={link.href} link={link} active={isActive(link.href)} />
+              <DesktopDropdown
+                key={link.href}
+                link={link}
+                active={isActive(link.href)}
+                isItemActive={isActive}
+              />
             ) : (
               <Link
                 key={link.href}
@@ -146,10 +178,10 @@ export function Header() {
                           <li key={child.href}>
                             <Link
                               href={child.href}
-                              className="block rounded-md px-3 py-2.5 text-sm text-ink hover:bg-primary-soft hover:text-primary"
+                              className="nav-dd-link"
                               onClick={() => setOpen(false)}
                             >
-                              {child.label}
+                              <MenuRow child={child} />
                             </Link>
                           </li>
                         ))}
@@ -171,7 +203,15 @@ export function Header() {
   );
 }
 
-function DesktopDropdown({ link, active }: { link: NavLink; active: boolean }) {
+function DesktopDropdown({
+  link,
+  active,
+  isItemActive,
+}: {
+  link: NavLink;
+  active: boolean;
+  isItemActive: (href: string) => boolean;
+}) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
 
@@ -216,13 +256,21 @@ function DesktopDropdown({ link, active }: { link: NavLink; active: boolean }) {
       </Link>
       <div className="nav-dd-panel" role="menu" aria-label={`${link.label} menu`}>
         <ul className="nav-dd-list">
-          {link.children?.map((child) => (
-            <li key={child.href} className="nav-dd-item">
-              <Link href={child.href} className="nav-dd-link" role="menuitem">
-                {child.label}
-              </Link>
-            </li>
-          ))}
+          {link.children?.map((child) => {
+            const current = isItemActive(child.href);
+            return (
+              <li key={child.href} className="nav-dd-item">
+                  <Link
+                    href={child.href}
+                    className={`nav-dd-link${current ? " is-active" : ""}`}
+                    role="menuitem"
+                    aria-current={current ? "page" : undefined}
+                  >
+                    <MenuRow child={child} />
+                  </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

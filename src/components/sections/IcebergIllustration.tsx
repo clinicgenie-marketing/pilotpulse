@@ -23,11 +23,6 @@ export function IcebergIllustration({
 
   return (
     <div className="platform-iceberg">
-      <div className="platform-iceberg-labels">
-        <p className="platform-iceberg-kicker">{iceberg.aboveTitle}</p>
-        <p className="platform-iceberg-support">{iceberg.aboveBody}</p>
-        <p className="platform-iceberg-kicker platform-iceberg-below-title">{iceberg.belowTitle}</p>
-      </div>
       <div className="platform-iceberg-art">
         <Image
           src="/platform/iceberg-lowpoly.jpg"
@@ -37,6 +32,13 @@ export function IcebergIllustration({
           className="platform-iceberg-image"
           sizes="(min-width: 900px) 36vw, min(100vw, 22rem)"
         />
+        <div className="platform-iceberg-labels">
+          <div className="platform-iceberg-above">
+            <p className="platform-iceberg-kicker">{iceberg.aboveTitle}</p>
+            <p className="platform-iceberg-support">{iceberg.aboveBody}</p>
+          </div>
+          <p className="platform-iceberg-kicker platform-iceberg-below-title">{iceberg.belowTitle}</p>
+        </div>
         <ol className="platform-iceberg-markers">
           {MARKERS.map((marker) => {
             const layer = layers.find((item) => item.id === marker.id);

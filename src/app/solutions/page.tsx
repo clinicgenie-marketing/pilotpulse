@@ -37,11 +37,9 @@ export default function SolutionsPage() {
         }
         lead={page.hero.lead}
         leadSecondary={
-          <ul className="flex flex-wrap gap-1.5" aria-label="Highlights">
-            {page.hero.chips.map((chip) => (
-              <li key={chip} className="trust-chip">
-                {chip}
-              </li>
+          <ul className="hero-capability-tiles" aria-label="Capabilities">
+            {page.hero.capabilities.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         }

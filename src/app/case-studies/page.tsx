@@ -24,7 +24,7 @@ export default function CaseStudiesPage() {
         aside={<CaseStudiesHeroPanel />}
       />
 
-      <section id="industries" className="section-pad scroll-mt-28 border-b border-line bg-background">
+      <section id="browse" className="section-pad scroll-mt-28 border-b border-line bg-background">
         <div className="container-edge">
           <p className="eyebrow">Industries</p>
           <h2 className="heading-2 mt-3 max-w-[18ch]">Choose a vertical.</h2>

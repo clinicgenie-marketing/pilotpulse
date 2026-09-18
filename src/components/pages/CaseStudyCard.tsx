@@ -5,10 +5,10 @@ import type { CaseStudy } from "@/lib/pages/case-studies";
 export function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <article
-      id={study.id}
+      id={`${study.id}-panel`}
       className="case-study is-featured"
       role="tabpanel"
-      aria-labelledby={`${study.id}-tab`}
+      aria-labelledby={study.id}
     >
       <section className="case-study-band is-intro" aria-labelledby={`${study.id}-title`}>
         <div className="case-study-band-copy">

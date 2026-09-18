@@ -15,6 +15,7 @@ export type CaseStudy = {
 export type CaseStudyIndustry = {
   id: string;
   label: string;
+  blurb: string;
   heroImage: string;
   heroImagePosition?: string;
   studies: readonly CaseStudy[];
@@ -24,10 +25,11 @@ export const caseStudyIndustries = [
   {
     id: "logistics",
     label: "Logistics",
+    blurb: "Customer support, quotations, control towers and demand planning.",
     heroImage: "/case-studies/logistics.jpg",
     studies: [
       {
-        id: "last-mile-logistics-customer-support",
+        id: "last-mile-support",
         title: "Last-Mile Logistics Customer Support",
         titleLines: ["Last-Mile Logistics", "Customer Support"],
         industryCaption: "Last-mile delivery and logistics.",
@@ -49,7 +51,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "freight-forwarder-data-processing",
+        id: "freight-data-processing",
         title: "Freight Forwarder Data Processing & Operational Updates",
         titleLines: ["Freight Forwarder Data Processing", "& Operational Updates"],
         industryCaption: "Freight forwarding and logistics operations.",
@@ -71,7 +73,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "air-cargo-quotation-automation",
+        id: "air-cargo-quotation",
         title: "Air Cargo Quotation Automation",
         titleLines: ["Air Cargo", "Quotation Automation"],
         industryCaption: "Air cargo and freight forwarding.",
@@ -95,7 +97,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "logistics-project-email-intelligence",
+        id: "project-email-intelligence",
         title: "Logistics Project Email Intelligence & Delivery Control Tower",
         titleLines: ["Logistics Project Email Intelligence", "& Delivery Control Tower"],
         industryCaption: "Project logistics, freight forwarding and supply chain operations.",
@@ -120,7 +122,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-demand-planning-inventory",
+        id: "demand-planning-inventory",
         title: "AI Demand Planning & Inventory Optimisation",
         titleLines: ["AI Demand Planning", "& Inventory Optimisation"],
         industryCaption: "Contract logistics, 3PL, warehousing and distribution operations managing inventory for customers.",
@@ -149,11 +151,12 @@ export const caseStudyIndustries = [
   {
     id: "healthcare",
     label: "Healthcare",
+    blurb: "Patient engagement, assessment and counselling.",
     heroImage: "/case-studies/healthcare.jpg",
     heroImagePosition: "72% 42%",
     studies: [
       {
-        id: "ai-patient-engagement",
+        id: "patient-engagement",
         title: "AI Patient Engagement & Customer Service",
         titleLines: ["AI Patient Engagement", "& Customer Service"],
         industryCaption: "Clinics, aesthetics, wellness and other patient-facing healthcare services.",
@@ -177,7 +180,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-patient-assessment",
+        id: "patient-assessment",
         title: "AI Patient Assessment & Care Navigation",
         titleLines: ["AI Patient Assessment", "& Care Navigation"],
         industryCaption: "Healthcare providers, screening programmes and preventive health.",
@@ -202,7 +205,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-patient-counselling",
+        id: "patient-counselling",
         title: "AI Patient Counselling & Behavioural Engagement",
         titleLines: ["AI Patient Counselling", "& Behavioural Engagement"],
         industryCaption: "Preventive healthcare, screening and programmes requiring patients to take action.",
@@ -223,10 +226,11 @@ export const caseStudyIndustries = [
   {
     id: "construction",
     label: "Construction",
+    blurb: "Contracts, costing, drawings and project control.",
     heroImage: "/case-studies/construction.jpg",
     studies: [
       {
-        id: "ai-contract-intelligence",
+        id: "contract-intelligence",
         title: "AI Contract Intelligence & Project Risk Monitoring",
         titleLines: ["AI Contract Intelligence", "& Project Risk Monitoring"],
         industryCaption: "Main contractors, subcontractors and construction project teams.",
@@ -250,7 +254,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-costing-rfq-tender",
+        id: "costing-rfq-tender",
         title: "AI Costing, RFQ & Tender Intelligence",
         titleLines: ["AI Costing,", "RFQ & Tender Intelligence"],
         industryCaption: "Quantity surveyors, contractors and construction commercial teams.",
@@ -274,7 +278,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-drawing-regulatory-compliance",
+        id: "drawing-compliance",
         title: "AI Drawing & Regulatory Compliance Review",
         titleLines: ["AI Drawing & Regulatory", "Compliance Review"],
         industryCaption: "Developers, consultants, architects and construction project teams.",
@@ -297,7 +301,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "construction-project-intelligence-hub",
+        id: "project-intelligence-hub",
         title: "Construction Project Intelligence Hub",
         titleLines: ["Construction Project", "Intelligence Hub"],
         industryCaption: "Contractors, developers, consultants and construction project teams.",
@@ -322,12 +326,13 @@ export const caseStudyIndustries = [
     ],
   },
   {
-    id: "retail-fnb",
+    id: "retail-and-fnb",
     label: "Retail & F&B",
+    blurb: "Enquiries, recommendations, orders and demand planning.",
     heroImage: "/case-studies/retail-fnb.jpg",
     studies: [
       {
-        id: "ai-customer-enquiry-sales",
+        id: "customer-enquiry-sales",
         title: "AI Customer Enquiry & Sales Engagement",
         titleLines: ["AI Customer Enquiry", "& Sales Engagement"],
         industryCaption: "Retail, F&B, aesthetics, wellness and other consumer-facing businesses.",
@@ -351,7 +356,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "proactive-ai-customer-engagement",
+        id: "proactive-customer-engagement",
         title: "Proactive AI Customer Engagement",
         titleLines: ["Proactive AI", "Customer Engagement"],
         industryCaption: "Retail, F&B, aesthetics, wellness and membership-based businesses.",
@@ -374,7 +379,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-product-menu-recommendation",
+        id: "product-menu-recommendation",
         title: "AI Product, Menu & Package Recommendation",
         titleLines: ["AI Product, Menu", "& Package Recommendation"],
         industryCaption: "Retail, F&B and businesses with large or complex product/service catalogues.",
@@ -397,7 +402,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-enquiry-to-order",
+        id: "enquiry-to-order",
         title: "AI Enquiry-to-Order & Operations Automation",
         titleLines: ["AI Enquiry-to-Order", "& Operations Automation"],
         industryCaption: "F&B, catering, retail and businesses handling high volumes of customer orders and enquiries.",
@@ -420,7 +425,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-sales-marketing-lead-management",
+        id: "sales-lead-management",
         title: "AI Sales & Marketing Lead Management",
         titleLines: ["AI Sales & Marketing", "Lead Management"],
         industryCaption: "F&B groups, hospitality, events, retail and businesses receiving leads from multiple channels.",
@@ -444,7 +449,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-marketing-planning",
+        id: "marketing-planning",
         title: "AI Marketing Planning & Campaign Intelligence",
         titleLines: ["AI Marketing Planning", "& Campaign Intelligence"],
         industryCaption: "Retail, F&B groups and multi-brand consumer businesses.",
@@ -467,7 +472,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-demand-planning-retail",
+        id: "demand-planning-retail",
         title: "AI Demand Planning, Customer & Inventory Intelligence",
         titleLines: ["AI Demand Planning, Customer", "& Inventory Intelligence"],
         industryCaption: "Retailers, distributors and businesses managing large numbers of products and SKUs.",
@@ -493,12 +498,13 @@ export const caseStudyIndustries = [
     ],
   },
   {
-    id: "facilities",
+    id: "facilities-management",
     label: "Facilities Management",
+    blurb: "Incidents, SLAs and field-service operations.",
     heroImage: "/case-studies/facilities.jpg",
     studies: [
       {
-        id: "ai-incident-sla-operations",
+        id: "incident-sla-operations",
         title: "AI Incident, SLA & Operations Intelligence",
         titleLines: ["AI Incident, SLA", "& Operations Intelligence"],
         industryCaption: "Facilities management, integrated facilities management and field services.",
@@ -522,7 +528,7 @@ export const caseStudyIndustries = [
         ],
       },
       {
-        id: "ai-field-service-maintenance",
+        id: "field-service-maintenance",
         title: "AI Field Service, Maintenance & Work Documentation",
         titleLines: ["AI Field Service, Maintenance", "& Work Documentation"],
         industryCaption: "Facilities management, asset maintenance and field-service operations.",
@@ -550,10 +556,11 @@ export const caseStudyIndustries = [
   {
     id: "hr-services",
     label: "HR Services",
+    blurb: "CVs, matching, screening and onboarding.",
     heroImage: "/case-studies/hr-services.jpg",
     studies: [
       {
-        id: "ai-cv-preparation",
+        id: "cv-preparation",
         title: "AI CV Preparation & Standardisation",
         titleLines: ["AI CV Preparation", "& Standardisation"],
         industryCaption: "Recruitment agencies, staffing companies and HR teams.",
@@ -577,7 +584,7 @@ export const caseStudyIndustries = [
         note: "Based on the CV preparation/formatting workflow implemented for CES.",
       },
       {
-        id: "ai-cv-matching",
+        id: "cv-matching",
         title: "AI CV Matching & Candidate Shortlisting",
         titleLines: ["AI CV Matching", "& Candidate Shortlisting"],
         industryCaption: "Recruitment agencies, staffing companies and internal talent acquisition teams.",
@@ -601,7 +608,7 @@ export const caseStudyIndustries = [
         note: "Based on the CV-to-job matching workflows developed for CES.",
       },
       {
-        id: "ai-candidate-validation",
+        id: "candidate-validation",
         title: "AI Candidate Validation for High-Volume & Blue-Collar Hiring",
         titleLines: ["AI Candidate Validation for", "High-Volume & Blue-Collar Hiring"],
         industryCaption: "Security, logistics, facilities management, manpower services and other high-volume employers.",
@@ -627,7 +634,7 @@ export const caseStudyIndustries = [
         note: "Based on blue-collar recruitment workflows for Call Lade and Henderson, including driver/technical and security personnel recruitment.",
       },
       {
-        id: "ai-candidate-onboarding",
+        id: "candidate-onboarding",
         title: "AI Candidate Onboarding After Hiring",
         titleLines: ["AI Candidate Onboarding", "After Hiring"],
         industryCaption: "Recruitment, staffing, security, logistics and high-volume workforce employers.",
@@ -654,6 +661,47 @@ export const caseStudyIndustries = [
   },
 ] as const satisfies readonly CaseStudyIndustry[];
 
+export const industrySlugRedirects: Record<string, string> = {
+  "retail-fnb": "retail-and-fnb",
+  facilities: "facilities-management",
+};
+
+export const studySlugAliases: Record<string, string> = {
+  "last-mile-logistics-customer-support": "last-mile-support",
+  "freight-forwarder-data-processing": "freight-data-processing",
+  "air-cargo-quotation-automation": "air-cargo-quotation",
+  "logistics-project-email-intelligence": "project-email-intelligence",
+  "ai-demand-planning-inventory": "demand-planning-inventory",
+  "ai-patient-engagement": "patient-engagement",
+  "ai-patient-assessment": "patient-assessment",
+  "ai-patient-counselling": "patient-counselling",
+  "ai-contract-intelligence": "contract-intelligence",
+  "ai-costing-rfq-tender": "costing-rfq-tender",
+  "ai-drawing-regulatory-compliance": "drawing-compliance",
+  "construction-project-intelligence-hub": "project-intelligence-hub",
+  "ai-customer-enquiry-sales": "customer-enquiry-sales",
+  "proactive-ai-customer-engagement": "proactive-customer-engagement",
+  "ai-product-menu-recommendation": "product-menu-recommendation",
+  "ai-enquiry-to-order": "enquiry-to-order",
+  "ai-sales-marketing-lead-management": "sales-lead-management",
+  "ai-marketing-planning": "marketing-planning",
+  "ai-demand-planning-retail": "demand-planning-retail",
+  "ai-incident-sla-operations": "incident-sla-operations",
+  "ai-field-service-maintenance": "field-service-maintenance",
+  "ai-cv-preparation": "cv-preparation",
+  "ai-cv-matching": "cv-matching",
+  "ai-candidate-validation": "candidate-validation",
+  "ai-candidate-onboarding": "candidate-onboarding",
+};
+
+export function getIndustrySlugRedirect(slug: string) {
+  return industrySlugRedirects[slug];
+}
+
+export function resolveStudySlug(hash: string) {
+  return studySlugAliases[hash] ?? hash;
+}
+
 export function getCaseStudyIndustry(slug: string): CaseStudyIndustry | undefined {
   return caseStudyIndustries.find((industry) => industry.id === slug);
 }
@@ -679,6 +727,8 @@ export const caseStudiesNav = caseStudyIndustries.map((industry) => ({
 export const caseStudiesMenu = caseStudyIndustries.map((industry) => ({
   label: industry.label,
   href: industryHref(industry.id),
+  description: industry.blurb,
+  icon: industry.id,
 }));
 
 export const caseStudyCount = caseStudyIndustries.reduce((total, industry) => total + industry.studies.length, 0);
@@ -695,7 +745,7 @@ export const caseStudiesPage = {
     titleHighlight: "Case Studies",
     lead: "Six industries. Twenty-five workflows. Each study covers the business challenge, the AI implementation and the outcomes.",
     cta: { label: "Get a Demo", href: CONTACT_HREF },
-    secondaryCta: { label: "Browse industries", href: "#industries" },
+    secondaryCta: { label: "Browse industries", href: "#browse" },
   },
   cta: {
     headingLine1: "See a workflow that looks familiar?",

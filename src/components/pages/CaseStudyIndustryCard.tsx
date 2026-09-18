@@ -1,38 +1,54 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { caseStudyWord, industryHref, type CaseStudyIndustry } from "@/lib/pages/case-studies";
+import { caseStudyWord, industryHref, studyHref, type CaseStudyIndustry } from "@/lib/pages/case-studies";
+
+function studyLabel(title: string) {
+  return title.replace(/^Proactive AI /, "Proactive ").replace(/^AI /, "");
+}
 
 export function CaseStudyIndustryCard({ industry }: { industry: CaseStudyIndustry }) {
   const href = industryHref(industry.id);
   const count = industry.studies.length;
 
   return (
-    <article className="h-full">
-      <Link href={href} className="surface-card dest-card dest-card-media h-full text-ink">
-        <div className="dest-card-photo">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={industry.heroImage}
-            alt=""
-            style={industry.heroImagePosition ? { objectPosition: industry.heroImagePosition } : undefined}
-          />
+    <article className="cs-industry-card">
+      <Link href={href} className="cs-industry-photo" aria-hidden="true" tabIndex={-1}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={industry.heroImage}
+          alt=""
+          style={industry.heroImagePosition ? { objectPosition: industry.heroImagePosition } : undefined}
+        />
+      </Link>
+
+      <div className="cs-industry-body">
+        <div className="cs-industry-top">
+          <h2 className="cs-industry-title">
+            <Link href={href}>{industry.label}</Link>
+          </h2>
+          <p className="cs-industry-count">
+            {count} {caseStudyWord(count)}
+          </p>
         </div>
-        <p className="eyebrow">
-          {count} case {caseStudyWord(count)}
-        </p>
-        <h2 className="heading-3 mt-2">{industry.label}</h2>
-        <ul className="mt-5 flex-1 space-y-2">
+
+        <p className="cs-industry-blurb">{industry.blurb}</p>
+
+        <ul className="cs-industry-studies" aria-label={`Studies in ${industry.label}`}>
           {industry.studies.map((study) => (
-            <li key={study.id} className="text-sm leading-relaxed text-ink-muted">
-              {study.title}
+            <li key={study.id}>
+              <Link href={studyHref(industry.id, study.id)}>
+                <span>{studyLabel(study.title)}</span>
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
             </li>
           ))}
         </ul>
-        <span className="text-link mt-6">
-          <span>View case studies</span>
+
+        <Link href={href} className="cs-industry-cta">
+          <span>View all studies</span>
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </span>
-      </Link>
+        </Link>
+      </div>
     </article>
   );
 }

@@ -18,7 +18,7 @@ export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
 
   return (
     <section
-      id="community"
+      id="latest"
       ref={sectionRef}
       aria-labelledby={headingId}
       className="section-pad border-b border-line bg-background"
@@ -41,6 +41,7 @@ export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
             href={latestUpdates.linkedIn.href}
             variant="secondary"
             size="compact"
+            withArrow
             external
             ariaLabel="Follow PilotPulse on LinkedIn (opens in a new tab)"
           >

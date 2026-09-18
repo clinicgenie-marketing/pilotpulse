@@ -4,7 +4,7 @@ import { finalCtaContent } from "@/lib/home-content";
 export function FinalCTA() {
   return (
     <FinalCtaBand
-      id="contact"
+      id="get-started"
       eyebrow={finalCtaContent.eyebrow}
       heading={finalCtaContent.heading}
       body={finalCtaContent.body}

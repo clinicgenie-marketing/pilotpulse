@@ -1,26 +1,54 @@
+import { Linkedin } from "lucide-react";
+import type { TeamPerson } from "@/lib/pages/about";
+
 export function ProfileCard({
   name,
   title,
   initials,
+  linkedin,
+  photo,
   bullets,
-}: {
-  name: string;
-  title: string;
-  initials: string;
-  bullets: readonly string[];
-}) {
+}: TeamPerson) {
   return (
-    <article className="profile-card flex h-full flex-col p-6">
-      <div className="grid aspect-square max-h-40 w-full place-items-center rounded-[12px] bg-primary-soft">
-        <span className="heading-2 text-primary">{initials}</span>
+    <article className="team-card" tabIndex={0} aria-label={`${name}, ${title}`}>
+      <div className="team-card-media">
+        {photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={photo} alt="" />
+        ) : (
+          <div className="team-card-fallback" aria-hidden="true">
+            <span>{initials}</span>
+          </div>
+        )}
       </div>
-      <h3 className="mt-5 text-xl font-semibold text-ink">{name}</h3>
-      <p className="mt-1 text-sm font-semibold text-primary">{title}</p>
-      <ul className="mt-4 space-y-2 text-base leading-relaxed text-ink">
-        {bullets.map((bullet) => (
-          <li key={bullet}>• {bullet}</li>
-        ))}
-      </ul>
+
+      {bullets.length > 0 ? (
+        <div className="team-card-bio">
+          <ul>
+            {bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      <div className="team-card-plate">
+        <div className="team-card-meta">
+          <h3 className="team-card-name">{name}</h3>
+          <p className="team-card-role">{title}</p>
+        </div>
+        {linkedin ? (
+          <a
+            href={linkedin}
+            className="team-card-linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${name} on LinkedIn`}
+          >
+            <Linkedin className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }

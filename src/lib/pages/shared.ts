@@ -14,4 +14,4 @@ export const innerFinalCta = {
   trustChips: ["IMDA pre approved", "Singapore hosted", "PDPA aligned"] as const,
 };
 
-export const LEGAL_UPDATED = "Last updated 9 September 2026";
+export const LEGAL_UPDATED = "Last updated 18 September 2026";

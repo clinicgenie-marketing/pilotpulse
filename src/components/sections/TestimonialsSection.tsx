@@ -72,6 +72,20 @@ export function TestimonialsSection({
   );
 }
 
+function QuoteMark() {
+  return (
+    <svg
+      className="testimonial-card-mark"
+      viewBox="0 0 86 70"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M0 0h34v28L10 70H0V0Z" />
+      <path d="M48 0h34v28L58 70H48V0Z" />
+    </svg>
+  );
+}
+
 function TestimonialCard({ quote, clone }: { quote: Testimonial; clone: boolean }) {
   const logo = COMPANY_LOGOS[quote.company];
   const name = quote.name ?? quote.role;
@@ -79,7 +93,7 @@ function TestimonialCard({ quote, clone }: { quote: Testimonial; clone: boolean 
 
   return (
     <article
-      className="testimonial-card flex shrink-0 flex-col rounded-card p-7 sm:p-8"
+      className="testimonial-card flex shrink-0 flex-col p-7 sm:p-8"
       aria-hidden={clone}
     >
       {logo ? (
@@ -93,10 +107,8 @@ function TestimonialCard({ quote, clone }: { quote: Testimonial; clone: boolean 
       ) : (
         <p className="text-[13px] font-semibold text-ink">{quote.company}</p>
       )}
-      <p className="mt-8 font-display text-5xl leading-none text-primary" aria-hidden="true">
-        “
-      </p>
-      <blockquote className="mt-2 flex-1 text-base leading-relaxed text-ink">
+      <QuoteMark />
+      <blockquote className="mt-2 flex-1 text-[16px] leading-relaxed text-ink-muted">
         {quote.quote}
       </blockquote>
       <footer className="mt-8">

@@ -2,7 +2,7 @@ import { agentWorkflow } from "@/lib/home-content";
 
 export function AgentWorkflow() {
   return (
-    <section id="agentic-vs-chatbot" className="section-pad border-b border-line bg-surface">
+    <section id="how-it-works" className="section-pad border-b border-line bg-surface">
       <div className="container-edge">
         <div className="max-w-[720px]">
           <p className="eyebrow">{agentWorkflow.eyebrow}</p>

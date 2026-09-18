@@ -1,3 +1,12 @@
+export type TeamPerson = {
+  name: string;
+  title: string;
+  initials: string;
+  bullets: readonly string[];
+  linkedin?: string;
+  photo?: string;
+};
+
 export const aboutPage = {
   meta: {
     title: "About PilotPulse",
@@ -5,11 +14,12 @@ export const aboutPage = {
   },
   hero: {
     eyebrow: "About Us",
-    titleBefore: "We are ",
+    titleBefore: "We are",
     titleHighlight: "PilotPulse",
     subtitle: "AI that understands how your business runs",
+    secondaryCta: { label: "Watch our story", href: "/about#our-story" },
     paragraphs: [
-      "PilotPulse customises autonomous AI that efficiently executes everyday's repetitive workflows — quoting, screening, scheduling, and follow-ups, seamlessly embedded into your human team's operations.",
+      "PilotPulse customises autonomous AI that efficiently executes everyday's repetitive workflows. Quoting, screening, scheduling, and follow-ups, seamlessly embedded into your human team's operations.",
       "We redesign businesses to work faster, serve better, and grow with less friction.",
       "We help your teams learn to work seamlessly alongside AI agents that augment their productivity, rather than replacing them.",
     ],
@@ -44,6 +54,8 @@ export const aboutPage = {
         name: "Soh Chong Kian",
         title: "Founder & CEO",
         initials: "CK",
+        linkedin: "https://www.linkedin.com/in/chongkian",
+        photo: "/team/soh-chong-kian.jpg",
         bullets: [
           "Technopreneur with 12+ years experience in mobility, edtech and healthcare",
           "Successfully scaled platforms with 100k+ users",
@@ -54,6 +66,7 @@ export const aboutPage = {
         name: "Wu Tian Yee",
         title: "Founder & CTO",
         initials: "TY",
+        linkedin: "https://www.linkedin.com/in/tianyee",
         bullets: [
           "Ex-product director at listed tech firm, 11+ years tech R&D experience",
           "Previous ventures in US and SEA",
@@ -64,13 +77,14 @@ export const aboutPage = {
         name: "Scott Tan",
         title: "COO & Consulting Lead",
         initials: "ST",
+        linkedin: "https://www.linkedin.com/in/scott-tan-sg",
         bullets: [
           "Ex-Accenture business architect, principal director and delivery/consulting lead. 10+ years experience in design thinking, project management, technology implementation and leading various Transformation Offices",
           "15+ years experience in healthcare, trade and logistics, technology and professional services",
           "Stanford MSc in Electrical Engineering (machine learning)",
         ],
       },
-    ],
+    ] satisfies TeamPerson[],
   },
   advisors: {
     eyebrow: "Our advisors",
@@ -79,6 +93,8 @@ export const aboutPage = {
         name: "Dr Ben Leong",
         title: "Advisor",
         initials: "BL",
+        linkedin: "https://www.linkedin.com/in/benleong",
+        photo: "/team/ben-leong.jpg",
         bullets: [
           "Director at AI Centre for Educational Technologies, AI.sg",
           "Associate Professor of Computer Science with the School of Computing, NUS, 15+ years in edtech AI",
@@ -89,11 +105,13 @@ export const aboutPage = {
         name: "Dr Lin Shaowei",
         title: "Advisor",
         initials: "LS",
+        linkedin: "https://www.linkedin.com/in/shaoweilin",
+        photo: "/team/lin-shaowei.jpg?v=2",
         bullets: [
           "Director of Research, Topos Institute; Head of AI at Awecom",
           "Former SUTD professor; UC Berkeley PhD in advanced AI systems",
         ],
       },
-    ],
+    ] satisfies TeamPerson[],
   },
 };

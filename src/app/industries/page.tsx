@@ -18,6 +18,7 @@ export default function IndustriesPage() {
   return (
     <SiteChrome>
       <PageHero
+        backgroundImage="/industries/hero.jpg"
         title={
           <>
             {page.hero.titleBefore}

@@ -13,17 +13,14 @@ export const digitalWorkersPage = {
     lead: "Each PilotPulse Digital Worker is designed for a specific job, connected to your existing systems, and supported by human oversight.",
     chips: ["In production", "WhatsApp · email · web", "Human oversight"] as const,
     cta: { label: "Get a Demo", href: CONTACT_HREF },
-    secondaryCta: { label: "See them work", href: "#dashboard" },
-    roster: {
-      eyebrow: "Your digital team",
-      heading: "Dedicated roles, already live.",
-    },
+    secondaryCta: { label: "See them work", href: "#workers" },
   },
-  workflow: {
-    eyebrow: "In production",
-    headingBefore: "Agentic AI across every ",
-    headingHighlight: "workflow.",
-    lead: "Not a chatbot. Your AI worker takes action across WhatsApp, email, and web, checking systems, booking slots, escalating intelligently, and closing the loop without your team lifting a finger.",
+  showcase: {
+    id: "workers",
+    eyebrow: "The digital team",
+    headingBefore: "Six workers. ",
+    headingHighlight: "Six jobs.",
+    lead: "Choose a Digital Worker to see the job it is built for, the work it handles and where it is already in use.",
   },
   security: {
     eyebrow: "Architecture and security",

@@ -6,6 +6,7 @@ import {
   site,
 } from "@/lib/content";
 import { caseStudiesMenu } from "@/lib/pages/case-studies";
+import { LEGAL_HREF } from "@/lib/pages/legal";
 
 export const WHATSAPP_DEMO_HREF =
   "https://wa.me/6598768216?text=Hi%20PilotPulse%2C%20I%27d%20like%20a%20demo";
@@ -13,6 +14,8 @@ export const WHATSAPP_DEMO_HREF =
 export type NavChild = {
   label: string;
   href: string;
+  description?: string;
+  icon?: string;
 };
 
 export type NavLink = {
@@ -48,7 +51,7 @@ export const heroContent = {
   support:
     "PilotPulse designs, deploys and manages AI digital workers that complete real tasks across your existing business systems.",
   primaryCta: { label: "Show Us Your Workflow", href: CONTACT_HREF },
-  secondaryCta: { label: "Meet Your Digital Team", href: "/#products" },
+  secondaryCta: { label: "Meet Your Digital Team", href: "/#digital-workers" },
   demo: {
     badge: "Live · Locker network",
     request: "Parcel shows delivered but locker 4B is empty. Order #LK-2291.",
@@ -224,7 +227,7 @@ export const workflowDemos: WorkflowDemoItem[] = [
     result: "~20 min saved per candidate",
   },
   {
-    id: "fnb",
+    id: "food-service",
     label: "Food and Beverage",
     icon: "utensils",
     badge: "Live · Restaurant Group",
@@ -336,6 +339,7 @@ export type DigitalWorkerOffering = {
   number: "01" | "02" | "03" | "04" | "05" | "06";
   title: string;
   headline: string;
+  does?: string;
   bullets: readonly [string, string, string];
   channels?: string;
   examples: readonly string[];
@@ -383,6 +387,7 @@ export const digitalWorkforce = {
   headingBefore: "AI workers built for",
   headingAccent: "real work",
   sub: "Digital Workers handle business workflows across conversations, documents and systems, completing tasks and escalating to your team when human judgement is needed.",
+  cta: { label: "See the digital team", href: "/digital-workers" },
   workers: [
     {
       code: "DW-01",
@@ -431,6 +436,7 @@ export const digitalWorkforce = {
       number: "01",
       title: "Customer Engagement AI",
       headline: "Engage customers. Answer enquiries. Drive the next action.",
+      does: "Handles customer enquiries from first contact to next step. Answers questions, recommends services, qualifies leads and books appointments.",
       bullets: [
         "Enquiries & customer support",
         "Recommendations & lead qualification",
@@ -443,10 +449,11 @@ export const digitalWorkforce = {
       icon: "message",
     },
     {
-      id: "sales-quotation",
+      id: "sales",
       number: "02",
       title: "Sales & Quotation AI",
       headline: "Turn enquiries and RFQs into quotes faster.",
+      does: "Reviews sales requirements and RFQs, gathers key details, supports pricing, prepares quotes and proposals, follows up and updates sales systems.",
       bullets: [
         "RFQ & requirements analysis",
         "Costing, pricing & quotation generation",
@@ -462,6 +469,7 @@ export const digitalWorkforce = {
       number: "03",
       title: "Recruitment AI",
       headline: "Screen, qualify and coordinate candidates at scale.",
+      does: "Supports recruitment from CV intake to onboarding. Screens and qualifies candidates conversationally, coordinates interviews and manages next steps.",
       bullets: [
         "CV matching & shortlisting",
         "Conversational candidate screening",
@@ -477,6 +485,7 @@ export const digitalWorkforce = {
       number: "04",
       title: "Operations AI",
       headline: "Monitor everyday operations and keep work moving.",
+      does: "Monitors operational information across conversations, emails, documents and systems. Updates records, tracks work, flags exceptions and highlights what needs attention.",
       bullets: [
         "Workflow, incident & status tracking",
         "Automated system updates & actions",
@@ -492,6 +501,7 @@ export const digitalWorkforce = {
       number: "05",
       title: "Procurement AI",
       headline: "Source, compare and procure faster.",
+      does: "Supports sourcing and supplier evaluation by retrieving pricing history, preparing RFQs, processing responses, comparing quotes and informing procurement decisions.",
       bullets: [
         "Supplier RFQs & follow-up",
         "Quote & historical price comparison",
@@ -504,10 +514,11 @@ export const digitalWorkforce = {
       icon: "compare",
     },
     {
-      id: "project-intelligence",
+      id: "projects",
       number: "06",
       title: "Project Intelligence AI",
-      headline: "Know where every project stands — and what needs attention.",
+      headline: "Know where every project stands and what needs attention.",
+      does: "Consolidates project information to track progress, milestones, actions and risks. Gives teams a current project view without manual searches or status reports.",
       bullets: [
         "Progress & milestone tracking",
         "Risks, delays & outstanding actions",
@@ -638,14 +649,19 @@ export const platformBehind = {
       summary: "Built to run reliably in everyday operations.",
       bullets: [
         "Secure cloud infrastructure",
-        "Microservices and databases",
+        "Microservices and databases",    
         "Scalability and failover",
-        "Monitoring and observability",
-        "Client data isolation",
+        "Monitoring and observability",   
+        "Client data isolation",  
         "Cloud, private or on-premise deployment",
       ],
     },
   ] satisfies PlatformLayer[],
+};
+
+export const digitalWorkerOfferingAliases: Record<string, string> = {
+  "sales-quotation": "sales",
+  "project-intelligence": "projects",
 };
 
 export type IntegrationName =
@@ -1003,7 +1019,7 @@ export const latestUpdates = {
   eyebrow: "From the field",
   heading: "Built in practice. Shared in the open.",
   sub: "Deployment notes, product thinking and ecosystem updates from the PilotPulse team.",
-  linkedIn: { label: "Follow PilotPulse on LinkedIn ↗", href: LINKEDIN_HREF },
+  linkedIn: { label: "Follow PilotPulse on LinkedIn", href: LINKEDIN_HREF },
   stories: [
     {
       category: "Build log",
@@ -1076,18 +1092,20 @@ export const homeFooter = {
     {
       heading: "Your Digital Workforce",
       links: [
-        { label: "EngageAssist", href: "/#products" },
-        { label: "HireAssist", href: "/#products" },
-        { label: "AI Document Intelligence", href: "/#products" },
-        { label: "Voice AI", href: "/#products" },
+        { label: "Customer Engagement", href: "/digital-workers#customer-engagement" },
+        { label: "Sales & Quotation", href: "/digital-workers#sales" },
+        { label: "Recruitment", href: "/digital-workers#recruitment" },
+        { label: "Operations", href: "/digital-workers#operations" },
+        { label: "Procurement", href: "/digital-workers#procurement" },
+        { label: "Project Intelligence", href: "/digital-workers#projects" },
       ],
     },
     {
       heading: "Services",
       links: [
-        { label: "On-Premises AI", href: "/#products" },
-        { label: "CTO-as-a-Service", href: "/#products" },
-        { label: "AI Audit", href: "/#products" },
+        { label: "On-Premises AI", href: "/industries#government" },
+        { label: "CTO-as-a-Service", href: "/contact" },
+        { label: "AI Audit", href: "/contact" },
       ],
     },
     {
@@ -1097,8 +1115,8 @@ export const homeFooter = {
         { label: "Logistics", href: "/case-studies/logistics" },
         { label: "Healthcare", href: "/case-studies/healthcare" },
         { label: "Construction", href: "/case-studies/construction" },
-        { label: "Retail & F&B", href: "/case-studies/retail-fnb" },
-        { label: "Facilities Management", href: "/case-studies/facilities" },
+        { label: "Retail & F&B", href: "/case-studies/retail-and-fnb" },
+        { label: "Facilities Management", href: "/case-studies/facilities-management" },
         { label: "HR Services", href: "/case-studies/hr-services" },
       ],
     },
@@ -1122,8 +1140,7 @@ export const homeFooter = {
         { label: "About", href: "/about" },
         { label: "Partnerships", href: "/#partnerships" },
         { label: "Contact", href: CONTACT_HREF },
-        { label: "Privacy", href: "/privacy" },
-        { label: "Terms", href: "/terms" },
+        { label: "Terms & Privacy", href: LEGAL_HREF },
         { label: "WhatsApp", href: WHATSAPP_HREF, external: true },
         { label: "Careers", href: "mailto:careers@pilotpulse.ai" },
       ],
