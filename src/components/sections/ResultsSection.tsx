@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { results, type ResultMetric } from "@/lib/home-content";
+import { AccentHeading } from "@/components/ui/PageHero";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -26,7 +27,9 @@ export function ResultsSection() {
           transition={{ duration: reduceMotion ? 0 : 0.32, ease: EASE }}
         >
           <p className="eyebrow">{results.eyebrow}</p>
-          <h2 className="heading-2 mt-3">{results.heading}</h2>
+          <h2 className="heading-2 mt-3">
+            <AccentHeading text={results.heading} accent="More capacity to move." />
+          </h2>
           <p className="lead mt-4 text-ink-muted">{results.sub}</p>
         </motion.div>
 

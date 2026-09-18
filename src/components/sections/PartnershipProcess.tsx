@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { partnershipProcess } from "@/lib/home-content";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { AccentHeading } from "@/components/ui/PageHero";
 
 export function PartnershipProcess() {
   return (
@@ -9,7 +10,9 @@ export function PartnershipProcess() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[640px]">
             <p className="eyebrow">{partnershipProcess.eyebrow}</p>
-            <h2 className="heading-2 mt-3">{partnershipProcess.heading}</h2>
+            <h2 className="heading-2 mt-3">
+              <AccentHeading text={partnershipProcess.heading} accent="with you." />
+            </h2>
             <p className="lead mt-4 text-ink-muted">{partnershipProcess.sub}</p>
           </div>
           <CTAButton href={partnershipProcess.cta.href} withArrow>

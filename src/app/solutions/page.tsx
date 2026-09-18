@@ -12,7 +12,7 @@ import { ThinkingAiOrbit } from "@/components/pages/ThinkingAiOrbit";
 import { SolutionsHeroPreview } from "@/components/sections/SolutionsHeroPreview";
 import { AnchorNav } from "@/components/ui/AnchorNav";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
-import { Em, PageHero } from "@/components/ui/PageHero";
+import { Em, AccentHeading, PageHero } from "@/components/ui/PageHero";
 import { solutionsNav, solutionsPage } from "@/lib/pages/solutions";
 
 export const metadata: Metadata = {
@@ -60,7 +60,9 @@ export default function SolutionsPage() {
           <p className="eyebrow">{page.engagement.eyebrow}</p>
           <h2 className="heading-2 mt-4">
             {page.engagement.headingLine1}
-            <span className="block">{page.engagement.headingLine2}</span>
+            <span className="block">
+              <AccentHeading text={page.engagement.headingLine2} accent="intelligent automation" />
+            </span>
           </h2>
           <p className="lead mt-4 max-w-[65ch]">{page.engagement.lead}</p>
           <ul className="mt-12 grid gap-8 md:grid-cols-3">
@@ -85,7 +87,9 @@ export default function SolutionsPage() {
           <QuotationMock />
           <div>
             <p className="eyebrow">{page.sales.eyebrow}</p>
-            <h2 className="heading-2 mt-4">{page.sales.heading}</h2>
+            <h2 className="heading-2 mt-4">
+              <AccentHeading text={page.sales.heading} accent="your workflow" />
+            </h2>
             <div className="mt-8 space-y-8">
               {page.sales.blocks.map((block) => (
                 <div key={block.title}>
@@ -101,7 +105,9 @@ export default function SolutionsPage() {
       <section id={page.support.id} className="section-pad scroll-mt-28 border-b border-line bg-surface">
         <div className="container-edge">
           <p className="eyebrow">{page.support.eyebrow}</p>
-          <h2 className="heading-2 mt-4 max-w-[22ch]">{page.support.heading}</h2>
+          <h2 className="heading-2 mt-4 max-w-[22ch]">
+            <AccentHeading text={page.support.heading} accent="when it matters." />
+          </h2>
           <div className="mt-10 max-w-[65ch]">
             <h3 className="text-xl font-semibold text-ink">{page.support.handling.title}</h3>
             <p className="mt-2 text-base leading-relaxed text-ink">{page.support.handling.body}</p>
@@ -155,7 +161,9 @@ export default function SolutionsPage() {
           />
           <div>
             <p className="eyebrow">{page.projects.eyebrow}</p>
-            <h2 className="heading-2 mt-4">{page.projects.heading}</h2>
+            <h2 className="heading-2 mt-4">
+              <AccentHeading text={page.projects.heading} accent="Event Tracking" />
+            </h2>
             <p className="lead mt-4">{page.projects.body}</p>
           </div>
         </div>
@@ -166,8 +174,8 @@ export default function SolutionsPage() {
           eyebrow={page.advanced.eyebrow}
           heading={
             <>
-              <span>Thinking</span>
-              <span>AI Agents</span>
+              <span className="heading-gradient">Thinking</span>
+              <span> AI Agents</span>
             </>
           }
           lead={page.advanced.lead}
@@ -176,7 +184,7 @@ export default function SolutionsPage() {
       </section>
 
       <FinalCtaBand
-        heading={page.cta.heading}
+        heading={<AccentHeading text={page.cta.heading} accent="Better Experiences?" />}
         body={page.cta.body}
         primaryCta={page.cta.primaryCta}
       />

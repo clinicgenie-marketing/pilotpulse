@@ -3,7 +3,7 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { InnerFinalCta } from "@/components/pages/InnerFinalCta";
 import { TeamCarousel } from "@/components/pages/TeamCarousel";
-import { Em, PageHero } from "@/components/ui/PageHero";
+import { Em, AccentHeading, PageHero } from "@/components/ui/PageHero";
 import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 import { CONTACT_HREF } from "@/lib/content";
 import { aboutPage } from "@/lib/pages/about";
@@ -82,7 +82,7 @@ export default function AboutPage() {
           </div>
           <div>
             <h3 className="heading-3">
-              <span className="heading-gradient">{page.featuredVideo.heading}</span>
+              <AccentHeading text={page.featuredVideo.heading} accent="people trust" />
             </h3>
             <p className="lead mt-3">{page.featuredVideo.lead}</p>
             <div className="mt-6">
@@ -112,7 +112,7 @@ export default function AboutPage() {
       <section className="team-section section-pad border-b border-line bg-background">
         <TeamCarousel
           eyebrow={page.team.eyebrow}
-          heading={page.team.heading}
+          heading={<AccentHeading text={page.team.heading} accent="operational clarity" />}
           lead={page.team.body}
           people={[...page.leadership.people, ...page.advisors.people]}
         />

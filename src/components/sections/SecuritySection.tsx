@@ -46,7 +46,7 @@ export function SecuritySection({
             ) : (
               <>
                 {heading}
-                <span className="block">{headingLine}</span>
+                <span className="block heading-gradient">{headingLine}</span>
               </>
             )}
           </h2>

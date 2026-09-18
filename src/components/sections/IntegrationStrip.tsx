@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { AccentHeading } from "@/components/ui/PageHero";
 import { IntegrationLogo, INTEGRATION_BRAND } from "@/components/icons/IntegrationLogos";
 import { integrations, type IntegrationName } from "@/lib/home-content";
 
@@ -16,7 +17,9 @@ export function IntegrationStrip() {
       <div className="container-edge">
         <div className="max-w-3xl">
           <p className="eyebrow">{integrations.eyebrow}</p>
-          <h2 className="heading-2 mt-3 max-w-3xl">{integrations.heading}</h2>
+          <h2 className="heading-2 mt-3 max-w-3xl">
+            <AccentHeading text={integrations.heading} accent="you already use." />
+          </h2>
           <p className="lead mt-4 max-w-[54ch]">{integrations.body}</p>
         </div>
 

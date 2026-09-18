@@ -3,6 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { CaseStudyIndustryHero } from "@/components/pages/CaseStudyIndustryHero";
 import { CaseStudyIndustryView } from "@/components/pages/CaseStudyIndustryView";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
+import { AccentHeading } from "@/components/ui/PageHero";
 import {
   caseStudiesPage,
   caseStudyIndustries,
@@ -59,8 +60,10 @@ export default function CaseStudyIndustryPage({ params }: { params: IndustryPara
       <FinalCtaBand
         heading={
           <>
-            {page.cta.headingLine1}
-            <span className="block">{page.cta.headingLine2}</span>
+            <AccentHeading text={page.cta.headingLine1} accent="looks familiar?" />
+            <span className="block">
+              <AccentHeading text={page.cta.headingLine2} accent="in yours." />
+            </span>
           </>
         }
         headingClassName="max-w-[28ch]"

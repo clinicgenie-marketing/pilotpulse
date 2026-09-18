@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { AccentHeading } from "@/components/ui/PageHero";
 import { MediaPlaceholder } from "@/components/ui/MediaPlaceholder";
 import { latestUpdates, type CommunityStory } from "@/lib/home-content";
 
@@ -33,7 +34,7 @@ export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
           <div className="max-w-2xl">
             <p className="eyebrow">{latestUpdates.eyebrow}</p>
             <h2 id={headingId} className="heading-2 mt-3">
-              {latestUpdates.heading}
+              <AccentHeading text={latestUpdates.heading} accent="in the open." />
             </h2>
             <p className="lead mt-3 text-ink-muted">{latestUpdates.sub}</p>
           </div>

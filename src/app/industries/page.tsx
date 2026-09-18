@@ -4,7 +4,7 @@ import { IndustrySection } from "@/components/pages/IndustrySection";
 import { IndustryStack } from "@/components/pages/IndustryStack";
 import { AnchorNav } from "@/components/ui/AnchorNav";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
-import { Em, PageHero } from "@/components/ui/PageHero";
+import { Em, AccentHeading, PageHero } from "@/components/ui/PageHero";
 import { industriesNav, industriesPage } from "@/lib/pages/industries";
 
 export const metadata: Metadata = {
@@ -38,7 +38,9 @@ export default function IndustriesPage() {
         heading={
           <>
             {page.cta.headingLine1}
-            <span className="block whitespace-nowrap">{page.cta.headingLine2}</span>
+            <span className="block whitespace-nowrap">
+              <AccentHeading text={page.cta.headingLine2} accent="still be built." />
+            </span>
           </>
         }
         headingClassName="max-w-[36ch]"

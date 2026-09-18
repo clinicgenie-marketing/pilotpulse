@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Aurora from "@/components/ui/Aurora";
+import { AccentHeading } from "@/components/ui/PageHero";
 import { homeTestimonials, type Testimonial } from "@/lib/home-content";
 
 const AURORA_STOPS = ["#4638F5", "#3686F2", "#B9B3FB"];
@@ -42,7 +43,9 @@ export function TestimonialsSection({
         <div className="container-edge">
           <div className="max-w-[640px]">
             <p className="eyebrow">{eyebrow}</p>
-            <h2 className="heading-2 mt-3 text-ink">{heading}</h2>
+            <h2 className="heading-2 mt-3 text-ink">
+              <AccentHeading text={heading} accent="our clients say." />
+            </h2>
           </div>
         </div>
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CaseStudiesHeroPanel } from "@/components/pages/CaseStudiesHeroPanel";
 import { CaseStudyIndustryCard } from "@/components/pages/CaseStudyIndustryCard";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
-import { Em, PageHero } from "@/components/ui/PageHero";
+import { AccentHeading, PageHero } from "@/components/ui/PageHero";
 import { caseStudiesPage, caseStudyIndustries } from "@/lib/pages/case-studies";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function CaseStudiesPage() {
     <>
       <PageHero
         eyebrow={page.hero.eyebrow}
-        title={<Em>{page.hero.titleHighlight}</Em>}
+        title={page.hero.titleHighlight}
         lead={page.hero.lead}
         primaryCta={page.hero.cta}
         secondaryCta={page.hero.secondaryCta}
@@ -27,7 +27,9 @@ export default function CaseStudiesPage() {
       <section id="browse" className="section-pad scroll-mt-28 border-b border-line bg-background">
         <div className="container-edge">
           <p className="eyebrow">Industries</p>
-          <h2 className="heading-2 mt-3 max-w-[18ch]">Choose a vertical.</h2>
+          <h2 className="heading-2 mt-3 max-w-[18ch]">
+            <AccentHeading text="Choose a vertical." accent="a vertical." />
+          </h2>
           <p className="lead mt-4 max-w-[65ch]">
             Each page covers the business challenge, the AI implementation and the outcomes for that industry.
           </p>
@@ -42,8 +44,10 @@ export default function CaseStudiesPage() {
       <FinalCtaBand
         heading={
           <>
-            {page.cta.headingLine1}
-            <span className="block">{page.cta.headingLine2}</span>
+            <AccentHeading text={page.cta.headingLine1} accent="looks familiar?" />
+            <span className="block">
+              <AccentHeading text={page.cta.headingLine2} accent="in yours." />
+            </span>
           </>
         }
         headingClassName="max-w-[28ch]"

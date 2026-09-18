@@ -6,6 +6,19 @@ export function Em({ children }: { children: ReactNode }) {
   return <span className="heading-gradient">{children}</span>;
 }
 
+export function AccentHeading({ text, accent }: { text: string; accent: string }) {
+  const index = text.lastIndexOf(accent);
+  if (index < 0) return <>{text}</>;
+
+  return (
+    <>
+      {text.slice(0, index)}
+      <Em>{accent}</Em>
+      {text.slice(index + accent.length)}
+    </>
+  );
+}
+
 type HeroCta = {
   label: string;
   href: string;

@@ -224,7 +224,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--pp-accent-text);
+    color: var(--pp-primary);
   }
 
   .section-intro {
@@ -1045,10 +1045,12 @@
     margin-top: 3rem;
     align-items: start;
     flex: 1;
+    min-height: 0;
   }
 
   .platform-copy {
     min-width: 0;
+    min-height: 0;
   }
 
   .platform-iceberg {
@@ -1178,6 +1180,8 @@
   }
 
   .platform-row {
+    flex-shrink: 0;
+    overflow-anchor: none;
     border-bottom: 1px solid color-mix(in srgb, var(--pp-primary) 10%, var(--pp-border));
     transition:
       background-color 220ms ease,
@@ -1283,6 +1287,7 @@
   .platform-panel {
     display: grid;
     grid-template-rows: 0fr;
+    align-content: start;
     transition: grid-template-rows 220ms ease;
   }
 
@@ -1324,9 +1329,11 @@
 
   @media (min-width: 900px) {
     .platform-section.section-pad {
-      min-height: 100vh;
-      min-height: 100dvh;
-      height: auto;
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100vh;
+      max-height: 100dvh;
+      overflow: hidden;
       scroll-margin-top: 0;
       padding-block: 5.5rem 1.5rem;
     }
@@ -1338,6 +1345,7 @@
       row-gap: 0;
       margin-top: 1rem;
       flex: 1;
+      min-height: 0;
       align-items: stretch;
     }
 
@@ -1347,13 +1355,23 @@
       display: flex;
       height: 100%;
       min-height: 0;
-      align-items: stretch;
+      align-items: start;
+      overflow: hidden;
     }
 
     .platform-copy {
       grid-column: 2;
       grid-row: 2;
       min-height: 0;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+    }
+
+    .platform-copy::-webkit-scrollbar {
+      display: none;
     }
 
     .platform-iceberg {
@@ -3730,8 +3748,8 @@
   font-family: var(--pp-font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--pp-accent-text);
+  letter-spacing: 0.12em;
+  color: var(--pp-primary);
 }
 
 .legal-prose p,
@@ -4033,7 +4051,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--pp-accent-text);
+  color: var(--pp-primary);
 }
 
 .contact-details-company {
@@ -5369,11 +5387,13 @@ a.trust-chip.is-active {
 
 .case-study-jump-label {
   margin: 0;
+  font-family: var(--pp-font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
+  line-height: 1.75;
   text-transform: uppercase;
-  color: var(--pp-text-muted);
+  color: var(--pp-primary);
 }
 
 .case-study-jump-list {
@@ -5654,12 +5674,13 @@ a.trust-chip.is-active {
 
 .case-study-kicker {
   grid-area: kicker;
+  font-family: var(--pp-font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.6;
+  letter-spacing: 0.12em;
+  line-height: 1.75;
   text-transform: uppercase;
-  color: var(--pp-accent-text);
+  color: var(--pp-primary);
 }
 
 .case-study-title {
@@ -5684,12 +5705,13 @@ a.trust-chip.is-active {
 .case-study-industry-label {
   grid-area: label;
   margin: 1rem 0 0;
+  font-family: var(--pp-font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.6;
+  letter-spacing: 0.12em;
+  line-height: 1.75;
   text-transform: uppercase;
-  color: var(--pp-accent-text);
+  color: var(--pp-primary);
 }
 
 .case-study-industry-value {
@@ -5917,12 +5939,13 @@ a.trust-chip.is-active {
 }
 
 .case-study-hero-kicker {
+  font-family: var(--pp-font-body);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.6;
+  letter-spacing: 0.12em;
+  line-height: 1.75;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--pp-primary);
 }
 
 .case-study-hero-title {

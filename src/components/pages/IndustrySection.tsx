@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Em } from "@/components/ui/PageHero";
 import type { IndustryBlock } from "@/lib/pages/industries";
 
 export function IndustrySection({
@@ -32,9 +33,9 @@ export function IndustrySection({
         <div className="industry-section-body">
           <p className="eyebrow">{industry.eyebrow}</p>
           <h2 className="heading-2 mt-4 text-ink">
-            {industry.heading.map((line) => (
+            {industry.heading.map((line, index) => (
               <span key={line} className="block">
-                {line}
+                {index === industry.heading.length - 1 ? <Em>{line}</Em> : line}
               </span>
             ))}
           </h2>

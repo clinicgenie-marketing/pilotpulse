@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import { IcebergIllustration } from "@/components/sections/IcebergIllustration";
+import { AccentHeading } from "@/components/ui/PageHero";
 import {
   platformBehind,
   type PlatformBullet,
@@ -102,6 +103,7 @@ function LayerRow({
 export function PlatformSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const copyRef = useRef<HTMLDivElement | null>(null);
   const inView = useInView(sectionRef, { once: true, amount: 0.16 });
   const touring = useInView(sectionRef, { amount: 0.4 });
   const show = Boolean(reduceMotion || inView);
@@ -122,6 +124,30 @@ export function PlatformSection() {
 
     return () => window.clearTimeout(timer);
   }, [activeId, paused, reduceMotion, touring, userLocked]);
+
+  useEffect(() => {
+    const container = copyRef.current;
+    if (!container || !activeId) return undefined;
+
+    const keepOpenRowInPane = () => {
+      const row = container.querySelector<HTMLElement>(".platform-row[data-open='true']");
+      if (!row) return;
+      const rowRect = row.getBoundingClientRect();
+      const box = container.getBoundingClientRect();
+      if (rowRect.bottom > box.bottom) {
+        container.scrollTop += rowRect.bottom - box.bottom + 12;
+      } else if (rowRect.top < box.top) {
+        container.scrollTop -= box.top - rowRect.top + 12;
+      }
+    };
+
+    const frame = window.requestAnimationFrame(keepOpenRowInPane);
+    const timer = window.setTimeout(keepOpenRowInPane, reduceMotion ? 0 : 240);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [activeId, reduceMotion]);
 
   const lockAndSet = (id: PlatformLayerId | null) => {
     setUserLocked(true);
@@ -155,7 +181,7 @@ export function PlatformSection() {
         >
           <p className="eyebrow platform-eyebrow">{platformBehind.eyebrow}</p>
           <h2 id={headingId} className="heading-2 mt-2">
-            {platformBehind.heading}
+            <AccentHeading text={platformBehind.heading} accent="every Digital Worker" />
           </h2>
           <p className="lead mt-3 platform-lead">{platformBehind.sub}</p>
         </motion.div>
@@ -170,7 +196,7 @@ export function PlatformSection() {
             <IcebergIllustration activeId={activeId} onSelect={select} />
           </motion.div>
 
-          <div className="platform-copy">
+          <div className="platform-copy" ref={copyRef}>
             <motion.ul
               className="platform-accordion"
               initial={reduceMotion ? false : { opacity: 0, y: 10 }}

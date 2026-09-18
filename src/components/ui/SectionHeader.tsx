@@ -32,9 +32,7 @@ export function SectionHeader({
 
   return (
     <div className={`section-intro flex flex-col gap-4 ${alignClass} ${className}`.trim()}>
-      {eyebrow && (
-        <Eyebrow className={tone === "inverse" ? "text-white/80" : undefined}>{eyebrow}</Eyebrow>
-      )}
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 className={headingClass}>
         {heading ? (
           heading

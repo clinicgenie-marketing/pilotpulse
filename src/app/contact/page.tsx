@@ -4,6 +4,7 @@ import { SiteChrome } from "@/components/layout/SiteChrome";
 import { DemoForm } from "@/components/pages/DemoForm";
 import Aurora from "@/components/ui/Aurora";
 import { contactPage } from "@/lib/pages/contact";
+import { AccentHeading } from "@/components/ui/PageHero";
 
 const AURORA_STOPS = ["#4638F5", "#3686F2", "#B9B3FB"];
 
@@ -32,9 +33,9 @@ export default function ContactPage() {
             <header className="contact-intro">
               <div>
                 <h1 className="contact-intro-title">
-                  {page.hero.titleLine1}
+                  <AccentHeading text={page.hero.titleLine1} accent="one pilot." />
                   <br />
-                  {page.hero.titleLine2}
+                  <AccentHeading text={page.hero.titleLine2} accent="unlocks." />
                 </h1>
                 <p className="contact-intro-lead">{page.hero.lead}</p>
                 <p className="contact-intro-closing">{page.hero.closing}</p>
@@ -58,7 +59,9 @@ export default function ContactPage() {
             </header>
 
             <div className="contact-next">
-              <h2 className="contact-next-title">{page.next.heading}</h2>
+              <h2 className="contact-next-title">
+                <AccentHeading text={page.next.heading} accent="next?" />
+              </h2>
               <p className="contact-next-lead">{page.next.lead}</p>
               <ol className="workflow-timeline contact-next-list">
                 {page.next.steps.map((step) => (
