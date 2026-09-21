@@ -574,7 +574,7 @@ export const platformBehind = {
   sub: "Every PilotPulse Digital Worker runs on a shared enterprise AI platform, customised around your workflows, knowledge and systems.",
   iceberg: {
     aboveTitle: "What your team sees",
-    aboveBody: "WhatsApp, web, email, voice and dashboards",
+    aboveBody: "WhatsApp, web, email,\nvoice and dashboards",
     belowTitle: "What powers the work",
   },
   layers: [

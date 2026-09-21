@@ -27,8 +27,8 @@ export function IcebergIllustration({
         <Image
           src="/platform/iceberg-lowpoly.jpg"
           alt=""
-          width={688}
-          height={864}
+          width={1024}
+          height={1024}
           className="platform-iceberg-image"
           sizes="(min-width: 900px) 36vw, min(100vw, 22rem)"
         />
