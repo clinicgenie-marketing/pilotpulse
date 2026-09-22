@@ -7,6 +7,7 @@ import { Em, AccentHeading, PageHero } from "@/components/ui/PageHero";
 import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 import { CONTACT_HREF } from "@/lib/content";
 import { aboutPage } from "@/lib/pages/about";
+import "./about.css";
 
 export const metadata: Metadata = {
   title: aboutPage.meta.title,
@@ -31,7 +32,8 @@ export default function AboutPage() {
 
   return (
     <SiteChrome>
-      <PageHero
+      <div className="about-page">
+        <PageHero
         backgroundImage="/about/hero.jpg"
         eyebrow={page.hero.eyebrow}
         title={
@@ -46,8 +48,8 @@ export default function AboutPage() {
         secondaryCta={page.hero.secondaryCta}
       />
 
-      <section className="section-pad border-b border-line bg-surface">
-        <div className="container-edge grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+      <section className="about-intro section-pad border-b border-line bg-surface">
+        <div className="container-edge about-split">
           <div>
             <h2 className="heading-2">
               AI that understands <Em>how your business runs</Em>
@@ -69,10 +71,10 @@ export default function AboutPage() {
 
       <section
         id="our-story"
-        className="section-pad scroll-mt-28 border-b border-line bg-primary-soft/60"
+        className="about-story section-pad scroll-mt-28 border-b border-line bg-primary-soft/60"
       >
-        <div className="container-edge grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
+        <div className="container-edge about-split about-story-split">
+          <div className="about-story-copy">
             <p className="eyebrow">{page.featuredVideo.eyebrow}</p>
             <h2 className="heading-2 mt-3">
               We Believe AI That <Em>Makes Work Better</Em>
@@ -80,20 +82,20 @@ export default function AboutPage() {
             <p className="mt-3 text-xl font-semibold text-ink">{page.belief.subtitle}</p>
             <p className="lead mt-5">{page.belief.body}</p>
           </div>
-          <div>
-            <h3 className="heading-3">
-              <AccentHeading text={page.featuredVideo.heading} accent="people trust" />
-            </h3>
-            <p className="lead mt-3">{page.featuredVideo.lead}</p>
-            <div className="mt-6">
+          <div className="about-story-video">
+            <div className="about-story-media">
               <YouTubeEmbed videoId={page.featuredVideo.videoId} title={page.featuredVideo.title} />
             </div>
+            <h3 className="heading-3 about-story-caption">
+              <AccentHeading text={page.featuredVideo.heading} accent="people trust" />
+            </h3>
+            <p className="lead">{page.featuredVideo.lead}</p>
           </div>
         </div>
       </section>
 
-      <section className="section-pad border-b border-line bg-background">
-        <div className="container-edge grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+      <section className="about-human section-pad border-b border-line bg-background">
+        <div className="container-edge about-split">
           <div>
             <h2 className="heading-2">
               Human-First. <Em>Outcome-Driven.</Em>
@@ -102,14 +104,14 @@ export default function AboutPage() {
           </div>
           <div>
             <p className="lead">{page.humanFirst.body}</p>
-            <p className="heading-3 mt-6">
+            <p className="heading-3 about-human-pull">
               <span className="heading-gradient">{page.humanFirst.pull}</span>
             </p>
           </div>
         </div>
       </section>
 
-      <section className="team-section section-pad border-b border-line bg-background">
+      <section className="about-team team-section section-pad border-b border-line bg-background">
         <TeamCarousel
           eyebrow={page.team.eyebrow}
           heading={<AccentHeading text={page.team.heading} accent="operational clarity" />}
@@ -120,6 +122,7 @@ export default function AboutPage() {
 
       <EcosystemSection />
       <InnerFinalCta />
+      </div>
     </SiteChrome>
   );
 }

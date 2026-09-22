@@ -14,7 +14,7 @@ export function ProfileCard({
       <div className="team-card-media">
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={photo} alt="" />
+          <img src={photo} alt={name} />
         ) : (
           <div className="team-card-fallback" aria-hidden="true">
             <span>{initials}</span>

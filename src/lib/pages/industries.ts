@@ -48,7 +48,7 @@ export const industriesPage = {
         { value: "S$0.13", unit: "AI runtime cost per conversation" },
         { value: "Under 4 seconds", unit: "Median first response" },
       ],
-      image: "/industries/logistics-lockers.jpg",
+      image: "/industries/logistics.jpg",
       liveAt: "Live at Pick Network",
     },
     {

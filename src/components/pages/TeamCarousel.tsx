@@ -89,6 +89,16 @@ export function TeamCarousel({
         className="team-scroller"
         tabIndex={0}
         aria-label="Team members"
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            scrollByCard(1);
+          }
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            scrollByCard(-1);
+          }
+        }}
       >
         {people.map((person) => (
           <li key={person.name}>
