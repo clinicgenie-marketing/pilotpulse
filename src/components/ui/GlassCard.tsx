@@ -4,7 +4,7 @@ function cn(...parts: Array<string | undefined | false>) {
   return parts.filter(Boolean).join(" ");
 }
 
-/** White surface card — border, 16px radius, optional hover glow when interactive. */
+/** White surface card: border, 16px radius, optional hover glow when interactive. */
 export function GlassCard({ className = "", children, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("surface-card overflow-hidden p-6 md:p-8", className)} {...props}>

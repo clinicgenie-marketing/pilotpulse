@@ -1,4 +1,4 @@
-/* About page polish — scoped so other routes are unchanged. */
+/* About page polish, scoped so other routes are unchanged. */
 
 body:has(.about-page) {
   --about-max: 1280px;

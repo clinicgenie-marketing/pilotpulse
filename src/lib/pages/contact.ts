@@ -2,10 +2,12 @@ import { LINKEDIN_HREF, TWITTER_HREF, WHATSAPP_HREF, YOUTUBE_HREF, site } from "
 import { OFFICE_ADDRESS } from "@/lib/pages/shared";
 
 export const contactWorkflows = [
-  "Customer engagement",
-  "Recruitment",
-  "Support",
-  "Logistics",
+  "Customer Engagement AI",
+  "Sales & Quotation AI",
+  "Recruitment AI",
+  "Operations AI",
+  "Procurement AI",
+  "Project Intelligence AI",
   "Other",
 ] as const;
 
@@ -40,7 +42,7 @@ export const contactPage = {
         n: "03",
         titleBefore: "We’ll ",
         titleHighlight: "show",
-        body: "A pilot you can run with your team — then decide if it earns the next one.",
+        body: "A pilot you can run with your team, then decide if it earns the next one.",
       },
     ],
   },

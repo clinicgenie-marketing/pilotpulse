@@ -54,7 +54,7 @@ export const credibility = {
   cta: { label: "Learn more", href: CONTACT_HREF },
 };
 
-/** Full-width rounded panel — "AI agents can now" + video card. */
+/** Full-width rounded panel: "AI agents can now" + video card. */
 export const operations = {
   eyebrow: "Operational AI",
   headingWhite: "AI is changing how",
@@ -73,7 +73,7 @@ export const operations = {
     subtitle: "For Healthcare, Aesthetics & Wellness Providers",
   },
   videoLink: { label: "View implementation", href: CONTACT_HREF },
-  /** Closing statements — regular white text with bold emphasis phrases, as the reference. */
+  /** Closing statements: regular white text with bold emphasis phrases, as the reference. */
   bold: [
     {
       pre: "Their teams are not working harder. ",
@@ -230,7 +230,7 @@ export const process = {
   ],
 };
 
-/** Client logo wall — rows of 9 / 10 / 9, as laid out in the reference. */
+/** Client logo wall: rows of 9 / 10 / 9, as laid out in the reference. */
 export const clients = {
   eyebrow: "Trusted By",
   heading: "Operations teams across industries",

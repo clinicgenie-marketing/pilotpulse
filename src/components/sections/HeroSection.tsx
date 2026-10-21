@@ -41,7 +41,7 @@ export function HeroSection() {
             <span className="block text-neutral-700">{heroContent.lineOne}</span>
             <span className="mt-2 flex w-full justify-center">
               <motion.span
-                className="inline-flex items-baseline justify-center whitespace-nowrap"
+                className="flex w-full max-w-full flex-wrap items-baseline justify-center"
                 layout
                 transition={{ duration: reduceMotion ? 0 : 0.45, ease: SLOT_EASE }}
               >

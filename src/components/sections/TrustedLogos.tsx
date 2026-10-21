@@ -7,7 +7,7 @@ export function TrustedLogos() {
   return (
     <section aria-label="Trusted organisations" className="border-y border-line/40 bg-surface py-10">
       <div className="container-edge">
-        <p className="eyebrow mx-auto whitespace-nowrap text-center">
+        <p className="eyebrow mx-auto max-w-3xl text-balance text-center">
           {trustedOrgs.eyebrow}
         </p>
         <div className="logo-marquee-row mt-6" tabIndex={0}>

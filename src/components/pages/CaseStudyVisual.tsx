@@ -259,7 +259,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       handover: "Hand to clinician",
       messages: [
         { from: "in", text: "I know I should go for screening. I’m just putting it off." },
-        { from: "out", text: "What feels hardest about booking it — the time, or what the result might show?" },
+        { from: "out", text: "What feels hardest about booking it: the time, or what the result might show?" },
         { from: "in", text: "Mostly the result. And taking time off work." },
       ],
     },
@@ -401,7 +401,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       messages: [
         { from: "in", text: "Do you have the tasting menu for Saturday, 8 people?" },
         { from: "status", text: "Menu and availability checked" },
-        { from: "out", text: "Yes — 8 seats at 7:30pm. Shall I hold the table?" },
+        { from: "out", text: "Yes. 8 seats at 7:30pm. Shall I hold the table?" },
       ],
     },
     outcomes: {
@@ -451,7 +451,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       items: [
         { subject: "Dinner for 8, not sure which set", meta: "Occasion · Staff must navigate", status: "Open" },
         { subject: "Budget around S$168", meta: "Preferences · Manual match", status: "Open" },
-        { subject: "Wine pairing — optional?", meta: "Cross-sell · Inconsistent", status: "Open" },
+        { subject: "Wine pairing: optional?", meta: "Cross-sell · Inconsistent", status: "Open" },
       ],
     },
     implementation: {
@@ -479,7 +479,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       title: "Order inbox",
       items: [
         { subject: "Catering Thu 18 Sep · 40 pax", meta: "Requirements still incomplete", status: "Open" },
-        { subject: "Set B, no nuts — kitchen not told", meta: "Handover · Fragmented", status: "Open" },
+        { subject: "Set B, no nuts. Kitchen not told", meta: "Handover · Fragmented", status: "Open" },
         { subject: "Delivery time not confirmed", meta: "Fulfilment · Separate chat", status: "Open" },
       ],
     },
@@ -737,7 +737,7 @@ const VISUALS: Record<string, StudyVisuals> = {
       kind: "inbox",
       title: "Onboarding follow-up",
       items: [
-        { subject: "Offer accepted — documents missing", meta: "NRIC · bank · certs", status: "Chasing" },
+        { subject: "Offer accepted. Documents missing", meta: "NRIC · bank · certs", status: "Chasing" },
         { subject: "Safety briefing not completed", meta: "Reminder · Manual", status: "Chasing" },
         { subject: "Start date questions in WhatsApp", meta: "HR admin · High volume", status: "Chasing" },
       ],

@@ -35,7 +35,7 @@ export function FinalCtaBand({
 }: FinalCtaBandProps) {
   return (
     <section id={id} className="final-cta-band bg-neutral-900 pt-8 pb-8 md:pb-10 lg:pb-12">
-      <div className="w-full px-8">
+        <div className="w-full px-5 md:px-8">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-surface px-6 py-14 md:rounded-[2rem] md:px-10 md:py-16 lg:rounded-[2.25rem] lg:px-16 lg:py-20">
           <div className="hero-aurora" aria-hidden="true">
             <Aurora colorStops={AURORA_STOPS} blend={0.5} amplitude={1} speed={0.5} lightMode />

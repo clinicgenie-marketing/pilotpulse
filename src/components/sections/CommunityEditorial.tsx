@@ -10,7 +10,13 @@ import { latestUpdates, type CommunityStory } from "@/lib/home-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
+export function CommunityEditorial({
+  stories,
+  headingLevel = "h2",
+}: {
+  stories: CommunityStory[];
+  headingLevel?: "h1" | "h2";
+}) {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const inView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -33,9 +39,15 @@ export function CommunityEditorial({ stories }: { stories: CommunityStory[] }) {
         >
           <div className="max-w-2xl">
             <p className="eyebrow">{latestUpdates.eyebrow}</p>
-            <h2 id={headingId} className="heading-2 mt-3">
-              <AccentHeading text={latestUpdates.heading} accent="in the open." />
-            </h2>
+            {headingLevel === "h1" ? (
+              <h1 id={headingId} className="heading-2 mt-3">
+                <AccentHeading text={latestUpdates.heading} accent="in the open." />
+              </h1>
+            ) : (
+              <h2 id={headingId} className="heading-2 mt-3">
+                <AccentHeading text={latestUpdates.heading} accent="in the open." />
+              </h2>
+            )}
             <p className="lead mt-3 text-ink-muted">{latestUpdates.sub}</p>
           </div>
           <CTAButton

@@ -31,6 +31,7 @@ export const homeNav = {
     { label: "Industries", href: "/industries" },
     { label: "Case Studies", href: "/case-studies", children: caseStudiesMenu },
     { label: "Resources", href: "/resources" },
+    { label: "About Us", href: "/about" },
   ] satisfies NavLink[],
   cta: { label: "Get a Demo", href: CONTACT_HREF },
   status: { label: "Live", href: STATUS_HREF },
@@ -203,7 +204,7 @@ export const workflowDemos: WorkflowDemoItem[] = [
       {
         speaker: "worker",
         label: "AI",
-        text: "Great — what's your availability to start?",
+        text: "Great, what's your availability to start?",
         action: "Role criteria matched · Screening initiated",
       },
       {
@@ -214,7 +215,7 @@ export const workflowDemos: WorkflowDemoItem[] = [
       {
         speaker: "worker",
         label: "AI",
-        text: "You've been shortlisted. Interview booked tomorrow at 10am — details sent to WhatsApp.",
+        text: "You've been shortlisted. Interview booked tomorrow at 10am. Details sent to WhatsApp.",
         action: "ATS updated · Interview scheduled · Candidate notified",
       },
     ],
@@ -246,7 +247,7 @@ export const workflowDemos: WorkflowDemoItem[] = [
       {
         speaker: "worker",
         label: "AI",
-        text: "Confirmed — table for 6 at 7pm. Vegetarian noted for kitchen. Name for reservation?",
+        text: "Confirmed. Table for 6 at 7pm. Vegetarian noted for kitchen. Name for reservation?",
         action: "Dietary flag sent to kitchen system",
       },
       {
@@ -257,7 +258,7 @@ export const workflowDemos: WorkflowDemoItem[] = [
       {
         speaker: "worker",
         label: "AI",
-        text: "Booked under Lee — see you Saturday!",
+        text: "Booked under Lee. See you Saturday!",
         action: "Reservation saved · Reminder set for Friday",
       },
     ],
@@ -338,8 +339,9 @@ export type DigitalWorkerOffering = {
   id: string;
   number: "01" | "02" | "03" | "04" | "05" | "06";
   title: string;
+  purpose: string;
   headline: string;
-  does?: string;
+  does: string;
   bullets: readonly [string, string, string];
   channels?: string;
   examples: readonly string[];
@@ -386,7 +388,7 @@ export const digitalWorkforce = {
   eyebrow: "Your digital workforce",
   headingBefore: "AI workers built for",
   headingAccent: "real work",
-  sub: "Digital Workers handle business workflows across conversations, documents and systems, completing tasks and escalating to your team when human judgement is needed.",
+  sub: "Digital Workers take on specific business roles and workflows, working across conversations, documents and business systems to complete tasks, make decisions and escalate to your team when human judgement is needed.",
   cta: { label: "See the digital team", href: "/digital-workers" },
   workers: [
     {
@@ -435,8 +437,9 @@ export const digitalWorkforce = {
       id: "customer-engagement",
       number: "01",
       title: "Customer Engagement AI",
+      purpose: "Acts as an AI-powered customer-facing team member.",
       headline: "Engage customers. Answer enquiries. Drive the next action.",
-      does: "Handles customer enquiries from first contact to next step. Answers questions, recommends services, qualifies leads and books appointments.",
+      does: "Handles conversations with customers from initial enquiry through to the appropriate next step. It can understand what customers need, answer questions, recommend relevant products or services, qualify enquiries, make bookings, follow up proactively and hand conversations to staff where needed.",
       bullets: [
         "Enquiries & customer support",
         "Recommendations & lead qualification",
@@ -452,8 +455,9 @@ export const digitalWorkforce = {
       id: "sales",
       number: "02",
       title: "Sales & Quotation AI",
+      purpose: "Acts as an AI sales support and quotation team member.",
       headline: "Turn enquiries and RFQs into quotes faster.",
-      does: "Reviews sales requirements and RFQs, gathers key details, supports pricing, prepares quotes and proposals, follows up and updates sales systems.",
+      does: "Understands incoming sales requirements and RFQs, gathers the information required to respond, assists with costing and pricing, prepares quotations or proposals, follows up opportunities and updates relevant sales systems.",
       bullets: [
         "RFQ & requirements analysis",
         "Costing, pricing & quotation generation",
@@ -468,15 +472,16 @@ export const digitalWorkforce = {
       id: "recruitment",
       number: "03",
       title: "Recruitment AI",
+      purpose: "Acts as an AI recruitment coordinator.",
       headline: "Screen, qualify and coordinate candidates at scale.",
-      does: "Supports recruitment from CV intake to onboarding. Screens and qualifies candidates conversationally, coordinates interviews and manages next steps.",
+      does: "Supports the recruitment journey from receiving a CV through to candidate qualification, shortlisting, interview coordination and onboarding. It can engage candidates conversationally rather than relying only on CV or keyword screening.",
       bullets: [
         "CV matching & shortlisting",
         "Conversational candidate screening",
         "Interview scheduling & onboarding",
       ],
       examples: [
-        "CV-to-job matching, high-volume recruitment, blue-collar candidate validation, interview scheduling, CV preparation and new-hire onboarding. The document specifically describes conversational WhatsApp screening against role-specific requirements.",
+        "CV-to-job matching, high-volume recruitment, blue-collar candidate validation, interview scheduling, CV preparation and new-hire onboarding.",
       ],
       icon: "candidate",
     },
@@ -484,15 +489,16 @@ export const digitalWorkforce = {
       id: "operations",
       number: "04",
       title: "Operations AI",
+      purpose: "Acts as an AI operations coordinator.",
       headline: "Monitor everyday operations and keep work moving.",
-      does: "Monitors operational information across conversations, emails, documents and systems. Updates records, tracks work, flags exceptions and highlights what needs attention.",
+      does: "Continuously monitors operational information coming through conversations, emails, documents and systems. It identifies what has happened, updates statuses and records, tracks outstanding work, flags exceptions and gives operational teams visibility into what requires attention.",
       bullets: [
         "Workflow, incident & status tracking",
         "Automated system updates & actions",
         "Exception, SLA & KPI monitoring",
       ],
       examples: [
-        "Shipment updates, incident monitoring, field-service tracking, SLA monitoring, workflow automation and operational dashboards. The FM use case, for example, converts WhatsApp operational conversations into structured incident records and SLA tracking.",
+        "Shipment updates, incident monitoring, field-service tracking, SLA monitoring, workflow automation and operational dashboards.",
       ],
       icon: "workflow",
     },
@@ -500,8 +506,9 @@ export const digitalWorkforce = {
       id: "procurement",
       number: "05",
       title: "Procurement AI",
+      purpose: "Acts as an AI procurement and sourcing assistant.",
       headline: "Source, compare and procure faster.",
-      does: "Supports sourcing and supplier evaluation by retrieving pricing history, preparing RFQs, processing responses, comparing quotes and informing procurement decisions.",
+      does: "Supports procurement teams in sourcing and evaluating supplier information. It can retrieve historical pricing, prepare and send supplier RFQs, process supplier responses, compare quotations and support costing, tender and procurement decisions.",
       bullets: [
         "Supplier RFQs & follow-up",
         "Quote & historical price comparison",
@@ -509,7 +516,6 @@ export const digitalWorkforce = {
       ],
       examples: [
         "MRO procurement, construction sourcing, supplier quotation comparison, historical rate retrieval and tender preparation.",
-        "The construction use case explicitly covers searching historical quotations and project costs, comparing supplier rates, automating supplier RFQs and supporting tender evaluation.",
       ],
       icon: "compare",
     },
@@ -517,15 +523,16 @@ export const digitalWorkforce = {
       id: "projects",
       number: "06",
       title: "Project Intelligence AI",
-      headline: "Know where every project stands and what needs attention.",
-      does: "Consolidates project information to track progress, milestones, actions and risks. Gives teams a current project view without manual searches or status reports.",
+      purpose: "Acts as an AI project monitoring and reporting team member.",
+      headline: "Know where every project stands, and what needs attention.",
+      does: "Continuously brings together project information to understand progress, milestones, outstanding actions and emerging risks. It gives project teams and management a current view without requiring staff to manually search communications and compile status reports.",
       bullets: [
         "Progress & milestone tracking",
         "Risks, delays & outstanding actions",
         "Project summaries & management reporting",
       ],
       examples: [
-        "Logistics delivery projects, construction projects, email-heavy project coordination, management reporting and project control towers. In the logistics example, the AI reads project emails, extracts milestones, commitments, delays and actions, and updates a unified project view.",
+        "Logistics delivery projects, construction projects, email-heavy project coordination, management reporting and project control towers.",
       ],
       icon: "milestones",
     },
@@ -598,7 +605,7 @@ export const platformBehind = {
       title: "Enterprise Knowledge & Tools",
       summary: "Connect AI to the knowledge and systems needed to do real work.",
       bullets: [
-        "Enterprise knowledge bases and RAG",
+        "Enterprise knowledge bases and search",
         "Documents, SOPs and business data",
         "AI tools and system integrations",
         "Continuous data synchronisation",
@@ -733,13 +740,6 @@ export const results = {
       suffix: " min",
       description: "saved for every candidate screened",
     },
-    {
-      context: "Regional operations",
-      numeric: 3,
-      prefix: "",
-      suffix: " offices",
-      description: "supported across Singapore, Taiwan and China",
-    },
   ] satisfies ResultMetric[],
 };
 
@@ -759,7 +759,7 @@ export const homeTestimonials: Testimonial[] = [
     id: "locker",
     tag: "Logistics · Locker Network",
     quote:
-      "The agent handles our locker network conversations reliably — integrated to order tracking with the right human handover. Customers can now send photos and the AI reads them and responds promptly.",
+      "The agent handles our locker network conversations reliably, integrated to order tracking with the right human handover. Customers can now send photos and the AI reads them and responds promptly.",
     excerpt:
       "The agent handles locker conversations reliably, with order tracking and the right human handover.",
     name: null,
@@ -773,7 +773,7 @@ export const homeTestimonials: Testimonial[] = [
     quote:
       "In logistics, constant document handling is a pain. PilotPulse's AI agents handle file processing, data extraction and entry. Our team's productivity and morale have picked up now that they're freed from repetitive work.",
     excerpt:
-      "PilotPulse's AI agents handle file processing, data extraction and entry — freeing the team from repetitive work.",
+      "PilotPulse's AI agents handle file processing, data extraction and entry, freeing the team from repetitive work.",
     name: "Roger Chew",
     initials: "RC",
     role: "Group CEO",
@@ -807,7 +807,7 @@ export const homeTestimonials: Testimonial[] = [
     id: "recruitment",
     tag: "Recruitment · Screening",
     quote:
-      "Two agents in production — recruitment and quotation. The recruitment agent cut ~20 minutes off every candidate engagement; the quotation agent responds to carpark leasing enquiries promptly.",
+      "Two agents in production: recruitment and quotation. The recruitment agent cut ~20 minutes off every candidate engagement; the quotation agent responds to carpark leasing enquiries promptly.",
     excerpt:
       "The recruitment agent cut about 20 minutes off every candidate engagement.",
     name: null,

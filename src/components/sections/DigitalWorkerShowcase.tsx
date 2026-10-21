@@ -150,11 +150,16 @@ export function DigitalWorkerShowcase({
               <h3 className="dw-showcase-title">{selected.title}</h3>
               <p className="dw-showcase-headline">{selected.headline}</p>
               {cases.length > 0 ? (
-                <ul className="dw-showcase-chips" aria-label="In use for">
-                  {cases.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <div>
+                  <p className="dw-showcase-kicker" id={`${selected.id}-examples`}>
+                    Examples
+                  </p>
+                  <ul className="dw-showcase-chips" aria-labelledby={`${selected.id}-examples`}>
+                    {cases.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               ) : null}
             </div>
 

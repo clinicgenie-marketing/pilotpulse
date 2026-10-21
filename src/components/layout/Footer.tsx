@@ -41,7 +41,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-neutral-900">
       <div className="container-edge py-12 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_repeat(6,minmax(0,1fr))]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_repeat(6,minmax(0,1fr))]">
           <div>
             <Link href="/" aria-label="PilotPulse home" className="inline-flex">
               <Image

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ResourcesPage() {
   return (
     <SiteChrome>
-      <LatestUpdates />
+      <LatestUpdates headingLevel="h1" />
       <InnerFinalCta />
     </SiteChrome>
   );

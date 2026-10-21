@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 type GradientTextProps = {
   children: ReactNode;
-  /** Solid highlight colour — style guide allows one short phrase only. */
+  /** Solid highlight colour. Style guide allows one short phrase only. */
   tone?: "primary" | "accent" | "inverse";
   className?: string;
   /** Kept for existing call sites; ignored in favour of a single colour. */

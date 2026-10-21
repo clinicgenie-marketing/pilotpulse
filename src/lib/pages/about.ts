@@ -35,7 +35,7 @@ export const aboutPage = {
     heading: "Building AI people trust",
     lead: "Built on trust, human-centred design and Singapore’s innovation ecosystem, PilotPulse helps businesses adopt practical AI with confidence.",
     videoId: "Khu45qAVoO0",
-    title: "Building AI People Trust — PilotPulse's Journey | Icons of Innovation",
+    title: "Building AI People Trust: PilotPulse's Journey | Icons of Innovation",
   },
   belief: {
     heading: "We Believe AI That Makes Work Better",

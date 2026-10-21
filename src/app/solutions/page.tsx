@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { Calendar, MessageCircle, RefreshCw } from "lucide-react";
+import type { ReactNode } from "react";
 import { SiteChrome } from "@/components/layout/SiteChrome";
-import {
-  CandidateShortlistMock,
-  QuotationMock,
-  TickList,
-} from "@/components/pages/SolutionMocks";
+import { CandidateShortlistMock, QuotationMock, TickList } from "@/components/pages/SolutionMocks";
 import { DocumentIntelligenceCard } from "@/components/pages/DocumentIntelligenceCard";
 import { ThinkingAiOrbit } from "@/components/pages/ThinkingAiOrbit";
 import { SolutionsHeroPreview } from "@/components/sections/SolutionsHeroPreview";
 import { AnchorNav } from "@/components/ui/AnchorNav";
 import { FinalCtaBand } from "@/components/ui/FinalCtaBand";
 import { Em, AccentHeading, PageHero } from "@/components/ui/PageHero";
+import { digitalWorkforce, type DigitalWorkerOffering } from "@/lib/home-content";
 import { solutionsNav, solutionsPage } from "@/lib/pages/solutions";
 
 export const metadata: Metadata = {
@@ -20,10 +16,42 @@ export const metadata: Metadata = {
   description: solutionsPage.meta.description,
 };
 
-const ENGAGEMENT_ICONS = [MessageCircle, Calendar, RefreshCw] as const;
+const WORKER_ASIDES: Partial<Record<DigitalWorkerOffering["id"], ReactNode>> = {
+  sales: <QuotationMock />,
+  recruitment: <CandidateShortlistMock />,
+};
+
+function WorkerSection({ offering, wash }: { offering: DigitalWorkerOffering; wash: string }) {
+  const aside = WORKER_ASIDES[offering.id];
+
+  return (
+    <section id={offering.id} className={`section-pad scroll-mt-28 border-b border-line ${wash}`}>
+      <div
+        className={`container-edge ${aside ? "grid items-start gap-10 lg:grid-cols-2 lg:gap-16" : "max-w-[72ch]"}`}
+      >
+        <div>
+          <p className="eyebrow">{offering.title}</p>
+          <h2 className="heading-2 mt-4">{offering.headline}</h2>
+          <p className="mt-4 text-base font-semibold leading-relaxed text-ink">{offering.purpose}</p>
+          <p className="lead mt-4">{offering.does}</p>
+          <TickList items={offering.bullets} />
+          {offering.channels ? (
+            <p className="mt-5 text-sm leading-relaxed text-ink-muted">Channels · {offering.channels}</p>
+          ) : null}
+          <p className="mt-4 text-base leading-relaxed text-ink">
+            <span className="font-semibold">Examples. </span>
+            {offering.examples.join(" ")}
+          </p>
+        </div>
+        {aside}
+      </div>
+    </section>
+  );
+}
 
 export default function SolutionsPage() {
   const page = solutionsPage;
+  const retained = page.retained;
 
   return (
     <SiteChrome>
@@ -55,131 +83,47 @@ export default function SolutionsPage() {
       />
       <AnchorNav items={solutionsNav} ariaLabel="Solutions sections" />
 
-      <section id={page.engagement.id} className="section-pad scroll-mt-28 border-b border-line bg-surface">
-        <div className="container-edge">
-          <p className="eyebrow">{page.engagement.eyebrow}</p>
-          <h2 className="heading-2 mt-4">
-            {page.engagement.headingLine1}
-            <span className="block">
-              <AccentHeading text={page.engagement.headingLine2} accent="intelligent automation" />
-            </span>
-          </h2>
-          <p className="lead mt-4 max-w-[65ch]">{page.engagement.lead}</p>
-          <ul className="mt-12 grid gap-8 md:grid-cols-3">
-            {page.engagement.features.map((feature, index) => {
-              const Icon = ENGAGEMENT_ICONS[index];
-              return (
-                <li key={feature.title}>
-                  <span className="grid size-10 place-items-center rounded-lg bg-primary-soft">
-                    <Icon className="h-5 w-5 text-primary" strokeWidth={1.75} aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-3 text-xl font-semibold text-ink">{feature.title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-ink">{feature.body}</p>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
+      {digitalWorkforce.offerings.map((offering, index) => (
+        <WorkerSection
+          key={offering.id}
+          offering={offering}
+          wash={index % 2 === 0 ? "bg-surface" : "bg-background"}
+        />
+      ))}
 
-      <section id={page.sales.id} className="section-pad scroll-mt-28 border-b border-line bg-background">
-        <div className="container-edge grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-          <QuotationMock />
+      <section
+        id={retained.documents.id}
+        className="section-pad scroll-mt-28 border-b border-line bg-surface"
+      >
+        <div className="container-edge grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,32rem)] lg:gap-16">
           <div>
-            <p className="eyebrow">{page.sales.eyebrow}</p>
-            <h2 className="heading-2 mt-4">
-              <AccentHeading text={page.sales.heading} accent="your workflow" />
-            </h2>
-            <div className="mt-8 space-y-8">
-              {page.sales.blocks.map((block) => (
-                <div key={block.title}>
-                  <h3 className="text-xl font-semibold text-ink">{block.title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-ink">{block.body}</p>
-                </div>
-              ))}
-            </div>
+            <h2 className="heading-2">{retained.documents.title}</h2>
+            <p className="mt-2 text-base text-ink">{retained.documents.lead}</p>
+            <TickList items={retained.documents.bullets} />
+            <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-ink">{retained.documents.note}</p>
+            <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-ink">{retained.training}</p>
+            <h3 className="mt-8 text-xl font-semibold text-ink">{retained.dataEntry.title}</h3>
+            <p className="mt-2 text-base leading-relaxed text-ink">{retained.dataEntry.body}</p>
           </div>
-        </div>
-      </section>
-
-      <section id={page.support.id} className="section-pad scroll-mt-28 border-b border-line bg-surface">
-        <div className="container-edge">
-          <p className="eyebrow">{page.support.eyebrow}</p>
-          <h2 className="heading-2 mt-4 max-w-[22ch]">
-            <AccentHeading text={page.support.heading} accent="when it matters." />
-          </h2>
-          <div className="mt-10 max-w-[65ch]">
-            <h3 className="text-xl font-semibold text-ink">{page.support.handling.title}</h3>
-            <p className="mt-2 text-base leading-relaxed text-ink">{page.support.handling.body}</p>
-          </div>
-          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,32rem)] lg:gap-16">
-            <div>
-              <h3 className="text-xl font-semibold text-ink">{page.support.documents.title}</h3>
-              <p className="mt-2 text-base text-ink">{page.support.documents.lead}</p>
-              <TickList items={page.support.documents.bullets} />
-              <p className="mt-4 max-w-[65ch] text-base leading-relaxed text-ink">
-                {page.support.documents.note}
-              </p>
-            </div>
-            <DocumentIntelligenceCard
-              eyebrow={page.support.stat.eyebrow}
-              value={page.support.stat.value}
-              unit={page.support.stat.unit}
-            />
-          </div>
-        </div>
-      </section>
-
-      <section id={page.hr.id} className="section-pad scroll-mt-28 border-b border-line bg-background">
-        <div className="container-edge">
-          <p className="eyebrow">{page.hr.eyebrow}</p>
-          <h2 className="heading-3 mt-4 max-w-[22ch] text-primary">{page.hr.pull}</h2>
-          <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,28rem)] lg:gap-16">
-            <div>
-              <h3 className="text-xl font-semibold text-ink">{page.hr.recruitment.title}</h3>
-              <TickList items={page.hr.recruitment.bullets} />
-              <p className="mt-4 text-base leading-relaxed text-ink">{page.hr.recruitment.body}</p>
-            </div>
-            <CandidateShortlistMock />
-          </div>
-          <div className="mt-12 max-w-[65ch]">
-            <h3 className="text-xl font-semibold text-ink">{page.hr.dataEntry.title}</h3>
-            <p className="mt-2 text-base leading-relaxed text-ink">{page.hr.dataEntry.body}</p>
-          </div>
-        </div>
-      </section>
-
-      <section id={page.projects.id} className="section-pad scroll-mt-28 border-b border-line bg-surface">
-        <div className="container-edge grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <Image
-            src="/solutions/follow-up.png"
-            alt="Follow-ups created from WhatsApp, email, and chat conversations"
-            width={1536}
-            height={1024}
-            className="h-auto w-full"
-            sizes="(min-width: 1024px) 50vw, 100vw"
+          <DocumentIntelligenceCard
+            eyebrow={retained.documents.stat.eyebrow}
+            value={retained.documents.stat.value}
+            unit={retained.documents.stat.unit}
           />
-          <div>
-            <p className="eyebrow">{page.projects.eyebrow}</p>
-            <h2 className="heading-2 mt-4">
-              <AccentHeading text={page.projects.heading} accent="Event Tracking" />
-            </h2>
-            <p className="lead mt-4">{page.projects.body}</p>
-          </div>
         </div>
       </section>
 
-      <section id={page.advanced.id} className="scroll-mt-28 overflow-hidden border-b border-line bg-background">
+      <section id={retained.advanced.id} className="scroll-mt-28 overflow-hidden border-b border-line bg-background">
         <ThinkingAiOrbit
-          eyebrow={page.advanced.eyebrow}
+          eyebrow={retained.advanced.eyebrow}
           heading={
             <>
               <span className="heading-gradient">Thinking</span>
               <span> AI Agents</span>
             </>
           }
-          lead={page.advanced.lead}
-          examples={page.advanced.examples}
+          lead={retained.advanced.lead}
+          examples={retained.advanced.examples}
         />
       </section>
 

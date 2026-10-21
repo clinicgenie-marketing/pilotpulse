@@ -10,10 +10,6 @@ import { digitalWorkforce } from "@/lib/home-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-function rosterLabel(title: string) {
-  return title.replace(/ AI$/, "");
-}
-
 export function DigitalWorkforce() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -72,8 +68,13 @@ export function DigitalWorkforce() {
                   <span className="dw-roster-icon" aria-hidden="true">
                     <Icon className="h-10 w-10" strokeWidth={1.75} />
                   </span>
-                  <h3 className="dw-roster-title">{rosterLabel(offering.title)}</h3>
+                  <h3 className="dw-roster-title">{offering.title}</h3>
                   <p className="dw-roster-headline">{offering.headline}</p>
+                  <ul className="dw-roster-points">
+                    {offering.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
                 </Link>
               </motion.li>
             );

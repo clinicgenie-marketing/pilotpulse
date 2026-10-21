@@ -43,7 +43,7 @@ export function ResultsSection() {
           <span className="absolute left-0 top-0 h-0.5 w-16 -translate-y-px bg-primary" />
         </motion.div>
 
-        <ul className="mt-8 grid grid-cols-1 divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
+        <ul className="mt-8 grid grid-cols-1 divide-y divide-line md:grid-cols-2 md:divide-x md:divide-y-0">
           {results.metrics.map((metric, index) => (
             <li key={metric.context} className="py-6 md:px-8 md:py-0 md:first:pl-0 md:last:pr-0">
               <MetricStat

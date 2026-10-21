@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 60 / 30 / 10 — neutrals carry the page, primary is identity, accent is the CTA */
+/* 60 / 30 / 10. Neutrals carry the page, primary is identity, accent is the CTA */
 
 :root {
   /* Neutral 60% */
@@ -17,14 +17,14 @@
   --pp-text-faint: #9a99a6;
   --pp-white: #ffffff;
 
-  /* Primary 30% — logo, secondary buttons, bands */
+  /* Primary 30%: logo, secondary buttons, bands */
   --pp-primary: #4638f5;
   --pp-primary-hover: #1f0ef5;
   --pp-primary-soft: #e5e3fe;
   --pp-primary-text: #4638f5;
   --pp-secondary: #a236f2;
 
-  /* Accent 10% — main call to action only */
+  /* Accent 10%: main call to action only */
   --pp-accent: #3686f2;
   --pp-accent-hover: #1372f1;
   --pp-accent-on: #1d1c21;
@@ -625,6 +625,20 @@
     color: color-mix(in srgb, var(--pp-primary) 62%, var(--pp-text-muted));
   }
 
+  .dw-roster-points {
+    display: grid;
+    gap: 0.35rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .dw-roster-points li {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--pp-text-muted);
+  }
+
   .dw-offering-card {
     display: flex;
     flex-direction: column;
@@ -1010,8 +1024,13 @@
     color: var(--pp-primary);
   }
 
-  .dw-showcase-channels .dw-showcase-chips {
+  .dw-showcase-channels .dw-showcase-chips,
+  .dw-showcase-main .dw-showcase-chips {
     margin-top: 0.7rem;
+  }
+
+  .dw-showcase-main .dw-showcase-kicker {
+    margin-top: 1.15rem;
   }
 
   @media (min-width: 700px) {
@@ -2477,7 +2496,7 @@
 }
 
 .testimonial-card {
-  width: min(100%, 22rem);
+  width: min(100vw - 3.5rem, 22rem);
   border-radius: 22px;
   background: var(--pp-surface);
   box-shadow: 0 16px 40px rgba(70, 56, 245, 0.14);
@@ -2503,7 +2522,7 @@
 
 @media (min-width: 640px) {
   .testimonial-card {
-    width: 26rem;
+    width: min(100vw - 4rem, 26rem);
   }
 }
 
@@ -3340,7 +3359,7 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(2, minmax(max-content, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin: 0;
   padding: 0;
@@ -3357,7 +3376,6 @@
   font-size: 13px;
   font-weight: 550;
   line-height: 1.3;
-  white-space: nowrap;
   color: color-mix(in srgb, var(--pp-text) 58%, var(--pp-text-muted));
   text-decoration: none;
   box-shadow: 0 1px 0 rgba(29, 28, 33, 0.03);
@@ -5370,9 +5388,6 @@ a.trust-chip.is-active {
 .cs-industry-studies a span {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .cs-industry-studies a svg {
@@ -6448,9 +6463,9 @@ a.trust-chip.is-active {
 
 .case-study-receipt-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, max-content);
   align-items: baseline;
-  gap: 1.5rem;
+  gap: 0.75rem 1.5rem;
   padding: 0.7rem 0;
 }
 
@@ -6469,7 +6484,6 @@ a.trust-chip.is-active {
   line-height: 1.45;
   text-align: right;
   color: var(--pp-text);
-  white-space: nowrap;
 }
 
 .case-study-receipt-row.is-total {
@@ -6599,4 +6613,43 @@ a.trust-chip.is-active {
   line-height: 1.3;
   color: inherit;
   opacity: 0.72;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .site-header nav > a,
+  .nav-dd-trigger {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 699px) {
+  .dw-showcase-tab,
+  .case-study-tab {
+    min-height: 2.75rem;
+  }
+
+  .case-study-tab {
+    padding-inline: 0.4rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0;
+  }
+}
+
+@media (hover: none) {
+  .solution-card:hover,
+  .onprem-panel:hover,
+  .interactive-card:hover,
+  .card-interactive:hover,
+  .card-process-interactive:hover,
+  .tile-interactive:hover,
+  .dw-roster-card:hover,
+  .dw-offering-card:hover,
+  .worker-card:hover,
+  .workforce-profile:hover,
+  .partner-card:hover,
+  .cs-industry-card:hover .cs-industry-photo img {
+    transform: none;
+  }
 }

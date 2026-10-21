@@ -18,9 +18,9 @@ export const digitalWorkersPage = {
   showcase: {
     id: "workers",
     eyebrow: "The digital team",
-    headingBefore: "Six workers. ",
-    headingHighlight: "Six jobs.",
-    lead: "Choose a Digital Worker to see the job it is built for, the work it handles and where it is already in use.",
+    headingBefore: "AI workers built for ",
+    headingHighlight: "real work",
+    lead: "Choose a Digital Worker to see the job it is built for, the work it handles and illustrative use cases.",
   },
   security: {
     eyebrow: "Architecture and security",

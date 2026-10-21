@@ -111,7 +111,7 @@ export function Header() {
           </CTAButton>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-button border border-line bg-surface text-ink lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-button border border-line bg-surface text-ink lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
             onClick={() => setOpen((value) => !value)}

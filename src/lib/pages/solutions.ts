@@ -1,19 +1,16 @@
 import { CONTACT_HREF } from "@/lib/content";
+import { digitalWorkforce } from "@/lib/home-content";
 
-export const solutionsNav = [
-  { id: "customer-engagement", label: "Customer Engagement" },
-  { id: "sales", label: "Sales Operations" },
-  { id: "support", label: "Customer Support" },
-  { id: "hr", label: "Human Resources" },
-  { id: "projects", label: "Project Management" },
-  { id: "advanced", label: "Advanced AI" },
-] as const;
+export const solutionsNav = digitalWorkforce.offerings.map((offering) => ({
+  id: offering.id,
+  label: offering.title,
+}));
 
 export const solutionsPage = {
   meta: {
     title: "Solutions",
     description:
-      "AI that runs the work around every role — scheduling, quotations, screening, and documents, with a human handoff when it matters.",
+      "AI that runs the work around every role: scheduling, quotations, screening, and documents, with a human handoff when it matters.",
   },
   hero: {
     eyebrow: "AI Agent Solutions",
@@ -29,51 +26,9 @@ export const solutionsPage = {
       initials: "DL",
     },
   },
-  engagement: {
-    id: "customer-engagement",
-    eyebrow: "Customer Engagement",
-    headingLine1: "Transforming customer interactions",
-    headingLine2: "with intelligent automation",
-    lead: "PilotPulse automates meaningful conversations across multiple channels while maintaining your brand's tone and responsiveness.",
-    features: [
-      {
-        title: "Answer pre-sales enquiries",
-        body: "Answer questions, recommend products and qualify leads across key channels.",
-      },
-      {
-        title: "Schedule appointments",
-        body: "Check availability, book appointments and send confirmations and reminders automatically.",
-      },
-      {
-        title: "Follow up with customers",
-        body: "Send timely updates, reminders and follow-ups while keeping every conversation connected.",
-      },
-    ],
-  },
-  sales: {
-    id: "sales",
-    eyebrow: "Sales Operations",
-    heading: "Quotations and reporting, built into your workflow",
-    blocks: [
-      {
-        title: "Generate quotations",
-        body: "Quotation AI supports live carpark leasing enquiries for Call Lade Enterprises, helping the team respond faster.",
-      },
-      {
-        title: "Assess and report",
-        body: "Evaluate your AI readiness, measure what matters and identify gaps and opportunities for improvement.",
-      },
-    ],
-  },
-  support: {
-    id: "support",
-    eyebrow: "Customer Support",
-    heading: "Handle volume, keep humans for when it matters.",
-    handling: {
-      title: "Customer Support Handling",
-      body: "Handle support enquiries at scale, triage requests and hand complex cases to your team with the right context.",
-    },
+  retained: {
     documents: {
+      id: "document-processing",
       title: "Document Processing",
       lead: "Reads your documents at scale.",
       bullets: [
@@ -82,51 +37,30 @@ export const solutionsPage = {
         "Product specification catalogue processing",
       ],
       note: "PilotPulse has applied AI Document Intelligence to a catalogue containing more than 58,000 product specifications.",
+      stat: {
+        eyebrow: "Document Intelligence",
+        value: "58,000+",
+        unit: "product specifications processed",
+      },
     },
-    stat: {
-      eyebrow: "Document Intelligence",
-      value: "58,000+",
-      unit: "product specifications processed",
-    },
-  },
-  hr: {
-    id: "hr",
-    eyebrow: "Human Resources",
-    pull: "Screen every applicant. Book the right ones.",
-    recruitment: {
-      title: "HR Recruitment & Training",
-      bullets: [
-        "Conversational CV screening",
-        "Ranked candidate shortlist",
-        "ATS and calendar integration",
-      ],
-      body: "In an existing recruitment workflow, the AI screens against role criteria, updates the ATS, books the interview and notifies the candidate. PilotPulse also supports specialist staff training as part of its internal operations capabilities.",
-    },
+    training:
+      "PilotPulse also supports specialist staff training as part of its internal operations capabilities.",
     dataEntry: {
       title: "Data Entry",
       body: "Automate repetitive data entry and connect workflows with company systems to retrieve or update information. PilotPulse currently includes automated data entry among its internal operations capabilities.",
     },
-  },
-  projects: {
-    id: "projects",
-    eyebrow: "Project Management",
-    heading: "Project and Important Event Tracking",
-    body: "Track conversations across email, WhatsApp and online chats for follow ups. Project Management AI can support time sensitive customer follow ups so important actions remain part of the workflow.",
-  },
-  advanced: {
-    id: "advanced",
-    eyebrow: "Advanced AI Capabilities",
-    headingBefore: "",
-    headingHighlight: "Thinking",
-    headingAfter: " AI Agents",
-    lead: "Thinking AI Agents go beyond answering questions. They can take actions, call APIs, run tools, make decisions across multiple steps and maintain state. Examples already used across PilotPulse deployments include",
-    examples: [
-      "Looking up a specific parcel using a tracking number",
-      "Checking eligibility for a shift swap",
-      "Logging an incident report",
-      "Routing work to the right human",
-      "Checking live stock and pricing information before creating an order",
-    ],
+    advanced: {
+      id: "advanced",
+      eyebrow: "Advanced AI Capabilities",
+      lead: "Thinking AI Agents go beyond answering questions. They can take actions, call APIs, run tools, make decisions across multiple steps and maintain state. Examples already used across PilotPulse deployments include",
+      examples: [
+        "Looking up a specific parcel using a tracking number",
+        "Checking eligibility for a shift swap",
+        "Logging an incident report",
+        "Routing work to the right human",
+        "Checking live stock and pricing information before creating an order",
+      ],
+    },
   },
   cta: {
     heading: "Ready to Deliver Better Experiences?",

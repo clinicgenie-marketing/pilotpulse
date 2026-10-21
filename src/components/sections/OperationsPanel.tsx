@@ -49,7 +49,7 @@ export function OperationsPanel() {
                 <div className="relative overflow-hidden">
                   <video
                     src={operations.video.src}
-                    aria-label={`${operations.video.title} — ${operations.video.subtitle}`}
+                    aria-label={`${operations.video.title}. ${operations.video.subtitle}`}
                     autoPlay
                     muted
                     loop

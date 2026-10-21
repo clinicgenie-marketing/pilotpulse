@@ -5,7 +5,7 @@ type EyebrowProps = {
   className?: string;
 };
 
-/** Uppercase category label — Micron-style section eyebrow. */
+/** Uppercase category label. Micron-style section eyebrow. */
 export function Eyebrow({ children, className = "" }: EyebrowProps) {
   return (
     <p className={`eyebrow ${className}`.trim()}>{children}</p>

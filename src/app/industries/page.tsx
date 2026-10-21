@@ -38,7 +38,7 @@ export default function IndustriesPage() {
         heading={
           <>
             {page.cta.headingLine1}
-            <span className="block whitespace-nowrap">
+            <span className="block md:whitespace-nowrap">
               <AccentHeading text={page.cta.headingLine2} accent="still be built." />
             </span>
           </>

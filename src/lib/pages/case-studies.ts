@@ -216,6 +216,7 @@ export const caseStudyIndustries = [
           "Engages patients through empathetic conversation.",
           "Uses conversation techniques informed by motivational interviewing principles.",
           "Shares relevant information while respecting patient choice.",
+          "Identifies concerns such as fear, inconvenience or uncertainty.",
           "Supports willing patients towards next steps, such as booking an appointment.",
         ],
         implementationNote:
@@ -341,7 +342,7 @@ export const caseStudyIndustries = [
         ],
         implementation: [
           "Handles customer enquiries across WhatsApp, web chat and other channels.",
-          "Understands customer needs rather than relying only on predefined FAQ responses.",
+          "Understands customer needs beyond predefined FAQ responses.",
           "Provides approved business information and relevant recommendations.",
           "Guides customers towards purchases, reservations, appointments and other next steps.",
           "Connects to business systems to retrieve information and complete workflows.",
@@ -646,6 +647,7 @@ export const caseStudyIndustries = [
           "Guides new hires through required steps.",
           "Collects information and documents.",
           "Answers common onboarding and employment questions.",
+          "Sends reminders and tracks completion.",
           "Flags outstanding actions and escalates complex queries to HR.",
         ],
         outcomes: [
