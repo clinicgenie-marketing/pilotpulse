@@ -4,62 +4,96 @@ import Image from "next/image";
 import type { PlatformLayerId } from "@/lib/home-content";
 import { platformBehind } from "@/lib/home-content";
 
-const MARKERS: { id: PlatformLayerId; top: string }[] = [
-  { id: "01", top: "38%" },
-  { id: "02", top: "50%" },
-  { id: "03", top: "62%" },
-  { id: "04", top: "74%" },
-  { id: "05", top: "86%" },
+/**
+ * Marker coordinates are percentages of the 1024x1024 source image box, not of the
+ * section, so they track the artwork at every scale. Measured against the asset:
+ * the waterline sits at ~28.6% and the submerged body runs from ~29% to ~88%.
+ */
+const WATERLINE_PCT = 28.6;
+
+const MARKERS: { id: PlatformLayerId; top: number; left: number }[] = [
+  { id: "01", top: 18.5, left: 49 }, // exposed peak, clearly above the waterline
+  { id: "02", top: 36, left: 49 },
+  { id: "03", top: 49.5, left: 49 },
+  { id: "04", top: 63, left: 49 },
+  { id: "05", top: 76.5, left: 49 },
 ];
 
 export function IcebergIllustration({
   activeId,
   onSelect,
+  tablistId,
+  panelId,
+  tabId,
 }: {
-  activeId: PlatformLayerId | null;
+  activeId: PlatformLayerId;
   onSelect: (id: PlatformLayerId) => void;
+  tablistId: string;
+  panelId: string;
+  tabId: (id: PlatformLayerId) => string;
 }) {
-  const { iceberg, layers } = platformBehind;
+  const { layers } = platformBehind;
+
+  function onKeyDown(event: React.KeyboardEvent<HTMLButtonElement>, index: number) {
+    const last = MARKERS.length - 1;
+    let next = index;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = index === last ? 0 : index + 1;
+    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = index === 0 ? last : index - 1;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = last;
+    else return;
+
+    event.preventDefault();
+    const target = MARKERS[next].id;
+    onSelect(target);
+    // Focus follows selection, so the selected control keeps keyboard focus.
+    document.getElementById(tabId(target))?.focus();
+  }
 
   return (
     <div className="platform-iceberg">
       <div className="platform-iceberg-art">
         <Image
           src="/platform/iceberg-lowpoly.jpg"
-          alt=""
+          alt="Iceberg diagram: one layer visible above the waterline, four layers below it."
           width={1024}
           height={1024}
           className="platform-iceberg-image"
-          sizes="(min-width: 900px) 36vw, min(100vw, 22rem)"
+          sizes="(min-width: 1024px) 32vw, min(100vw, 24rem)"
         />
-        <div className="platform-iceberg-labels">
-          <div className="platform-iceberg-above">
-            <p className="platform-iceberg-kicker">{iceberg.aboveTitle}</p>
-            <p className="platform-iceberg-support">{iceberg.aboveBody}</p>
-          </div>
-          <p className="platform-iceberg-kicker platform-iceberg-below-title">{iceberg.belowTitle}</p>
-        </div>
-        <ol className="platform-iceberg-markers">
-          {MARKERS.map((marker) => {
+        <div
+          className="platform-iceberg-markers"
+          role="tablist"
+          id={tablistId}
+          aria-label="AI architecture layers"
+          aria-orientation="vertical"
+        >
+          {MARKERS.map((marker, index) => {
             const layer = layers.find((item) => item.id === marker.id);
             const active = activeId === marker.id;
 
             return (
-              <li key={marker.id} className="platform-marker-slot" style={{ top: marker.top }}>
-                <button
-                  type="button"
-                  className="platform-marker"
-                  data-active={active ? "true" : "false"}
-                  aria-pressed={active}
-                  aria-label={`Show layer ${marker.id}${layer ? `: ${layer.title}` : ""}`}
-                  onClick={() => onSelect(marker.id)}
-                >
-                  {marker.id}
-                </button>
-              </li>
+              <button
+                key={marker.id}
+                id={tabId(marker.id)}
+                type="button"
+                role="tab"
+                className="platform-marker"
+                style={{ top: `${marker.top}%`, left: `${marker.left}%` }}
+                data-active={active ? "true" : "false"}
+                data-submerged={marker.top > WATERLINE_PCT ? "true" : "false"}
+                aria-selected={active}
+                aria-controls={panelId}
+                tabIndex={active ? 0 : -1}
+                onClick={() => onSelect(marker.id)}
+                onKeyDown={(event) => onKeyDown(event, index)}
+              >
+                <span className="platform-marker-number">{marker.id}</span>
+                <span className="sr-only">{layer ? `: ${layer.title}` : ""}</span>
+              </button>
             );
           })}
-        </ol>
+        </div>
       </div>
     </div>
   );

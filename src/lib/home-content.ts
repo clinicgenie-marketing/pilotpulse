@@ -90,188 +90,6 @@ export const trustedOrgs = {
   ] as const,
 };
 
-export type DemoSpeaker = "user" | "worker";
-
-export type DemoMessage = {
-  speaker: DemoSpeaker;
-  label: string;
-  text: string;
-  action?: string;
-};
-
-export type WorkflowDemoItem = {
-  id: string;
-  label: string;
-  icon: "truck" | "heart" | "userSearch" | "utensils";
-  badge: string;
-  messages: DemoMessage[];
-  actions: string[];
-  result: string;
-};
-
-export const workflowDemos: WorkflowDemoItem[] = [
-  {
-    id: "logistics",
-    label: "Logistics",
-    icon: "truck",
-    badge: "Live · Locker Network Operator",
-    messages: [
-      {
-        speaker: "user",
-        label: "C",
-        text: "Hi, my parcel shows delivered but locker 4B is empty. Order #LK-2291.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Checking order #LK-2291 now…",
-        action: "Order DB queried · Locker status pulled",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Locker 4B had a sensor fault at 14:32. Your parcel is safe in 6A. Code: 8821. Maintenance flagged automatically.",
-        action: "Maintenance ticket raised · Customer notified",
-      },
-      {
-        speaker: "user",
-        label: "C",
-        text: "Amazing, thank you!",
-      },
-    ],
-    actions: [
-      "Queried live order database",
-      "Read locker sensor status",
-      "Raised maintenance ticket",
-      "Resolved without human involvement",
-    ],
-    result: "~30% of support queries resolved end-to-end",
-  },
-  {
-    id: "healthcare",
-    label: "Healthcare",
-    icon: "heart",
-    badge: "Live · Private Clinic",
-    messages: [
-      {
-        speaker: "user",
-        label: "P",
-        text: "Hi, I'd like to book Dr Lim for Thursday afternoon.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Checking Dr Lim's Thursday availability…",
-        action: "Calendar API queried · CRM patient lookup",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Slots at 2:30pm and 4:00pm. Which works?",
-        action: "2 slots retrieved · Patient record matched",
-      },
-      {
-        speaker: "user",
-        label: "P",
-        text: "2:30pm please.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Thursday 2:30pm confirmed. Reminder sent 24h before.",
-        action: "Slot booked · Confirmation sent · Reminder scheduled",
-      },
-    ],
-    actions: [
-      "Checked live calendar availability",
-      "Matched patient record in CRM",
-      "Booked and sent confirmation",
-      "Scheduled 24h reminder automatically",
-    ],
-    result: "Zero receptionist time for routine bookings",
-  },
-  {
-    id: "recruitment",
-    label: "Recruitment",
-    icon: "userSearch",
-    badge: "Live · Call Lade Recruitment",
-    messages: [
-      {
-        speaker: "user",
-        label: "A",
-        text: "Hi, applying for delivery driver. Class 3 licence, 4 years experience.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Great, what's your availability to start?",
-        action: "Role criteria matched · Screening initiated",
-      },
-      {
-        speaker: "user",
-        label: "A",
-        text: "Immediately, any shift.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "You've been shortlisted. Interview booked tomorrow at 10am. Details sent to WhatsApp.",
-        action: "ATS updated · Interview scheduled · Candidate notified",
-      },
-    ],
-    actions: [
-      "Screened against role criteria",
-      "Pushed record to ATS",
-      "Booked interview in calendar",
-      "Decision in under 3 minutes",
-    ],
-    result: "~20 min saved per candidate",
-  },
-  {
-    id: "food-service",
-    label: "Food and Beverage",
-    icon: "utensils",
-    badge: "Live · Restaurant Group",
-    messages: [
-      {
-        speaker: "user",
-        label: "G",
-        text: "Table for 6 this Saturday 7pm? One guest is vegetarian.",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Checking Saturday 7pm for 6…",
-        action: "Reservation system queried · Table availability checked",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Confirmed. Table for 6 at 7pm. Vegetarian noted for kitchen. Name for reservation?",
-        action: "Dietary flag sent to kitchen system",
-      },
-      {
-        speaker: "user",
-        label: "G",
-        text: "Lee. Thanks!",
-      },
-      {
-        speaker: "worker",
-        label: "AI",
-        text: "Booked under Lee. See you Saturday!",
-        action: "Reservation saved · Reminder set for Friday",
-      },
-    ],
-    actions: [
-      "Checked live reservation availability",
-      "Flagged dietary requirement to kitchen",
-      "Booked and confirmed end-to-end",
-      "Reminder scheduled without staff",
-    ],
-    result: "Zero phone tag · dietary notes reach kitchen automatically",
-  },
-];
-
 export const agentWorkflow = {
   eyebrow: "How it works",
   headingBefore: "What your AI worker does",
@@ -360,9 +178,12 @@ export type PlatformBullet =
 export type PlatformLayer = {
   id: PlatformLayerId;
   title: string;
+  /** Short bold lead statement, shown first in the details panel. */
   summary: string;
+  /** Explanatory paragraph. Absent where the source has none. */
   intro?: string;
   bullets: readonly PlatformBullet[];
+  /** Closing statement. Absent where the source has none. */
   closing?: string;
 };
 
@@ -388,8 +209,8 @@ export const digitalWorkforce = {
   eyebrow: "Your digital workforce",
   headingBefore: "AI workers built for",
   headingAccent: "real work",
-  sub: "Digital Workers take on specific business roles and workflows, working across conversations, documents and business systems to complete tasks, make decisions and escalate to your team when human judgement is needed.",
-  cta: { label: "See the digital team", href: "/digital-workers" },
+  sub: "Meet the Digital Workers designed around your business workflows.",
+  cta: { label: "Explore the Digital Workforce", href: "/digital-workers" },
   workers: [
     {
       code: "DW-01",
@@ -590,15 +411,16 @@ export const platformBehind = {
       title: "AI Workflow & Reasoning Design",
       summary: "The right level of AI for every task.",
       intro:
-        "We start with the business problem, using rules where possible and AI reasoning where it adds value.",
+        "We design each workflow around the business problem first, using deterministic logic where it works, AI reasoning where judgement is needed, and autonomous agents only where they add real value.",
       bullets: [
-        "Rules-based workflows for predictable tasks",
-        "AI reasoning for ambiguous or data-rich tasks",
-        "Secure retrieval for private or current information",
-        "Controlled tools, actions and agentic workflows",
-        "Multi-agent orchestration when complexity requires it",
+        "Deterministic workflows for predictable rules and processes",
+        "Bounded AI reasoning for ambiguous or data-rich tasks",
+        "Enterprise retrieval when current or private knowledge is required",
+        "Scoped tools & actions when AI needs to interact with business systems",
+        "Agentic workflows when AI needs to dynamically determine the next step",
+        "Multi-agent orchestration only when the complexity genuinely requires it",
       ],
-      closing: "Every layer earns its place.",
+      closing: "No unnecessary AI complexity. Every layer earns its place.",
     },
     {
       id: "02",

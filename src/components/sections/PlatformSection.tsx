@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Minus, Plus } from "lucide-react";
 import { IcebergIllustration } from "@/components/sections/IcebergIllustration";
 import { AccentHeading } from "@/components/ui/PageHero";
 import {
@@ -13,157 +12,62 @@ import {
 } from "@/lib/home-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const LAYER_IDS = platformBehind.layers.map((layer) => layer.id);
-const LAYER_DWELL_MS: Record<PlatformLayerId, number> = {
-  "01": 7000,
-  "02": 5500,
-  "03": 5500,
-  "04": 7000,
-  "05": 5500,
-};
 
 function isLeadBullet(bullet: PlatformBullet): bullet is { lead: string; rest: string } {
   return typeof bullet === "object";
 }
 
-function LayerPanel({
-  layer,
-  open,
-  panelId,
-}: {
-  layer: PlatformLayer;
-  open: boolean;
-  panelId: string;
-}) {
+/**
+ * Every layer's title and details are rendered into the same grid cell, so the
+ * columns are always as tall as the longest layer and selection never moves the
+ * page. Inactive panes are faded out and removed from the accessibility tree.
+ */
+function Stack({ children }: { children: React.ReactNode }) {
+  return <div className="platform-stack">{children}</div>;
+}
+
+function Pane({ active, children }: { active: boolean; children: React.ReactNode }) {
   return (
-    <div
-      id={panelId}
-      className="platform-panel"
-      data-open={open ? "true" : "false"}
-      role="region"
-      aria-labelledby={`${panelId}-title`}
-      aria-hidden={!open}
-    >
-      <div className="platform-panel-inner">
-        {layer.intro ? <p className="platform-panel-intro">{layer.intro}</p> : null}
-        <ul className="platform-panel-list">
-          {layer.bullets.map((bullet) =>
-            isLeadBullet(bullet) ? (
-              <li key={bullet.lead}>
-                <strong>{bullet.lead}</strong> {bullet.rest}
-              </li>
-            ) : (
-              <li key={bullet}>{bullet}</li>
-            ),
-          )}
-        </ul>
-        {layer.closing ? <p className="platform-panel-closing">{layer.closing}</p> : null}
-      </div>
+    <div className="platform-pane" data-active={active ? "true" : "false"} aria-hidden={!active}>
+      {children}
     </div>
   );
 }
 
-function LayerRow({
-  layer,
-  open,
-  onToggle,
-}: {
-  layer: PlatformLayer;
-  open: boolean;
-  onToggle: (id: PlatformLayerId) => void;
-}) {
-  const reactId = useId();
-  const panelId = `${reactId}-panel`;
-
+function LayerDetails({ layer }: { layer: PlatformLayer }) {
   return (
-    <li className="platform-row" data-open={open ? "true" : "false"}>
-      <h3 className="platform-row-heading" id={`${panelId}-title`}>
-        <button
-          type="button"
-          className="platform-row-trigger"
-          aria-expanded={open}
-          aria-controls={panelId}
-          onClick={() => onToggle(layer.id)}
-        >
-          <span className="platform-row-index">{layer.id}</span>
-          <span className="platform-row-copy">
-            <span className="platform-row-title">{layer.title}</span>
-            <span className="platform-row-summary">{layer.summary}</span>
-          </span>
-          <span className="platform-row-icon" aria-hidden="true">
-            {open ? <Minus className="h-4 w-4" strokeWidth={2.25} /> : <Plus className="h-4 w-4" strokeWidth={2.25} />}
-          </span>
-        </button>
-      </h3>
-      <LayerPanel layer={layer} open={open} panelId={panelId} />
-    </li>
+    <>
+      <p className="platform-details-lead">{layer.summary}</p>
+      {layer.intro ? <p className="platform-details-body">{layer.intro}</p> : null}
+      <ul className="platform-details-list">
+        {layer.bullets.map((bullet) =>
+          isLeadBullet(bullet) ? (
+            <li key={bullet.lead}>
+              <strong>{bullet.lead}</strong> {bullet.rest}
+            </li>
+          ) : (
+            <li key={bullet}>{bullet}</li>
+          ),
+        )}
+      </ul>
+      {layer.closing ? <p className="platform-details-closing">{layer.closing}</p> : null}
+    </>
   );
 }
 
 export function PlatformSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const copyRef = useRef<HTMLDivElement | null>(null);
   const inView = useInView(sectionRef, { once: true, amount: 0.16 });
-  const touring = useInView(sectionRef, { amount: 0.4 });
   const show = Boolean(reduceMotion || inView);
   const headingId = "platform-heading";
-  const [activeId, setActiveId] = useState<PlatformLayerId | null>("01");
-  const [paused, setPaused] = useState(false);
-  const [userLocked, setUserLocked] = useState(false);
+  const uid = useId();
+  const tablistId = `${uid}-layers`;
+  const panelId = `${uid}-panel`;
+  const tabId = (id: PlatformLayerId) => `${uid}-tab-${id}`;
 
-  useEffect(() => {
-    if (reduceMotion || userLocked || paused || !touring || !activeId) return undefined;
-
-    const index = LAYER_IDS.indexOf(activeId);
-    if (index < 0 || index >= LAYER_IDS.length - 1) return undefined;
-
-    const timer = window.setTimeout(() => {
-      setActiveId(LAYER_IDS[index + 1]);
-    }, LAYER_DWELL_MS[activeId]);
-
-    return () => window.clearTimeout(timer);
-  }, [activeId, paused, reduceMotion, touring, userLocked]);
-
-  useEffect(() => {
-    const container = copyRef.current;
-    if (!container || !activeId) return undefined;
-
-    const keepOpenRowInPane = () => {
-      const row = container.querySelector<HTMLElement>(".platform-row[data-open='true']");
-      if (!row) return;
-      const rowRect = row.getBoundingClientRect();
-      const box = container.getBoundingClientRect();
-      if (rowRect.bottom > box.bottom) {
-        container.scrollTop += rowRect.bottom - box.bottom + 12;
-      } else if (rowRect.top < box.top) {
-        container.scrollTop -= box.top - rowRect.top + 12;
-      }
-    };
-
-    const frame = window.requestAnimationFrame(keepOpenRowInPane);
-    const timer = window.setTimeout(keepOpenRowInPane, reduceMotion ? 0 : 240);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(timer);
-    };
-  }, [activeId, reduceMotion]);
-
-  const lockAndSet = (id: PlatformLayerId | null) => {
-    setUserLocked(true);
-    setActiveId(id);
-  };
-
-  const toggle = (id: PlatformLayerId) => {
-    lockAndSet(activeId === id ? null : id);
-  };
-
-  const select = (id: PlatformLayerId) => {
-    lockAndSet(id);
-  };
-
-  const pauseTour = () => setPaused(true);
-  const resumeTour = () => setPaused(false);
+  // Layer 01 by default. Selection is user-driven only — no automatic rotation.
+  const [activeId, setActiveId] = useState<PlatformLayerId>("01");
 
   return (
     <section
@@ -186,37 +90,62 @@ export function PlatformSection() {
           <p className="lead mt-3 platform-lead">{platformBehind.sub}</p>
         </motion.div>
 
-        <div className="platform-layout">
-          <motion.div
-            className="platform-visual"
-            initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-            animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.08, ease: EASE }}
-          >
-            <IcebergIllustration activeId={activeId} onSelect={select} />
-          </motion.div>
-
-          <div className="platform-copy" ref={copyRef}>
-            <motion.ul
-              className="platform-accordion"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.12, ease: EASE }}
-              onMouseEnter={pauseTour}
-              onMouseLeave={resumeTour}
-              onFocus={pauseTour}
-              onBlur={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                  resumeTour();
-                }
-              }}
-            >
+        <motion.div
+          className="platform-layout"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: reduceMotion ? 0 : 0.34, delay: reduceMotion ? 0 : 0.08, ease: EASE }}
+        >
+          {/* Left — selected layer title */}
+          <div className="platform-title-col">
+            <p className="platform-col-label">AI architecture layer</p>
+            <Stack>
               {platformBehind.layers.map((layer) => (
-                <LayerRow key={layer.id} layer={layer} open={activeId === layer.id} onToggle={toggle} />
+                <Pane key={layer.id} active={layer.id === activeId}>
+                  <p className="platform-title-index" aria-hidden="true">
+                    {layer.id}
+                  </p>
+                  <h3 className="platform-title-text">{layer.title}</h3>
+                </Pane>
               ))}
-            </motion.ul>
+            </Stack>
           </div>
-        </div>
+
+          {/* Centre — iceberg with the five markers */}
+          <div className="platform-visual">
+            <IcebergIllustration
+              activeId={activeId}
+              onSelect={setActiveId}
+              tablistId={tablistId}
+              panelId={panelId}
+              tabId={tabId}
+            />
+          </div>
+
+          {/* Right — selected layer components */}
+          <div className="platform-details-col">
+            <p className="platform-col-label">Layer components</p>
+            <div
+              id={panelId}
+              role="tabpanel"
+              aria-labelledby={tabId(activeId)}
+              tabIndex={0}
+              className="platform-details-panel"
+            >
+              <Stack>
+                {platformBehind.layers.map((layer) => (
+                  <Pane key={layer.id} active={layer.id === activeId}>
+                    {/* The bordered box hugs its own content; the shared grid cell
+                        keeps the row height constant across layers. */}
+                    <div className="platform-details">
+                      <LayerDetails layer={layer} />
+                    </div>
+                  </Pane>
+                ))}
+              </Stack>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
