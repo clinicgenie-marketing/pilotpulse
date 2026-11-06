@@ -533,38 +533,6 @@ export const integrations = {
   },
 };
 
-export type ResultMetric = {
-  context: string;
-  numeric: number;
-  prefix: string;
-  suffix: string;
-  description: string;
-};
-
-export const results = {
-  eyebrow: "Live deployment results",
-  heading: "Less manual work. More capacity to move.",
-  sub: "PilotPulse Digital Workers are already supporting customer engagement, recruitment and regional operations.",
-  qualification:
-    "Selected outcomes from live implementations. Results vary depending on workflow, scope and operating environment.",
-  metrics: [
-    {
-      context: "Customer engagement",
-      numeric: 30,
-      prefix: "~",
-      suffix: "%",
-      description: "of enquiries handled by AI",
-    },
-    {
-      context: "Recruitment",
-      numeric: 20,
-      prefix: "~",
-      suffix: " min",
-      description: "saved for every candidate screened",
-    },
-  ] satisfies ResultMetric[],
-};
-
 export type Testimonial = {
   id: string;
   tag: string;
